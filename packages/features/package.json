@@ -1,0 +1,17 @@
+{
+  "name": "@uqalimaaq/features",
+  "version": "1.0.0",
+  "description": "Uqalimaaq features package",
+  "main": "index.ts",
+  "types": "index.ts",
+  "exports": {
+    "./lessons": "./lessons/lessonData.ts",
+    "./auth": "./auth/firebase.ts"
+  },
+  "dependencies": {
+    "firebase": "^10.7.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

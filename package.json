@@ -1,0 +1,21 @@
+{
+  "name": "uqalimaaq",
+  "version": "1.0.0",
+  "description": "Uqalimaaq - Preserving and teaching endangered Native languages",
+  "private": true,
+  "scripts": {
+    "dev": "cd apps/web && pnpm dev",
+    "build": "cd apps/web && pnpm build",
+    "test": "cd apps/web && pnpm test",
+    "install:all": "pnpm install --recursive",
+    "web": "cd apps/web && pnpm dev",
+    "mobile": "cd apps/mobile && pnpm start"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  }
+}
