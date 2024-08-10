@@ -1,27 +1,13 @@
 {
-  "name": "web",
-  "version": "0.1.0",
-  "private": true,
+  "name": "uqalimaaq-landing",
+  "version": "1.0.0",
+  "description": "Uqalimaaq - A modern learning platform landing page",
+  "main": "index.html",
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
-    "start": "next start",
-    "lint": "eslint"
+    "dev": "python -m http.server 8000",
+    "start": "python -m http.server 8000"
   },
-  "dependencies": {
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "next": "15.5.2"
-  },
-  "devDependencies": {
-    "typescript": "^5",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
-    "eslint": "^9",
-    "eslint-config-next": "15.5.2",
-    "@eslint/eslintrc": "^3"
-  }
+  "keywords": ["education", "learning", "platform", "landing-page"],
+  "author": "Uqalimaaq Team",
+  "license": "MIT"
 }

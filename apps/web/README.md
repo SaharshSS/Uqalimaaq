@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Uqalimaaq Landing Page
 
-## Getting Started
+A modern, responsive landing page for the Uqalimaaq learning platform, optimized for Vercel deployment.
 
-First, run the development server:
+## Features
+
+- 🎨 Modern, responsive design with Tailwind CSS
+- 🌙 Dark mode support
+- 📱 Mobile-first approach
+- ⚡ Fast loading with optimized assets
+- 🚀 Vercel-ready deployment
+- ♿ Accessible design
+- 🔍 SEO optimized
+
+## Local Development
+
+To run the site locally:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Using Python (if installed)
+python -m http.server 8000
+
+# Or using Node.js
+npx serve .
+
+# Or using any other static file server
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open [http://localhost:8000](http://localhost:8000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deployment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This site is optimized for Vercel deployment:
 
-## Learn More
+1. Connect your GitHub repository to Vercel
+2. Set the root directory to `apps/web`
+3. Deploy!
 
-To learn more about Next.js, take a look at the following resources:
+The site will be automatically deployed on every push to the main branch.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `index.html` - Main landing page
+- `vercel.json` - Vercel deployment configuration
+- `package.json` - Project metadata and scripts
 
-## Deploy on Vercel
+## Customization
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The landing page is built with vanilla HTML, CSS, and JavaScript for maximum compatibility and performance. All styling is done with Tailwind CSS via CDN.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Key sections:
+- Hero section with call-to-action
+- Features showcase
+- About section with statistics
+- Footer with links
+
+## Performance
+
+- Optimized for Core Web Vitals
+- Minimal JavaScript
+- CDN-delivered CSS framework
+- Responsive images
+- Fast loading times
