@@ -4,12 +4,20 @@
     {
       "src": "index.html",
       "use": "@vercel/static"
+    },
+    {
+      "src": "learn.html",
+      "use": "@vercel/static"
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/learn",
+      "destination": "/learn.html"
     }
   ],
   "headers": [
@@ -30,5 +38,6 @@
         }
       ]
     }
-  ]
+  ],
+  "alias": "uqalimaaq-app.vercel.app"
 }

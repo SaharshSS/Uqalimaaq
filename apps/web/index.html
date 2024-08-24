@@ -3,17 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uqalimaaq - Learn & Explore</title>
-    <meta name="description" content="A modern learning platform for exploring new skills and knowledge">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+    <title>Uqalimaaq - Indigenous Learning & Cultural Heritage</title>
+    <meta name="description" content="A learning platform celebrating Indigenous Pacific Northwest knowledge, culture, and traditions">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦅</text></svg>">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        primary: '#3b82f6',
-                        secondary: '#1e40af',
+                        cedar: '#8B4513',
+                        salmon: '#FA8072',
+                        forest: '#228B22',
+                        ocean: '#4682B4',
+                        earth: '#D2B48C',
+                        sunset: '#FF6347',
+                        sky: '#87CEEB',
+                        mountain: '#708090',
                     }
                 }
             }
@@ -23,18 +29,18 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         
         :root {
-            --background: #ffffff;
-            --foreground: #0f172a;
-            --muted: #64748b;
-            --border: #e2e8f0;
+            --background: #fefdf8;
+            --foreground: #2c1810;
+            --muted: #8b7355;
+            --border: #d4c4a8;
         }
         
         @media (prefers-color-scheme: dark) {
             :root {
-                --background: #0f172a;
-                --foreground: #f8fafc;
-                --muted: #94a3b8;
-                --border: #334155;
+                --background: #1a1611;
+                --foreground: #f4f1e8;
+                --muted: #b8a082;
+                --border: #4a4538;
             }
         }
         
@@ -52,11 +58,11 @@
         }
         
         .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #8B4513 0%, #228B22 50%, #4682B4 100%);
         }
         
         .glass {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
@@ -73,6 +79,12 @@
         .animate-pulse-slow {
             animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
+        
+        .traditional-pattern {
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(139, 69, 19, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(34, 139, 34, 0.1) 0%, transparent 50%);
+        }
     </style>
 </head>
 <body>
@@ -81,15 +93,20 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center space-x-2">
-                    <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                        <span class="text-white font-bold text-sm">U</span>
+                    <div class="w-8 h-8 bg-gradient-to-r from-cedar to-forest rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">ᐅ</span>
                     </div>
                     <span class="text-xl font-bold text-white">Uqalimaaq</span>
                 </div>
                 <div class="hidden md:flex space-x-8">
-                    <a href="#features" class="text-white hover:text-blue-200 transition-colors">Features</a>
-                    <a href="#about" class="text-white hover:text-blue-200 transition-colors">About</a>
-                    <a href="#contact" class="text-white hover:text-blue-200 transition-colors">Contact</a>
+                    <a href="#learn" class="text-white hover:text-salmon transition-colors">Learn</a>
+                    <a href="#features" class="text-white hover:text-salmon transition-colors">Features</a>
+                    <a href="#about" class="text-white hover:text-salmon transition-colors">About</a>
+                    <a href="#contact" class="text-white hover:text-salmon transition-colors">Contact</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <button onclick="showSignIn()" class="text-white hover:text-salmon transition-colors">Sign In</button>
+                    <button onclick="showSignIn()" class="bg-salmon text-white px-4 py-2 rounded-full hover:bg-sunset transition-colors">Create Account</button>
                 </div>
                 <button class="md:hidden text-white">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -101,122 +118,186 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="gradient-bg min-h-screen flex items-center justify-center relative overflow-hidden">
-        <div class="absolute inset-0 bg-black opacity-20"></div>
+    <section class="gradient-bg min-h-screen flex items-center justify-center relative overflow-hidden traditional-pattern">
+        <div class="absolute inset-0 bg-black opacity-30"></div>
         <div class="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
             <h1 class="text-4xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-                Learn Something
-                <span class="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">
-                    Amazing Today
+                Learn Pacific Northwest
+                <span class="block text-transparent bg-clip-text bg-gradient-to-r from-salmon to-sky leading-[1.2]">
+                    Indigenous Languages
                 </span>
             </h1>
-            <p class="text-xl sm:text-2xl text-blue-100 mb-8 max-w-2xl mx-auto">
-                Discover new skills, explore fascinating topics, and unlock your potential with our interactive learning platform.
+            <p class="text-xl sm:text-2xl text-white mb-8 max-w-2xl mx-auto opacity-90">
+                Discover and learn Indigenous languages from the Pacific Northwest and Alaska through authentic community teachings and cultural context.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <button class="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg">
-                    Start Learning
-                </button>
-                <button class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-blue-600 transition-all duration-300">
-                    Explore Features
+                <a href="learn.html" class="bg-white text-cedar px-8 py-4 rounded-full font-semibold text-lg hover:bg-earth transition-all duration-300 transform hover:scale-105 shadow-lg inline-block">
+                    Begin Learning Journey
+                </a>
+                <button onclick="showSignIn()" class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-cedar transition-all duration-300">
+                    Join Our Community
                 </button>
             </div>
         </div>
         
-        <!-- Floating Elements -->
-        <div class="absolute top-20 left-10 w-20 h-20 bg-white opacity-10 rounded-full animate-float"></div>
-        <div class="absolute top-40 right-20 w-16 h-16 bg-yellow-400 opacity-20 rounded-full animate-float" style="animation-delay: -2s;"></div>
-        <div class="absolute bottom-20 left-20 w-12 h-12 bg-purple-400 opacity-15 rounded-full animate-float" style="animation-delay: -4s;"></div>
+        <!-- Traditional Elements -->
+        <div class="absolute top-20 left-10 w-20 h-20 bg-white opacity-10 rounded-full animate-float">🌲</div>
+        <div class="absolute top-40 right-20 w-16 h-16 bg-salmon opacity-20 rounded-full animate-float" style="animation-delay: -2s;">🐻</div>
+        <div class="absolute bottom-20 left-20 w-12 h-12 bg-ocean opacity-15 rounded-full animate-float" style="animation-delay: -4s;">🐟</div>
     </section>
 
-    <!-- Features Section -->
-    <section id="features" class="py-20 bg-white dark:bg-slate-900">
+    <!-- Learn Section -->
+    <section id="learn" class="py-20 bg-earth">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-                    Why Choose Uqalimaaq?
+                <h2 class="text-3xl sm:text-4xl font-bold text-cedar mb-4">
+                    Indigenous Languages Available
                 </h2>
-                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                    Experience learning like never before with our innovative features and user-friendly interface.
+                <p class="text-xl text-mountain max-w-2xl mx-auto">
+                    Learn authentic Pacific Northwest and Alaskan Indigenous languages with native speakers and cultural context.
                 </p>
             </div>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-slate-800 dark:to-slate-700 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-                    <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                        </svg>
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-12 h-12 bg-cedar rounded-lg flex items-center justify-center mb-6">
+                        <span class="text-white text-xl">🏔️</span>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Interactive Lessons</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Engage with hands-on lessons that adapt to your learning pace and style.</p>
+                    <h3 class="text-xl font-semibold text-cedar mb-4">Tlingit</h3>
+                    <p class="text-mountain">Learn the language of Southeast Alaska with pronunciation guides and cultural stories.</p>
                 </div>
                 
-                <div class="bg-gradient-to-br from-green-50 to-emerald-100 dark:from-slate-800 dark:to-slate-700 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-                    <div class="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-12 h-12 bg-forest rounded-lg flex items-center justify-center mb-6">
+                        <span class="text-white text-xl">🐻</span>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Progress Tracking</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Monitor your learning journey with detailed analytics and achievements.</p>
+                    <h3 class="text-xl font-semibold text-cedar mb-4">Haida</h3>
+                    <p class="text-mountain">Discover the Haida language from Haida Gwaii with traditional oral teachings.</p>
                 </div>
                 
-                <div class="bg-gradient-to-br from-purple-50 to-violet-100 dark:from-slate-800 dark:to-slate-700 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-                    <div class="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                        </svg>
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-12 h-12 bg-ocean rounded-lg flex items-center justify-center mb-6">
+                        <span class="text-white text-xl">🐟</span>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Community Learning</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Connect with fellow learners and share knowledge in our vibrant community.</p>
+                    <h3 class="text-xl font-semibold text-cedar mb-4">Tsimshian</h3>
+                    <p class="text-mountain">Learn the Tsimshian language from coastal British Columbia and Alaska.</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-12 h-12 bg-salmon rounded-lg flex items-center justify-center mb-6">
+                        <span class="text-white text-xl">🌊</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-cedar mb-4">Kwak'wala</h3>
+                    <p class="text-mountain">Explore the Kwak'wala language from Vancouver Island and the BC coast.</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-12 h-12 bg-sunset rounded-lg flex items-center justify-center mb-6">
+                        <span class="text-white text-xl">🌲</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-cedar mb-4">Chinook Jargon</h3>
+                    <p class="text-mountain">Learn the historical trade language of the Pacific Northwest region.</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-12 h-12 bg-mountain rounded-lg flex items-center justify-center mb-6">
+                        <span class="text-white text-xl">🦅</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-cedar mb-4">Inupiaq</h3>
+                    <p class="text-mountain">Discover the Inupiaq language from Alaska's northern regions.</p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="learn.html" class="bg-cedar text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-forest transition-all duration-300 transform hover:scale-105 shadow-lg inline-block">
+                    Start Your Learning Journey
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold text-cedar mb-4">
+                    Language Learning Features
+                </h2>
+                <p class="text-xl text-mountain max-w-2xl mx-auto">
+                    Master Indigenous languages with our innovative totem pole learning system and authentic community content.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gradient-to-br from-cedar/10 to-forest/10 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-12 h-12 bg-cedar rounded-lg flex items-center justify-center mb-6">
+                        <span class="text-white text-xl">🏛️</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-cedar mb-4">Totem Pole Lessons</h3>
+                    <p class="text-mountain">Progress through language levels represented as totem pole sections, each unlocking new cultural knowledge.</p>
+                </div>
+                
+                <div class="bg-gradient-to-br from-ocean/10 to-sky/10 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-12 h-12 bg-ocean rounded-lg flex items-center justify-center mb-6">
+                        <span class="text-white text-xl">🎧</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-cedar mb-4">Native Speaker Audio</h3>
+                    <p class="text-mountain">Learn pronunciation with authentic recordings from Indigenous language speakers and knowledge keepers.</p>
+                </div>
+                
+                <div class="bg-gradient-to-br from-salmon/10 to-sunset/10 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-12 h-12 bg-salmon rounded-lg flex items-center justify-center mb-6">
+                        <span class="text-white text-xl">📚</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-cedar mb-4">Cultural Context</h3>
+                    <p class="text-mountain">Understand language through traditional stories, ceremonies, and cultural practices of each community.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 bg-gray-50 dark:bg-slate-800">
+    <section id="about" class="py-20 bg-sky/20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-12 items-center">
                 <div>
-                    <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">
-                        Empowering Learners Worldwide
+                    <h2 class="text-3xl sm:text-4xl font-bold text-cedar mb-6">
+                        Preserving Indigenous Languages
                     </h2>
-                    <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
-                        Uqalimaaq is more than just a learning platform – it's a gateway to endless possibilities. 
-                        We believe that everyone has the potential to learn and grow, and we're here to make that journey 
-                        as engaging and effective as possible.
+                    <p class="text-lg text-mountain mb-6">
+                        Uqalimaaq is dedicated to the revitalization and preservation of Pacific Northwest and Alaskan Indigenous languages. 
+                        Our platform uses the sacred symbol of the totem pole to guide learners through progressive language mastery, 
+                        honoring the cultural significance of these languages while making them accessible to new generations.
                     </p>
                     <div class="space-y-4">
                         <div class="flex items-center space-x-3">
-                            <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
-                            <span class="text-gray-700 dark:text-gray-300">Personalized learning paths</span>
+                            <div class="w-2 h-2 bg-cedar rounded-full"></div>
+                            <span class="text-mountain">Community-approved language content</span>
                         </div>
                         <div class="flex items-center space-x-3">
-                            <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
-                            <span class="text-gray-700 dark:text-gray-300">Expert-curated content</span>
+                            <div class="w-2 h-2 bg-cedar rounded-full"></div>
+                            <span class="text-mountain">Totem pole progression system</span>
                         </div>
                         <div class="flex items-center space-x-3">
-                            <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
-                            <span class="text-gray-700 dark:text-gray-300">Mobile-first design</span>
+                            <div class="w-2 h-2 bg-cedar rounded-full"></div>
+                            <span class="text-mountain">Native speaker partnerships</span>
                         </div>
                     </div>
                 </div>
                 <div class="relative">
-                    <div class="bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl p-8 text-white">
+                    <div class="bg-gradient-to-r from-cedar to-forest rounded-2xl p-8 text-white">
                         <div class="text-center">
-                            <div class="text-4xl font-bold mb-2">10,000+</div>
-                            <div class="text-blue-100">Active Learners</div>
+                            <div class="text-4xl font-bold mb-2">500+</div>
+                            <div class="text-white/90">Language Learners</div>
                         </div>
                         <div class="mt-8 grid grid-cols-2 gap-4">
                             <div class="text-center">
-                                <div class="text-2xl font-bold">500+</div>
-                                <div class="text-blue-100 text-sm">Courses</div>
+                                <div class="text-2xl font-bold">6</div>
+                                <div class="text-white/90 text-sm">Languages Available</div>
                             </div>
                             <div class="text-center">
                                 <div class="text-2xl font-bold">50+</div>
-                                <div class="text-blue-100 text-sm">Languages</div>
+                                <div class="text-white/90 text-sm">Native Speakers</div>
                             </div>
                         </div>
                     </div>
@@ -229,59 +310,126 @@
     <section class="py-20 gradient-bg">
         <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl sm:text-4xl font-bold text-white mb-6">
-                Ready to Start Your Learning Journey?
+                Ready to Learn Indigenous Languages?
             </h2>
-            <p class="text-xl text-blue-100 mb-8">
-                Join thousands of learners who are already discovering new skills and unlocking their potential.
+            <p class="text-xl text-white mb-8 opacity-90">
+                Begin your language learning journey and help preserve Pacific Northwest and Alaskan Indigenous languages for future generations.
             </p>
-            <button class="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg">
-                Get Started for Free
+            <button onclick="showSignIn()" class="bg-white text-cedar px-8 py-4 rounded-full font-semibold text-lg hover:bg-earth transition-all duration-300 transform hover:scale-105 shadow-lg">
+                Join Our Community
             </button>
         </div>
     </section>
 
+    <!-- Sign In Modal -->
+    <div id="signInModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-8 relative">
+            <button onclick="hideSignIn()" class="absolute top-4 right-4 text-mountain hover:text-cedar">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            
+            <div class="text-center mb-8">
+                <div class="w-16 h-16 bg-gradient-to-r from-cedar to-forest rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="text-white text-2xl">ᐅ</span>
+                </div>
+                <h2 class="text-2xl font-bold text-cedar mb-2">Join Uqalimaaq</h2>
+                <p class="text-mountain">Create an account to access our learning community</p>
+            </div>
+
+            <form class="space-y-6">
+                <div>
+                    <label class="block text-sm font-medium text-cedar mb-2">Full Name</label>
+                    <input type="text" required class="w-full px-4 py-3 border border-mountain/30 rounded-lg focus:ring-2 focus:ring-cedar focus:border-transparent text-black" placeholder="Your full name">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-cedar mb-2">Email Address</label>
+                    <input type="email" required class="w-full px-4 py-3 border border-mountain/30 rounded-lg focus:ring-2 focus:ring-cedar focus:border-transparent text-black" placeholder="your@email.com">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-cedar mb-2">Password</label>
+                    <input type="password" required class="w-full px-4 py-3 border border-mountain/30 rounded-lg focus:ring-2 focus:ring-cedar focus:border-transparent text-black" placeholder="Create a secure password">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-cedar mb-2">Community Connection</label>
+                    <select class="w-full px-4 py-3 border border-mountain/30 rounded-lg focus:ring-2 focus:ring-cedar focus:border-transparent text-black">
+                        <option>Select your connection to Indigenous communities</option>
+                        <option>Indigenous community member</option>
+                        <option>Ally and supporter</option>
+                        <option>Educator</option>
+                        <option>Student</option>
+                        <option>Cultural worker</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                
+                <div class="flex items-start space-x-3">
+                    <input type="checkbox" required class="mt-1 w-4 h-4 text-cedar border-mountain/30 rounded focus:ring-cedar">
+                    <label class="text-sm text-mountain">
+                        I agree to respect Indigenous cultural protocols and community guidelines
+                    </label>
+                </div>
+                
+                <button type="submit" class="w-full bg-cedar text-white py-3 rounded-lg font-semibold hover:bg-forest transition-colors">
+                    Create Account
+                </button>
+                
+                <p class="text-center text-sm text-mountain">
+                    Already have an account? 
+                    <button type="button" onclick="showLogin()" class="text-cedar hover:underline">Sign In</button>
+                </p>
+            </form>
+        </div>
+    </div>
+
+
     <!-- Footer -->
-    <footer id="contact" class="bg-gray-900 text-white py-12">
+    <footer id="contact" class="bg-cedar text-white py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-4 gap-8">
                 <div>
                     <div class="flex items-center space-x-2 mb-4">
-                        <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                            <span class="text-white font-bold text-sm">U</span>
+                        <div class="w-8 h-8 bg-gradient-to-r from-forest to-ocean rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-sm">🦅</span>
                         </div>
                         <span class="text-xl font-bold">Uqalimaaq</span>
                     </div>
-                    <p class="text-gray-400">
-                        Empowering learners worldwide with innovative education technology.
+                    <p class="text-white/80">
+                        Preserving Pacific Northwest and Alaskan Indigenous languages through respectful learning and community partnerships.
                     </p>
                 </div>
                 <div>
-                    <h3 class="font-semibold mb-4">Product</h3>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white transition-colors">Features</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Pricing</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">API</a></li>
+                    <h3 class="font-semibold mb-4">Languages</h3>
+                    <ul class="space-y-2 text-white/80">
+                        <li><a href="#learn" class="hover:text-white transition-colors">Tlingit</a></li>
+                        <li><a href="#learn" class="hover:text-white transition-colors">Haida</a></li>
+                        <li><a href="#learn" class="hover:text-white transition-colors">Tsimshian</a></li>
+                        <li><a href="#learn" class="hover:text-white transition-colors">Kwak'wala</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="font-semibold mb-4">Company</h3>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white transition-colors">About</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
+                    <h3 class="font-semibold mb-4">Community</h3>
+                    <ul class="space-y-2 text-white/80">
+                        <li><a href="#about" class="hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Cultural Protocols</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Partnerships</a></li>
                     </ul>
                 </div>
                 <div>
                     <h3 class="font-semibold mb-4">Support</h3>
-                    <ul class="space-y-2 text-gray-400">
+                    <ul class="space-y-2 text-white/80">
                         <li><a href="#" class="hover:text-white transition-colors">Help Center</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Status</a></li>
+                        <li><a href="#contact" class="hover:text-white transition-colors">Contact</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Community Guidelines</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2024 Uqalimaaq. All rights reserved.</p>
+            <div class="border-t border-white/20 mt-8 pt-8 text-center text-white/80">
+                <p>&copy; 2024 Uqalimaaq. All rights reserved. Built with respect for Indigenous sovereignty.</p>
             </div>
         </div>
     </footer>
@@ -309,6 +457,49 @@
             } else {
                 nav.classList.remove('bg-opacity-90');
             }
+        });
+
+        // Modal functionality
+        function showSignIn() {
+            document.getElementById('signInModal').classList.remove('hidden');
+        }
+
+        function hideSignIn() {
+            document.getElementById('signInModal').classList.add('hidden');
+        }
+
+        function showLogin() {
+            // For now, just show the sign in modal
+            // In a real app, you'd switch to a login form
+            showSignIn();
+        }
+
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('signInModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                hideSignIn();
+            }
+        });
+
+        // Handle form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Welcome to Uqalimaaq! Your account has been created. Redirecting to your learning journey...');
+            hideSignIn();
+            // Redirect to learn page after a short delay
+            setTimeout(() => {
+                window.location.href = 'learn.html';
+            }, 1500);
         });
     </script>
 </body>
