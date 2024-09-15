@@ -71,6 +71,98 @@
             background-image: 
                 radial-gradient(circle at 25% 25%, rgba(139, 69, 19, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 75% 75%, rgba(34, 139, 34, 0.1) 0%, transparent 50%);
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
+        nav {
+            transition: background 0.3s ease, backdrop-filter 0.3s ease;
+        }
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(12px);
+        }
+
+        .nav-active {
+            border-bottom: 2px solid var(--salmon);
+            color: var(--salmon);
+        }
+
+        .hero-subtitle {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            opacity: 1;
+        }
+
+        .language-btn {
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .language-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .totem-section {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .totem-section:not(.opacity-50):hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .totem-section .text-3xl {
+            font-size: 2rem;
+            line-height: 1;
+        }
+
+        #lessonContent > div:not(:last-child) {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        #signInModal {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            transform: scale(0.95);
+        }
+        #signInModal:not(.hidden) {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        input:invalid:focus {
+            border-color: var(--sunset);
+            ring: 2px solid var(--sunset);
+        }
+
+        button {
+            transition: transform 0.1s ease;
+        }
+        button:active {
+            transform: scale(0.98);
+        }
+
+        .rounded-standard {
+            border-radius: 16px;
+        }
+
+        .cultural-divider {
+            background-image: url('path-to-formline-pattern.png'); /* Replace with actual path */
+            background-size: contain;
+            height: 4px;
+            margin: 2rem 0;
+        }
+
+        .lesson-item {
+            transition: background 0.2s ease;
+        }
+        .lesson-item:hover {
+            background: rgba(139, 69, 19, 0.05);
         }
     </style>
 </head>
@@ -87,13 +179,24 @@
                 </div>
                 <div class="hidden md:flex space-x-8">
                     <a href="index.html" class="text-white hover:text-salmon transition-colors">Home</a>
-                    <a href="learn.html" class="text-white hover:text-salmon transition-colors">Learn</a>
+                    <a href="learn.html" class="text-white hover:text-salmon transition-colors nav-active">Learn</a>
                     <a href="index.html#about" class="text-white hover:text-salmon transition-colors">About</a>
                     <a href="index.html#contact" class="text-white hover:text-salmon transition-colors">Contact</a>
                 </div>
-                <button onclick="showSignIn()" class="bg-salmon text-white px-4 py-2 rounded-full hover:bg-sunset transition-colors">
+                <button class="md:hidden text-white focus:outline-none" onclick="toggleMobileMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+                <button onclick="showSignIn()" class="bg-salmon text-white px-4 py-2 rounded-full hover:bg-sunset transition-colors md:ml-4">
                     Sign In
                 </button>
+            </div>
+            <div id="mobileMenu" class="hidden md:hidden bg-glass w-full absolute top-16 left-0 p-4">
+                <a href="index.html" class="block text-white py-2 hover:text-salmon">Home</a>
+                <a href="learn.html" class="block text-white py-2 hover:text-salmon">Learn</a>
+                <a href="index.html#about" class="block text-white py-2 hover:text-salmon">About</a>
+                <a href="index.html#contact" class="block text-white py-2 hover:text-salmon">Contact</a>
             </div>
         </div>
     </nav>
@@ -108,9 +211,12 @@
                     Learning Journey
                 </span>
             </h1>
-            <p class="text-xl sm:text-2xl text-white mb-8 max-w-2xl mx-auto opacity-90">
+            <p class="text-xl sm:text-2xl text-white mb-8 max-w-2xl mx-auto hero-subtitle">
                 Progress through Pacific Northwest and Alaskan Indigenous languages using our sacred totem pole learning system.
             </p>
+            <a href="#learningSection" class="inline-block bg-salmon text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-sunset transition-colors mt-6">
+                Start Your Journey
+            </a>
         </div>
     </section>
 
@@ -126,24 +232,9 @@
                 </p>
             </div>
             
-            <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-                <button onclick="selectLanguage('tlingit')" class="language-btn bg-cedar/10 hover:bg-cedar/20 p-8 rounded-2xl transition-all duration-300 transform hover:-translate-y-2">
-                    <div class="text-4xl mb-4">🏔️</div>
-                    <h3 class="text-xl font-semibold text-cedar mb-4">Tlingit</h3>
-                    <p class="text-mountain">Learn the language of Southeast Alaska with pronunciation guides and cultural stories.</p>
-                </button>
-                
-                <button onclick="selectLanguage('haida')" class="language-btn bg-forest/10 hover:bg-forest/20 p-8 rounded-2xl transition-all duration-300 transform hover:-translate-y-2">
-                    <div class="text-4xl mb-4">🐻</div>
-                    <h3 class="text-xl font-semibold text-cedar mb-4">Haida</h3>
-                    <p class="text-mountain">Discover the Haida language from Haida Gwaii with traditional oral teachings.</p>
-                </button>
-                
-                <button onclick="selectLanguage('tsimshian')" class="language-btn bg-ocean/10 hover:bg-ocean/20 p-8 rounded-2xl transition-all duration-300 transform hover:-translate-y-2">
-                    <div class="text-4xl mb-4">🐟</div>
-                    <h3 class="text-xl font-semibold text-cedar mb-4">Tsimshian</h3>
-                    <p class="text-mountain">Learn the Tsimshian language from coastal British Columbia and Alaska.</p>
-                </button>
+            <!-- Languages container will be populated dynamically -->
+            <div id="languagesContainer" class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                <!-- Dynamic buttons injected here -->
             </div>
         </div>
     </section>
@@ -157,70 +248,54 @@
             </div>
 
             <!-- Totem Pole -->
-            <div id="totemPole" class="flex flex-col items-center space-y-4 mb-12">
-                <!-- Top Section - Eagle (Advanced) -->
-                <div class="totem-section w-40 h-24 bg-gradient-to-b from-cedar to-forest rounded-lg flex items-center justify-center cursor-pointer opacity-50 shadow-lg" data-level="5">
+            <div id="totemPole" class="flex flex-col items-center space-y-4 mb-12 relative">
+                <div class="absolute left-1/2 w-2 bg-mountain/30 rounded-full h-full -z-10 -translate-x-1/2"></div>
+                <div class="relative group totem-section w-40 h-24 bg-gradient-to-b from-cedar to-forest rounded-lg flex items-center justify-center cursor-pointer opacity-50 shadow-lg" data-level="5" tabindex="0" role="button" aria-label="Select Eagle level">
                     <div class="text-center text-white">
                         <div class="text-3xl">🦅</div>
                         <div class="text-sm font-semibold">Eagle</div>
                         <div class="text-xs">Advanced</div>
                     </div>
+                    <span class="absolute hidden group-hover:block bg-cedar text-white text-xs rounded px-2 py-1 -top-8 left-1/2 transform -translate-x-1/2">Complete previous level to unlock</span>
                 </div>
-                
-                <!-- Bear Section -->
-                <div class="totem-section w-40 h-24 bg-gradient-to-b from-forest to-ocean rounded-lg flex items-center justify-center cursor-pointer opacity-50 shadow-lg" data-level="4">
+                <div class="relative group totem-section w-40 h-24 bg-gradient-to-b from-forest to-ocean rounded-lg flex items-center justify-center cursor-pointer opacity-50 shadow-lg" data-level="4" tabindex="0" role="button" aria-label="Select Bear level">
                     <div class="text-center text-white">
                         <div class="text-3xl">🐻</div>
                         <div class="text-sm font-semibold">Bear</div>
                         <div class="text-xs">Intermediate</div>
                     </div>
+                    <span class="absolute hidden group-hover:block bg-cedar text-white text-xs rounded px-2 py-1 -top-8 left-1/2 transform -translate-x-1/2">Complete previous level to unlock</span>
                 </div>
-                
-                <!-- Salmon Section -->
-                <div class="totem-section w-40 h-24 bg-gradient-to-b from-ocean to-salmon rounded-lg flex items-center justify-center cursor-pointer opacity-50 shadow-lg" data-level="3">
+                <div class="relative group totem-section w-40 h-24 bg-gradient-to-b from-ocean to-salmon rounded-lg flex items-center justify-center cursor-pointer opacity-50 shadow-lg" data-level="3" tabindex="0" role="button" aria-label="Select Salmon level">
                     <div class="text-center text-white">
                         <div class="text-3xl">🐟</div>
                         <div class="text-sm font-semibold">Salmon</div>
                         <div class="text-xs">Upper Beginner</div>
                     </div>
+                    <span class="absolute hidden group-hover:block bg-cedar text-white text-xs rounded px-2 py-1 -top-8 left-1/2 transform -translate-x-1/2">Complete previous level to unlock</span>
                 </div>
-                
-                <!-- Wolf Section -->
-                <div class="totem-section w-40 h-24 bg-gradient-to-b from-salmon to-sunset rounded-lg flex items-center justify-center cursor-pointer opacity-50 shadow-lg" data-level="2">
+                <div class="relative group totem-section w-40 h-24 bg-gradient-to-b from-salmon to-sunset rounded-lg flex items-center justify-center cursor-pointer opacity-50 shadow-lg" data-level="2" tabindex="0" role="button" aria-label="Select Wolf level">
                     <div class="text-center text-white">
                         <div class="text-3xl">🐺</div>
                         <div class="text-sm font-semibold">Wolf</div>
                         <div class="text-xs">Beginner</div>
                     </div>
+                    <span class="absolute hidden group-hover:block bg-cedar text-white text-xs rounded px-2 py-1 -top-8 left-1/2 transform -translate-x-1/2">Complete previous level to unlock</span>
                 </div>
-                
-                <!-- Base Section - Raven (Starting) -->
-                <div class="totem-section w-40 h-24 bg-gradient-to-b from-sunset to-mountain rounded-lg flex items-center justify-center cursor-pointer shadow-lg" data-level="1">
+                <div class="relative group totem-section w-40 h-24 bg-gradient-to-b from-sunset to-mountain rounded-lg flex items-center justify-center cursor-pointer shadow-lg" data-level="1" tabindex="0" role="button" aria-label="Select Raven level">
                     <div class="text-center text-white">
                         <div class="text-3xl">🐦‍⬛</div>
                         <div class="text-sm font-semibold">Raven</div>
                         <div class="text-xs">Start Here</div>
                     </div>
+                    <span class="absolute hidden group-hover:block bg-cedar text-white text-xs rounded px-2 py-1 -top-8 left-1/2 transform -translate-x-1/2">Start here</span>
                 </div>
             </div>
 
             <!-- Lesson Content -->
-            <div id="lessonContent" class="hidden">
-                <div class="bg-white rounded-2xl p-8 shadow-lg">
-                    <h3 id="lessonTitle" class="text-2xl font-semibold text-cedar mb-4"></h3>
-                    <div id="lessonText" class="text-mountain mb-6 text-lg"></div>
-                    <div class="flex flex-wrap gap-4">
-                        <button class="bg-cedar text-white px-6 py-3 rounded-lg hover:bg-forest transition-colors">
-                            🎧 Play Audio
-                        </button>
-                        <button class="bg-ocean text-white px-6 py-3 rounded-lg hover:bg-sky transition-colors">
-                            ✏️ Practice
-                        </button>
-                        <button class="bg-forest text-white px-6 py-3 rounded-lg hover:bg-cedar transition-colors">
-                            ✅ Mark Complete
-                        </button>
-                    </div>
-                </div>
+            <div id="lessonContent" class="hidden" aria-live="polite">
+                <div id="lessonList" class="space-y-4"></div>
+                <div id="lessonDetails" class="hidden mt-6"></div>
             </div>
         </div>
     </section>
@@ -242,7 +317,7 @@
                 <p class="text-mountain">Access your learning progress and continue your journey</p>
             </div>
 
-            <form class="space-y-6">
+            <form class="space-y-6" onsubmit="handleSignIn(event)">
                 <div>
                     <label class="block text-sm font-medium text-cedar mb-2">Email Address</label>
                     <input type="email" required class="w-full px-4 py-3 border border-mountain/30 rounded-lg focus:ring-2 focus:ring-cedar focus:border-transparent text-black" placeholder="your@email.com">
@@ -262,35 +337,414 @@
                     <a href="index.html" class="text-cedar hover:underline">Create one here</a>
                 </p>
             </form>
+
+            <div class="flex justify-center space-x-4 mt-4">
+                <button class="bg-mountain text-white px-4 py-2 rounded-lg hover:bg-cedar transition-colors" onclick="signInWithGoogle()">
+                    <svg class="w-5 h-5 inline-block mr-2" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M12.24 10.285V14.4h6.806c-.275 1.765-2.056 5.174-6.806 5.174-4.095 0-7.439-3.389-7.439-7.574s3.345-7.574 7.439-7.574c2.327 0 3.895.949 4.788 1.741L19.2 4.8C17.219 3.26 14.814 2 12 2 6.477 2 2 6.463 2 12c0 5.537 4.477 10 10 10 8.605 0 9.45-6.074 8.379-9.46h-8.139v-2.255h11.76V12c0 7.628-5.084 12.5-12 12.5C5.373 24.5 0 19.127 0 12.5S5.373.5 12 .5c3.314 0 6.343 1.39 8.464 3.696l-3.224 3.089z"/>
+                    </svg>
+                    Google
+                </button>
+            </div>
         </div>
     </div>
 
-    <script>
-        // Simple smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+    <script type="module">
+        // Import Supabase client
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+
+        // Initialize Supabase client
+        const supabaseUrl = 'https://tjodmaqwodkpyusohljj.supabase.co';
+        const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRqb2RtYXF3b2RrcHl1c29obGpqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjAyOTM5OTIsImV4cCI6MjA3NTg2OTk5Mn0.tgE1IxOusOFtq2ELRMFPgsJrAcmFyNs13UbkDDjXzUI';
+        const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+        // Track lessons and progress
+        let lessonsData = {}; // { language: {level: [{id, title, text, completed}]}}
+        let currentLevel = 1;
+        let selectedLanguage = '';
+        let userId = null; // Store authenticated user ID
+
+        // Sample Tlingit word dictionary for practice (based on lessons table)
+        const tlingitDictionary = {
+            1: [
+                { word: 'Gunalchéesh', translation: 'Thank you' },
+                { word: 'Wáa sá iyatee?', translation: 'How are you?' },
+                { word: 'Aadé', translation: 'Hello' }
+            ],
+            2: [
+                { word: 'Aaná', translation: 'Mother' },
+                { word: 'Táa', translation: 'Father' },
+                { word: 'Sháan', translation: 'Grandmother' }
+            ],
+            3: [
+                { word: 'Héen', translation: 'Water' },
+                { word: 'Sʼíxʼ', translation: 'Tree' },
+                { word: 'Chʼáakʼ', translation: 'Eagle' }
+            ],
+            4: [
+                { word: 'Kʼusteeyí', translation: 'Potlatch' },
+                { word: 'At.óow', translation: 'Treasure' },
+                { word: 'Shuká', translation: 'Clan' }
+            ],
+            5: [
+                { word: 'Yéi áyá', translation: 'This is how it is' } // Placeholder for advanced phrases
+            ]
+        };
+
+        // Check authentication and get user ID
+        async function checkAuth() {
+            const { data: { user } } = await supabase.auth.getUser();
+            if (user) {
+                userId = user.id;
+            }
+        }
+
+        // Handle sign-in
+        async function handleSignIn(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('input[type="email"]').value;
+            const password = event.target.querySelector('input[type="password"]').value;
+            const { data, error } = await supabase.auth.signInWithPassword({
+                email,
+                password
+            });
+            if (error) {
+                console.error('Sign-in error:', error);
+                alert('Sign-in failed. Please check your credentials.');
+            } else {
+                userId = data.user.id;
+                hideSignIn();
+                loadLessons(); // Reload lessons to fetch user progress
+            }
+        }
+
+        // Handle Google sign-in
+        async function signInWithGoogle() {
+            const { error } = await supabase.auth.signInWithOAuth({
+                provider: 'google'
+            });
+            if (error) {
+                console.error('Google sign-in error:', error);
+                alert('Google sign-in failed.');
+            }
+        }
+
+        // Fetch lessons and user progress
+        async function loadLessons() {
+            await checkAuth();
+            const { data, error } = await supabase
+                .from('lessons')
+                .select('*');
+
+            if (error) {
+                console.error('Error fetching lessons:', error);
+                return;
+            }
+
+            // Organize lessons by language and level
+            lessonsData = {};
+            data.forEach(lesson => {
+                if (!lessonsData[lesson.language]) lessonsData[lesson.language] = {};
+                if (!lessonsData[lesson.language][lesson.level]) lessonsData[lesson.language][lesson.level] = [];
+                lessonsData[lesson.language][lesson.level].push({
+                    id: lesson.id,
+                    title: lesson.title,
+                    text: lesson.text,
+                    completed: false // Default state
+                });
+            });
+
+            // Load user progress if authenticated
+            if (userId) {
+                const { data: progressData, error: progressError } = await supabase
+                    .from('user_progress')
+                    .select('lesson_id, completed')
+                    .eq('user_id', userId);
+
+                if (progressError) {
+                    console.error('Error fetching progress:', progressError);
+                } else {
+                    progressData.forEach(progress => {
+                        Object.keys(lessonsData).forEach(language => {
+                            Object.keys(lessonsData[language]).forEach(level => {
+                                lessonsData[language][level].forEach(lesson => {
+                                    if (lesson.id === progress.lesson_id) {
+                                        lesson.completed = progress.completed;
+                                    }
+                                });
+                            });
+                        });
                     });
                 }
-            });
-        });
-
-        // Add scroll effect to navigation
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 100) {
-                nav.classList.add('bg-opacity-90');
-            } else {
-                nav.classList.remove('bg-opacity-90');
             }
-        });
 
-        // Modal functionality
+            renderLanguageButtons();
+            updateProgressIndicators();
+        }
+
+        // Update progress indicators for language buttons
+        function updateProgressIndicators() {
+            const languageButtons = document.querySelectorAll('.language-btn');
+            languageButtons.forEach(btn => {
+                const language = btn.querySelector('h3').textContent.toLowerCase();
+                let totalLessons = 0;
+                let completedLessons = 0;
+
+                Object.values(lessonsData[language] || {}).forEach(level => {
+                    level.forEach(lesson => {
+                        totalLessons++;
+                        if (lesson.completed) completedLessons++;
+                    });
+                });
+
+                const progress = totalLessons > 0 ? Math.round((completedLessons / totalLessons) * 100) : 0;
+                const progressIndicator = btn.querySelector('.progress-indicator');
+                progressIndicator.textContent = `${progress}%`;
+            });
+        }
+
+        // Render language selection buttons dynamically
+        function renderLanguageButtons() {
+            const container = document.getElementById('languagesContainer');
+            container.innerHTML = '';
+            Object.keys(lessonsData).forEach(language => {
+                const emoji = language === 'tlingit' ? '🏔️' :
+                              language === 'haida' ? '🐻' :
+                              language === 'tsimshian' ? '🐟' : '🌿';
+
+                const btn = document.createElement('button');
+                btn.className = `language-btn bg-${language}/10 hover:bg-${language}/20 p-8 rounded-2xl transition-all duration-300 transform hover:-translate-y-2`;
+                btn.innerHTML = `
+                    <div class="absolute top-2 right-2 bg-cedar text-white text-xs rounded-full w-8 h-8 flex items-center justify-center progress-indicator">0%</div>
+                    <div class="text-4xl mb-4">${emoji}</div>
+                    <h3 class="text-xl font-semibold text-cedar mb-4">${language.charAt(0).toUpperCase() + language.slice(1)}</h3>
+                    <p class="text-mountain">Start learning ${language} with interactive lessons.</p>
+                `;
+                btn.onclick = () => selectLanguage(language, btn);
+                container.appendChild(btn);
+            });
+        }
+
+        // Handle language selection
+        function selectLanguage(language, btn) {
+            selectedLanguage = language;
+            currentLevel = 1;
+
+            // Highlight the selected button
+            document.querySelectorAll('.language-btn').forEach(b => b.classList.remove('ring-4', 'ring-cedar'));
+            btn.classList.add('ring-4', 'ring-cedar');
+
+            // Show learning section
+            const learningSection = document.getElementById('learningSection');
+            const selectedLanguageTitle = document.getElementById('selectedLanguageTitle');
+            learningSection.classList.remove('hidden');
+            selectedLanguageTitle.textContent = `${language.charAt(0).toUpperCase() + language.slice(1)} Language Learning`;
+
+            // Enable first totem section
+            const totemSections = document.querySelectorAll('.totem-section');
+            totemSections.forEach(section => {
+                const level = parseInt(section.dataset.level);
+                if (level === 1) {
+                    section.classList.remove('opacity-50');
+                    section.onclick = () => selectTotemSection(1);
+                } else {
+                    section.classList.add('opacity-50');
+                    section.onclick = null;
+                }
+            });
+
+            // Clear lesson content
+            document.getElementById('lessonList').innerHTML = '';
+            document.getElementById('lessonDetails').classList.add('hidden');
+
+            // Scroll to learning section
+            learningSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Handle totem section selection (show lesson list)
+        function selectTotemSection(level) {
+            if (level > currentLevel) return;
+
+            const lessonList = document.getElementById('lessonList');
+            const lessonDetails = document.getElementById('lessonDetails');
+            lessonList.innerHTML = '';
+            lessonDetails.classList.add('hidden');
+
+            if (selectedLanguage && lessonsData[selectedLanguage] && lessonsData[selectedLanguage][level]) {
+                const lessons = lessonsData[selectedLanguage][level];
+
+                // Create lesson list
+                lessons.forEach((lesson, index) => {
+                    const lessonItem = document.createElement('div');
+                    lessonItem.className = 'lesson-item bg-white rounded-2xl p-6 shadow-lg cursor-pointer';
+                    lessonItem.innerHTML = `
+                        <h3 class="text-xl font-semibold text-cedar mb-2">${lesson.title}</h3>
+                        <p class="text-mountain">${lesson.completed ? '✅ Completed' : '⬜ Not Started'}</p>
+                    `;
+                    lessonItem.onclick = () => showLessonDetails(lesson, level, index);
+                    lessonList.appendChild(lessonItem);
+
+                    if (index < lessons.length - 1) {
+                        const divider = document.createElement('div');
+                        divider.className = 'cultural-divider';
+                        lessonList.appendChild(divider);
+                    }
+                });
+
+                document.getElementById('lessonContent').classList.remove('hidden');
+
+                // Scroll to lesson content
+                lessonList.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Show individual lesson details
+        function showLessonDetails(lesson, level, lessonIndex) {
+            const lessonList = document.getElementById('lessonList');
+            const lessonDetails = document.getElementById('lessonDetails');
+            lessonDetails.innerHTML = `
+                <div class="bg-white rounded-2xl p-6 shadow-lg">
+                    <button class="mb-4 text-cedar hover:text-salmon transition-colors" onclick="backToLessonList(${level})">← Back to Lessons</button>
+                    <h3 class="text-xl font-semibold text-cedar mb-2">${lesson.title}</h3>
+                    <p class="text-mountain text-lg mb-4">${lesson.text}</p>
+                    <div class="flex flex-wrap gap-4">
+                        <button class="bg-cedar text-white px-6 py-3 rounded-lg hover:bg-forest transition-colors relative group">
+                            <span class="flex items-center space-x-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-6.586-3.793A1 1 0 007 8.293v7.414a1 1 0 001.166.918l6.586-3.793a1 1 0 000-1.836z"></path></svg>
+                                <span>Play Audio</span>
+                            </span>
+                            <span class="absolute hidden group-hover:block bg-cedar text-white text-xs rounded px-2 py-1 -top-8 left-1/2 transform -translate-x-1/2">Listen to pronunciation</span>
+                        </button>
+                        <button class="practice-btn bg-ocean text-white px-6 py-3 rounded-lg hover:bg-sky transition-colors relative group" data-level="${level}" data-lesson-id="${lesson.id}">
+                            <span class="flex items-center space-x-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a3.5 3.5 0 113.536 6.041L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+                                <span>Practice</span>
+                            </span>
+                            <span class="absolute hidden group-hover:block bg-ocean text-white text-xs rounded px-2 py-1 -top-8 left-1/2 transform -translate-x-1/2">Start practice exercises</span>
+                        </button>
+                        <button class="mark-complete bg-forest text-white px-6 py-3 rounded-lg hover:bg-cedar transition-colors relative group ${lesson.completed ? 'opacity-50' : ''}" data-lesson-id="${lesson.id}" data-level="${level}" data-index="${lessonIndex}">
+                            <span class="flex items-center space-x-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>${lesson.completed ? 'Completed' : 'Mark Complete'}</span>
+                            </span>
+                            <span class="absolute hidden group-hover:block bg-forest text-white text-xs rounded px-2 py-1 -top-8 left-1/2 transform -translate-x-1/2">${lesson.completed ? 'Already completed' : 'Mark this lesson as complete'}</span>
+                        </button>
+                    </div>
+                    <div id="practiceArea-${lesson.id}" class="hidden mt-4 p-4 bg-mountain/10 rounded-lg">
+                        <p id="practiceQuestion-${lesson.id}" class="text-cedar font-semibold mb-2"></p>
+                        <input type="text" id="practiceInput-${lesson.id}" class="w-full px-4 py-2 border border-mountain/30 rounded-lg focus:ring-2 focus:ring-cedar focus:border-transparent text-black" placeholder="Enter translation">
+                        <button id="submitPractice-${lesson.id}" class="mt-2 bg-forest text-white px-4 py-2 rounded-lg hover:bg-cedar transition-colors">Submit</button>
+                        <p id="practiceFeedback-${lesson.id}" class="mt-2 text-mountain"></p>
+                    </div>
+                </div>
+            `;
+            lessonDetails.classList.remove('hidden');
+            lessonList.classList.add('hidden');
+
+            // Add event listeners for Mark Complete buttons
+            document.querySelectorAll('.mark-complete').forEach(button => {
+                button.onclick = async () => {
+                    if (button.classList.contains('opacity-50')) return; // Prevent re-marking completed lessons
+
+                    const lessonId = button.dataset.lessonId;
+                    const level = parseInt(button.dataset.level);
+                    const index = parseInt(button.dataset.index);
+
+                    // Update local state
+                    lessonsData[selectedLanguage][level][index].completed = true;
+                    button.querySelector('span span').textContent = 'Completed';
+                    button.classList.add('opacity-50');
+
+                    // Update Supabase if user is authenticated
+                    if (userId) {
+                        const { error } = await supabase
+                            .from('user_progress')
+                            .upsert({
+                                user_id: userId,
+                                lesson_id: lessonId,
+                                completed: true
+                            });
+
+                        if (error) {
+                            console.error('Error saving progress:', error);
+                            alert('Failed to save progress. Please try again.');
+                        }
+                    }
+
+                    // Update progress indicators
+                    updateProgressIndicators();
+
+                    // Check if all lessons in the current level are completed
+                    const allCompleted = lessonsData[selectedLanguage][level].every(lesson => lesson.completed);
+                    if (allCompleted && level < 5) {
+                        currentLevel = level + 1;
+                        const nextSection = document.querySelector(`[data-level="${currentLevel}"]`);
+                        if (nextSection) {
+                            nextSection.classList.remove('opacity-50');
+                            nextSection.onclick = () => selectTotemSection(currentLevel);
+                        }
+                    }
+                };
+            });
+
+            // Add event listeners for Practice buttons
+            document.querySelectorAll('.practice-btn').forEach(button => {
+                button.onclick = () => {
+                    const lessonId = button.dataset.lessonId;
+                    const level = parseInt(button.dataset.level);
+                    const practiceArea = document.getElementById(`practiceArea-${lessonId}`);
+                    const practiceQuestion = document.getElementById(`practiceQuestion-${lessonId}`);
+                    const practiceInput = document.getElementById(`practiceInput-${lessonId}`);
+                    const practiceFeedback = document.getElementById(`practiceFeedback-${lessonId}`);
+                    const submitPractice = document.getElementById(`submitPractice-${lessonId}`);
+
+                    // Show practice area
+                    practiceArea.classList.remove('hidden');
+
+                    // Select a random word from the level's dictionary (Tlingit only for now)
+                    if (selectedLanguage === 'tlingit' && tlingitDictionary[level]) {
+                        const words = tlingitDictionary[level];
+                        const randomWord = words[Math.floor(Math.random() * words.length)];
+                        practiceQuestion.textContent = `Translate "${randomWord.word}" into English:`;
+                        practiceInput.value = '';
+
+                        submitPractice.onclick = () => {
+                            const userAnswer = practiceInput.value.trim().toLowerCase();
+                            const correctAnswer = randomWord.translation.toLowerCase();
+                            if (userAnswer === correctAnswer) {
+                                practiceFeedback.textContent = 'Correct! 🎉';
+                                practiceFeedback.classList.remove('text-sunset');
+                                practiceFeedback.classList.add('text-forest');
+                            } else {
+                                practiceFeedback.textContent = `Incorrect. The correct translation is "${randomWord.translation}". Try another!`;
+                                practiceFeedback.classList.remove('text-forest');
+                                practiceFeedback.classList.add('text-sunset');
+                                // Show a new word
+                                const newWord = words[Math.floor(Math.random() * words.length)];
+                                practiceQuestion.textContent = `Translate "${newWord.word}" into English:`;
+                                practiceInput.value = '';
+                            }
+                        };
+                    } else {
+                        practiceQuestion.textContent = 'Practice not available for this lesson.';
+                        practiceInput.classList.add('hidden');
+                        submitPractice.classList.add('hidden');
+                    }
+                };
+            });
+
+            // Scroll to lesson details
+            lessonDetails.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Return to lesson list
+        window.backToLessonList = function(level) {
+            document.getElementById('lessonDetails').classList.add('hidden');
+            document.getElementById('lessonList').classList.remove('hidden');
+            selectTotemSection(level); // Refresh list to ensure completion status is updated
+        }
+
+        // Sign In modal controls
         function showSignIn() {
             document.getElementById('signInModal').classList.remove('hidden');
         }
@@ -299,144 +753,20 @@
             document.getElementById('signInModal').classList.add('hidden');
         }
 
-        // Learning interface functions
-        let selectedLanguage = '';
-        let currentLevel = 1;
-
-        function selectLanguage(language) {
-            selectedLanguage = language;
-            
-            // Update button styles
-            document.querySelectorAll('.language-btn').forEach(btn => {
-                btn.classList.remove('ring-4', 'ring-cedar');
-            });
-            event.target.closest('.language-btn').classList.add('ring-4', 'ring-cedar');
-            
-            // Show learning section
-            const learningSection = document.getElementById('learningSection');
-            const selectedLanguageTitle = document.getElementById('selectedLanguageTitle');
-            
-            learningSection.classList.remove('hidden');
-            selectedLanguageTitle.textContent = `${language.charAt(0).toUpperCase() + language.slice(1)} Language Learning`;
-            
-            // Enable the first totem section
-            const ravenSection = document.querySelector('[data-level="1"]');
-            ravenSection.classList.remove('opacity-50');
-            ravenSection.onclick = function() { selectTotemSection(1); };
-            
-            // Scroll to learning section
-            learningSection.scrollIntoView({ behavior: 'smooth' });
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
         }
 
-        function selectTotemSection(level) {
-            if (level > currentLevel) return;
-            
-            const lessonContent = document.getElementById('lessonContent');
-            const lessonTitle = document.getElementById('lessonTitle');
-            const lessonText = document.getElementById('lessonText');
-            
-            const lessons = {
-                tlingit: {
-                    1: { 
-                        title: 'Tlingit Basics - Greetings', 
-                        text: 'Learn basic Tlingit greetings and introductions. Gunalchéesh (thank you), Wáa sá iyatee? (How are you?), Aadé (hello/goodbye)' 
-                    },
-                    2: { 
-                        title: 'Tlingit Family Words', 
-                        text: 'Learn family terms in Tlingit. Aaná (mother), Táa (father), sháan (grandmother), yáay (grandfather), k\'eitl\' (child)' 
-                    },
-                    3: { 
-                        title: 'Tlingit Nature Words', 
-                        text: 'Learn about nature in Tlingit. Héen (water), s\'íx\' (tree), ch\'áak\' (eagle), x\'aan (salmon), k\'wát\' (bear)' 
-                    },
-                    4: { 
-                        title: 'Tlingit Cultural Terms', 
-                        text: 'Learn important cultural concepts. K\'usteeyí (potlatch), at.óow (treasure), shuká (clan), k\'wáan (people/tribe)' 
-                    },
-                    5: { 
-                        title: 'Tlingit Advanced Phrases', 
-                        text: 'Master complex Tlingit phrases and cultural expressions for storytelling and ceremonial contexts.' 
-                    }
-                },
-                haida: {
-                    1: { 
-                        title: 'Haida Basics - Greetings', 
-                        text: 'Learn basic Haida greetings. Háw\'aa (hello), Gíidang (thank you), K\'yuu (goodbye), Hl gudang (good morning)' 
-                    },
-                    2: { 
-                        title: 'Haida Family Words', 
-                        text: 'Learn family terms in Haida. K\'íing (mother), K\'úug (father), k\'íinaang (grandmother), k\'úugang (grandfather)' 
-                    },
-                    3: { 
-                        title: 'Haida Nature Words', 
-                        text: 'Learn about nature in Haida. Gándlaay (water), k\'áats\' (tree), tl\'áak\' (eagle), gíid (salmon)' 
-                    },
-                    4: { 
-                        title: 'Haida Cultural Terms', 
-                        text: 'Learn important Haida cultural concepts and traditions related to potlatch and clan systems.' 
-                    },
-                    5: { 
-                        title: 'Haida Advanced Phrases', 
-                        text: 'Master complex Haida expressions and storytelling language used in traditional narratives.' 
-                    }
-                },
-                tsimshian: {
-                    1: { 
-                        title: 'Tsimshian Basics - Greetings', 
-                        text: 'Learn basic Tsimshian greetings and polite expressions. Yagwéi (hello), Gyik\'yüü (thank you)' 
-                    },
-                    2: { 
-                        title: 'Tsimshian Family Words', 
-                        text: 'Learn family relationships in Tsimshian language including extended family terms.' 
-                    },
-                    3: { 
-                        title: 'Tsimshian Nature Words', 
-                        text: 'Learn about the natural world in Tsimshian including animals, plants, and landscape features.' 
-                    },
-                    4: { 
-                        title: 'Tsimshian Cultural Terms', 
-                        text: 'Learn important Tsimshian cultural concepts and ceremonies including potlatch traditions.' 
-                    },
-                    5: { 
-                        title: 'Tsimshian Advanced Phrases', 
-                        text: 'Master advanced Tsimshian language and cultural expressions for formal and ceremonial contexts.' 
-                    }
-                }
-            };
-            
-            if (selectedLanguage && lessons[selectedLanguage] && lessons[selectedLanguage][level]) {
-                lessonTitle.textContent = lessons[selectedLanguage][level].title;
-                lessonText.textContent = lessons[selectedLanguage][level].text;
-                lessonContent.classList.remove('hidden');
-                
-                // Unlock next level if this is completed
-                if (level === currentLevel && level < 5) {
-                    currentLevel++;
-                    const nextSection = document.querySelector(`[data-level="${currentLevel}"]`);
-                    if (nextSection) {
-                        nextSection.classList.remove('opacity-50');
-                        nextSection.onclick = function() { selectTotemSection(currentLevel); };
-                    }
-                }
-                
-                // Scroll to lesson content
-                lessonContent.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-
-        // Close modal when clicking outside
-        document.getElementById('signInModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                hideSignIn();
-            }
+        // Scrolled navigation
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            nav.classList.toggle('scrolled', window.scrollY > 50);
         });
 
-        // Handle form submission
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Welcome back! You are now signed in.');
-            hideSignIn();
-        });
+        // Initialize
+        loadLessons();
     </script>
 </body>
 </html>

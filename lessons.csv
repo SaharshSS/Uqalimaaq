@@ -1,0 +1,18 @@
+id,language,level,title,text
+1,tlingit,1,Tlingit Basics - Greetings,"Learn basic Tlingit greetings and introductions. Gunalchéesh (thank you), Wáa sá iyatee? (How are you?), Aadé (hello/goodbye)."
+2,tlingit,2,Tlingit Family Words,"Learn family terms in Tlingit. Aaná (mother), Táa (father), sháan (grandmother), yáay (grandfather), k'eitl' (child)."
+3,tlingit,3,Tlingit Nature Words,"Learn about nature in Tlingit. Héen (water), s'íx' (tree), ch'áak' (eagle), x'aan (salmon), k'wát' (bear)."
+4,tlingit,4,Tlingit Cultural Terms,"Learn important cultural concepts. K'usteeyí (potlatch), at.óow (treasure), shuká (clan), k'wáan (people/tribe)."
+5,tlingit,5,Tlingit Advanced Phrases,"Master complex Tlingit phrases and cultural expressions for storytelling and ceremonial contexts."
+
+6,haida,1,Haida Basics - Greetings,"Learn basic Haida greetings. Háw'aa (hello), Gíidang (thank you), K'yuu (goodbye), Hl gudang (good morning)."
+7,haida,2,Haida Family Words,"Learn family terms in Haida. K'íing (mother), K'úug (father), k'íinaang (grandmother), k'úugang (grandfather)."
+8,haida,3,Haida Nature Words,"Learn about nature in Haida. Gándlaay (water), k'áats' (tree), tl'áak' (eagle), gíid (salmon)."
+9,haida,4,Haida Cultural Terms,"Learn important Haida cultural concepts and traditions related to potlatch and clan systems."
+10,haida,5,Haida Advanced Phrases,"Master complex Haida expressions and storytelling language used in traditional narratives."
+
+11,tsimshian,1,Tsimshian Basics - Greetings,"Learn basic Tsimshian greetings and polite expressions. Yagwéi (hello), Gyik'yüü (thank you)."
+12,tsimshian,2,Tsimshian Family Words,"Learn family relationships in the Tsimshian language including extended family terms."
+13,tsimshian,3,Tsimshian Nature Words,"Learn about the natural world in Tsimshian including animals, plants, and landscape features."
+14,tsimshian,4,Tsimshian Cultural Terms,"Learn important Tsimshian cultural concepts and ceremonies including potlatch traditions."
+15,tsimshian,5,Tsimshian Advanced Phrases,"Master advanced Tsimshian language and cultural expressions for formal and ceremonial contexts."
