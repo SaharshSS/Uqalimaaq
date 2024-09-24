@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Language Lessons - Uqalimaaq</title>
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ᐅ</text></svg>">
+
+    <!-- Duplicate original styles to preserve exact appearance -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cedar: '#8B4513',
+                        salmon: '#FA8072',
+                        forest: '#228B22',
+                        ocean: '#4682B4',
+                        earth: '#D2B48C',
+                        sunset: '#FF6347',
+                        sky: '#87CEEB',
+                        mountain: '#708090',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* === ORIGINAL STYLE BLOCK (same as learn.html) === */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        :root { --background:#fefdf8; --foreground:#2c1810; --muted:#8b7355; --border:#d4c4a8; }
+        @media (prefers-color-scheme: dark) { :root { --background:#1a1611; --foreground:#f4f1e8; --muted:#b8a082; --border:#4a4538; } }
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--background);color:var(--foreground);line-height:1.6;}
+        .gradient-bg{background:linear-gradient(135deg,#8B4513 0%,#228B22 50%,#4682B4 100%);}
+        .glass{background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.2);}
+        .traditional-pattern{background-image:radial-gradient(circle at 25% 25%, rgba(139,69,19,0.1) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(34,139,34,0.1) 0%, transparent 50%); background-attachment:fixed;background-size:cover;}
+        nav{transition:background 0.3s ease,backdrop-filter 0.3s ease;}
+        .nav-active{border-bottom:2px solid var(--salmon); color:var(--salmon);}
+        .totem-section{transition:transform 0.2s ease,box-shadow 0.2s ease;}
+        .totem-section:not(.opacity-50):hover{transform:scale(1.05);box-shadow:0 6px 20px rgba(0,0,0,0.2);}
+        .lesson-item{transition:background 0.2s ease;}
+        .lesson-item:hover{background:rgba(139,69,19,0.05);}
+        /* layout */
+        .page-grid { display: grid; grid-template-columns: 260px 1fr; gap: 24px; min-height: 100vh; padding: 84px 32px 48px; }
+        .sidebar { background: rgba(255,255,255,0.06); border-radius: 16px; padding: 18px; position: sticky; top: 84px; height: calc(100vh - 120px); }
+        .sidebar button { display: block; width:100%; text-align:left; padding:12px 14px; border-radius:10px; margin-bottom:8px; background:transparent; border:none; cursor:pointer; }
+        .sidebar button.active { background: rgba(139,69,19,0.08); }
+        .main { background: transparent; }
+        .totem-column { display:flex; flex-direction:column; align-items:center; gap:12px; margin-bottom:18px; }
+        .totem-section { width:180px; height:90px; border-radius:12px; display:flex; align-items:center; justify-content:center; color:white; cursor:pointer; }
+        .totem-1 { background: linear-gradient(to bottom, var(--sunset), var(--mountain)); }
+        .totem-2 { background: linear-gradient(to bottom, var(--salmon), var(--sunset)); }
+        .totem-3 { background: linear-gradient(to bottom, var(--ocean), var(--salmon)); }
+        .totem-4 { background: linear-gradient(to bottom, var(--forest), var(--ocean)); }
+        .totem-5 { background: linear-gradient(to bottom, var(--cedar), var(--forest)); }
+        .lessons-wrap { background: white; padding:18px; border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,0.08); }
+        .lesson-item { padding:14px; border-radius:10px; margin-bottom:10px; }
+        .section-title { font-size:1.25rem; color: var(--cedar); margin-bottom:8px; }
+        .panel { display:none; }
+        .panel.active { display:block; }
+        .alphabet-list { display:flex; flex-wrap:wrap; gap:8px; }
+        .alphabet-cell { padding:8px 10px; border-radius:8px; background: #f7f3ef; border:1px solid var(--border); min-width:40px; text-align:center; }
+    </style>
+</head>
+<body>
+    <!-- Top nav preserved minimally -->
+    <nav class="fixed top-0 w-full z-50 glass" style="height:72px;">
+        <div style="max-width:1200px;margin:0 auto;padding:12px 24px;display:flex;justify-content:space-between;align-items:center;">
+            <div style="display:flex;align-items:center;gap:12px">
+                <div style="width:40px;height:40px;background:linear-gradient(90deg,var(--cedar),var(--forest));border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;">ᐅ</div>
+                <a href="index.html" style="color:white;font-weight:700;text-decoration:none">Uqalimaaq</a>
+            </div>
+            <div style="color:white">Language Lessons</div>
+        </div>
+    </nav>
+
+    <!-- Two-column page: sidebar + main -->
+    <div class="page-grid">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <button id="side-home" class="active">🏠 Home (Totem)</button>
+            <button id="side-leaderboard">🏆 Leaderboard</button>
+            <button id="side-alphabet">🔤 Alphabet</button>
+            <button id="side-shop">🛒 Shop</button>
+            <button id="side-return">⤴ Return to Index</button>
+            <hr style="margin:12px 0;border:none;border-top:1px solid var(--border)">
+            <div style="font-size:0.9rem;color:var(--muted);">Selected language:</div>
+            <div id="selectedLanguageLabel" style="font-weight:600;margin-top:6px"></div>
+        </aside>
+
+        <!-- Main content -->
+        <main class="main">
+            <!-- Totem + Lessons Area -->
+            <section id="homePanel" class="panel active">
+                <div class="totem-column">
+                    <div class="section-title" id="totemTitle"></div>
+                    <div id="totemPole" style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+                        <div tabindex="0" role="button" class="totem-section totem-5 opacity-50" data-level="5"><div style="text-align:center"><div style="font-size:22px">🦅</div><div style="font-weight:600">Eagle</div><div style="font-size:12px">Advanced</div></div></div>
+                        <div tabindex="0" role="button" class="totem-section totem-4 opacity-50" data-level="4"><div style="text-align:center"><div style="font-size:22px">🐻</div><div style="font-weight:600">Bear</div><div style="font-size:12px">Intermediate</div></div></div>
+                        <div tabindex="0" role="button" class="totem-section totem-3 opacity-50" data-level="3"><div style="text-align:center"><div style="font-size:22px">🐟</div><div style="font-weight:600">Salmon</div><div style="font-size:12px">Upper Beginner</div></div></div>
+                        <div tabindex="0" role="button" class="totem-section totem-2 opacity-50" data-level="2"><div style="text-align:center"><div style="font-size:22px">🐺</div><div style="font-weight:600">Wolf</div><div style="font-size:12px">Beginner</div></div></div>
+                        <div tabindex="0" role="button" class="totem-section totem-1" data-level="1"><div style="text-align:center"><div style="font-size:22px">🐦‍⬛</div><div style="font-weight:600">Raven</div><div style="font-size:12px">Start Here</div></div></div>
+                    </div>
+                </div>
+
+                <div class="lessons-wrap" style="margin-top:18px;">
+                    <div class="section-title">Lessons</div>
+                    <div id="lessonList"></div>
+                    <div id="lessonDetails" style="display:none;margin-top:14px;"></div>
+                </div>
+            </section>
+
+            <!-- Leaderboard Panel -->
+            <section id="leaderboardPanel" class="panel">
+                <div class="section-title">Leaderboard</div>
+                <div id="leaderboardContent" style="margin-top:12px;">
+                    <p style="color:var(--muted)">Leaderboard loading… (placeholder)</p>
+                    <ul id="leaderboardList" style="margin-top:12px"></ul>
+                </div>
+            </section>
+
+            <!-- Alphabet Panel -->
+            <section id="alphabetPanel" class="panel">
+                <div class="section-title">Alphabet</div>
+                <div style="margin-top:10px">
+                    <div id="alphabetInstructions" style="color:var(--muted);margin-bottom:10px">You may supply the characters for the selected language via the UI below.</div>
+                    <div id="alphabetDisplay" class="alphabet-list"></div>
+                    <div style="margin-top:12px">
+                        <input id="alphabetInput" placeholder="Enter characters separated by commas (e.g. A, Á, B, C)" style="width:60%;padding:8px;border-radius:8px;border:1px solid var(--border)">
+                        <button id="saveAlphabetBtn" style="padding:8px 12px;margin-left:8px;border-radius:8px;background:var(--forest);color:white;border:none;cursor:pointer">Save</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Shop Panel -->
+            <section id="shopPanel" class="panel">
+                <div class="section-title">Shop</div>
+                <div style="margin-top:12px">
+                    <p style="color:var(--muted)">In-game shop placeholder. You may populate items from your backend.</p>
+                    <div id="shopItems" style="margin-top:12px"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Script: Supabase + full logic -->
+    <script type="module">
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+
+        // === Supabase initialization (same credentials) ===
+        const supabaseUrl = 'https://tjodmaqwodkpyusohljj.supabase.co';
+        const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRqb2RtYXF3b2RrcHl1c29obGpqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjAyOTM5OTIsImV4cCI6MjA3NTg2OTk5Mn0.tgE1IxOusOFtq2ELRMFPgsJrAcmFyNs13UbkDDjXzUI';
+        const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+        // State
+        let selectedLanguage = '';
+        let lessonsData = {}; // { level: [lesson,...] }
+        let currentLevel = 1;
+        let userId = null;
+
+        const tlingitDictionary = {
+            1: [{ word: 'Gunalchéesh', translation: 'Thank you' },{ word: 'Wáa sá iyatee?', translation: 'How are you?' },{ word: 'Aadé', translation: 'Hello' }],
+            2: [{ word: 'Aaná', translation: 'Mother' },{ word: 'Táa', translation: 'Father' },{ word: 'Sháan', translation: 'Grandmother' }],
+            3: [{ word: 'Héen', translation: 'Water' },{ word: 'Sʼíxʼ', translation: 'Tree' },{ word: 'Chʼáakʼ', translation: 'Eagle' }],
+            4: [{ word: 'Kʼusteeyí', translation: 'Potlatch' },{ word: 'At.óow', translation: 'Treasure' },{ word: 'Shuká', translation: 'Clan' }],
+            5: [{ word: 'Yéi áyá', translation: 'This is how it is' }]
+        };
+
+        /* ---------------------
+           Utility: get language from URL
+           --------------------- */
+        function getQueryLanguage() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('language') || params.get('lang');
+        }
+
+        /* ---------------------
+           AUTH HELPERS
+           --------------------- */
+
+        /**
+         * checkAuth: retrieves the current authenticated user (if any) and sets userId.
+         */
+        async function checkAuth() {
+            const { data: { user } } = await supabase.auth.getUser();
+            if (user) userId = user.id;
+        }
+
+        /* ---------------------
+           LOAD LESSONS FOR SELECTED LANGUAGE
+           --------------------- */
+
+        /**
+         * loadLanguageLessons: fetches lessons for the selected language from Supabase
+         * and the user's progress if authenticated. Populates `lessonsData`.
+         */
+        async function loadLanguageLessons() {
+            await checkAuth();
+            // fetch lessons for this specific language
+            const { data, error } = await supabase
+                .from('lessons')
+                .select('*')
+                .eq('language', selectedLanguage);
+
+            if (error) {
+                console.error('Error loading lessons:', error);
+                document.getElementById('lessonList').innerHTML = '<p style="color:var(--muted)">Failed to load lessons.</p>';
+                return;
+            }
+
+            // organize by level
+            lessonsData = {};
+            (data || []).forEach(lesson => {
+                if (!lessonsData[lesson.level]) lessonsData[lesson.level] = [];
+                lessonsData[lesson.level].push({
+                    id: lesson.id,
+                    title: lesson.title,
+                    text: lesson.text,
+                    completed: false
+                });
+            });
+
+            // if user is authenticated, fetch their progress
+            if (userId) {
+                const { data: progressData, error: progressError } = await supabase
+                    .from('user_progress')
+                    .select('lesson_id, completed')
+                    .eq('user_id', userId);
+
+                if (progressError) {
+                    console.error('Error fetching progress:', progressError);
+                } else {
+                    progressData.forEach(p => {
+                        Object.keys(lessonsData).forEach(lvl => {
+                            lessonsData[lvl].forEach(lesson => {
+                                if (lesson.id === p.lesson_id) lesson.completed = p.completed;
+                            });
+                        });
+                    });
+                }
+            }
+
+            // render default: show level 1 lessons unlocked
+            currentLevel = 1;
+            enableTotemSections();
+            renderLessonsForLevel(1);
+            updateTotemTitle();
+        }
+
+        /* ---------------------
+           RENDER / UI FUNCTIONS
+           --------------------- */
+
+        /**
+         * updateTotemTitle: updates header label showing selected language
+         */
+        function updateTotemTitle() {
+            const totemTitle = document.getElementById('totemTitle');
+            totemTitle.textContent = `${capitalize(selectedLanguage)} Language Learning`;
+            document.getElementById('selectedLanguageLabel').textContent = capitalize(selectedLanguage);
+        }
+
+        /**
+         * enableTotemSections: unlocks only the allowed levels (initially level 1)
+         * Purpose: matches the original behavior where only Raven (level 1) is enabled initially.
+         */
+        function enableTotemSections() {
+            document.querySelectorAll('#totemPole .totem-section').forEach(section => {
+                const level = parseInt(section.dataset.level);
+                if (level === 1) {
+                    section.classList.remove('opacity-50');
+                    section.onclick = () => selectTotemSection(level);
+                } else {
+                    section.classList.add('opacity-50');
+                    section.onclick = null;
+                }
+            });
+        }
+
+        /**
+         * selectTotemSection:
+         * Purpose: invoked when a totem level is clicked; renders the lesson list for that level.
+         */
+        function selectTotemSection(level) {
+            if (level > currentLevel) return; // locked
+            renderLessonsForLevel(level);
+        }
+
+        /**
+         * renderLessonsForLevel:
+         * Purpose: populate #lessonList with the lessons for the given level (if any).
+         */
+        function renderLessonsForLevel(level) {
+            const list = document.getElementById('lessonList');
+            const details = document.getElementById('lessonDetails');
+            list.innerHTML = '';
+            details.style.display = 'none';
+
+            const lessons = lessonsData[level] || [];
+            if (lessons.length === 0) {
+                list.innerHTML = `<p style="color:var(--muted)">No lessons available for this level yet.</p>`;
+                return;
+            }
+
+            lessons.forEach((lesson, idx) => {
+                const el = document.createElement('div');
+                el.className = 'lesson-item';
+                el.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center">
+                                    <div>
+                                      <div style="font-weight:600;color:var(--cedar)">${escapeHtml(lesson.title)}</div>
+                                      <div style="color:var(--muted);font-size:0.9rem">${lesson.completed ? '✅ Completed' : '⬜ Not Started'}</div>
+                                    </div>
+                                    <div>
+                                      <button style="padding:8px 12px;border-radius:8px;background:var(--ocean);color:white;border:none;cursor:pointer" onclick="showLessonDetailsByLevel(${level}, ${idx})">Open</button>
+                                    </div>
+                                 </div>`;
+                list.appendChild(el);
+            });
+
+            // scroll into view
+            list.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        /**
+         * showLessonDetailsByLevel:
+         * Purpose: helper to call showLessonDetails with correct lesson object.
+         */
+        function showLessonDetailsByLevel(level, index) {
+            const lesson = (lessonsData[level] || [])[index];
+            if (!lesson) return;
+            showLessonDetails(lesson, level, index);
+        }
+
+        /**
+         * showLessonDetails:
+         * Purpose: displays the lesson details panel and wires up practice and complete controls.
+         */
+        function showLessonDetails(lesson, level, lessonIndex) {
+            const details = document.getElementById('lessonDetails');
+            details.style.display = 'block';
+            details.innerHTML = `
+                <div style="background:#fff;padding:14px;border-radius:10px;">
+                    <button style="background:transparent;border:none;color:var(--cedar);margin-bottom:8px;cursor:pointer" onclick="backToLessonList(${level})">← Back to Lessons</button>
+                    <h3 style="font-weight:700;color:var(--cedar);margin-bottom:8px">${escapeHtml(lesson.title)}</h3>
+                    <p style="color:var(--muted);margin-bottom:12px">${escapeHtml(lesson.text || '')}</p>
+
+                    <div style="display:flex;gap:8px;flex-wrap:wrap">
+                        <button id="playAudioBtn" style="padding:8px 12px;background:var(--cedar);color:white;border:none;border-radius:8px;cursor:pointer">Play Audio</button>
+                        <button id="practiceBtn" style="padding:8px 12px;background:var(--ocean);color:white;border:none;border-radius:8px;cursor:pointer">Practice</button>
+                        <button id="markCompleteBtn" style="padding:8px 12px;background:var(--forest);color:white;border:none;border-radius:8px;cursor:pointer">${lesson.completed ? 'Completed' : 'Mark Complete'}</button>
+                    </div>
+
+                    <div id="practiceArea" style="display:none;margin-top:12px;padding:10px;border-radius:8px;background:rgba(112,128,144,0.06)">
+                        <p id="practiceQuestion" style="font-weight:600;color:var(--cedar)"></p>
+                        <input id="practiceInput" placeholder="Enter translation" style="width:100%;padding:8px;border-radius:8px;border:1px solid var(--border);margin-top:8px">
+                        <div style="margin-top:8px">
+                            <button id="submitPracticeBtn" style="padding:8px 12px;background:var(--forest);color:white;border:none;border-radius:8px;cursor:pointer">Submit</button>
+                        </div>
+                        <p id="practiceFeedback" style="margin-top:8px;color:var(--muted)"></p>
+                    </div>
+                </div>
+            `;
+
+            // wire up buttons
+            document.getElementById('practiceBtn').onclick = () => {
+                const practiceArea = document.getElementById('practiceArea');
+                practiceArea.style.display = 'block';
+
+                if (selectedLanguage === 'tlingit' && tlingitDictionary[level]) {
+                    const words = tlingitDictionary[level];
+                    const randomWord = words[Math.floor(Math.random() * words.length)];
+                    document.getElementById('practiceQuestion').textContent = `Translate "${randomWord.word}" into English:`;
+                    document.getElementById('practiceInput').value = '';
+                    document.getElementById('submitPracticeBtn').onclick = () => {
+                        const userAnswer = document.getElementById('practiceInput').value.trim().toLowerCase();
+                        const correctAnswer = randomWord.translation.toLowerCase();
+                        const feedback = document.getElementById('practiceFeedback');
+                        if (userAnswer === correctAnswer) {
+                            feedback.style.color = 'var(--forest)';
+                            feedback.textContent = 'Correct! 🎉';
+                        } else {
+                            feedback.style.color = 'var(--sunset)';
+                            feedback.textContent = `Incorrect. The correct translation is "${randomWord.translation}".`;
+                        }
+                    };
+                } else {
+                    document.getElementById('practiceQuestion').textContent = 'Practice not available for this language/level.';
+                    document.getElementById('submitPracticeBtn').onclick = null;
+                }
+            };
+
+            document.getElementById('markCompleteBtn').onclick = async () => {
+                if (lesson.completed) return;
+                lesson.completed = true;
+                // update UI immediately
+                document.getElementById('markCompleteBtn').textContent = 'Completed';
+                // persist to Supabase if authenticated
+                if (userId) {
+                    const { error } = await supabase.from('user_progress').upsert({
+                        user_id: userId,
+                        lesson_id: lesson.id,
+                        completed: true
+                    });
+                    if (error) {
+                        console.error('Failed to save progress:', error);
+                        alert('Failed to save progress.');
+                    }
+                }
+                // check if all lessons in level completed -> unlock next level
+                const allCompleted = (lessonsData[level] || []).every(l => l.completed);
+                if (allCompleted && level < 5) {
+                    currentLevel = level + 1;
+                    const nextSection = document.querySelector(`#totemPole .totem-section[data-level="${currentLevel}"]`);
+                    if (nextSection) {
+                        nextSection.classList.remove('opacity-50');
+                        nextSection.onclick = () => selectTotemSection(currentLevel);
+                    }
+                }
+                renderLessonsForLevel(level);
+            };
+
+            // Play audio stub (user can replace with actual audio)
+            document.getElementById('playAudioBtn').onclick = () => {
+                alert('Audio playback not implemented in this build — replace with actual audio source.');
+            };
+
+            // scroll to details
+            details.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        /**
+         * backToLessonList:
+         * Purpose: hide detail panel and show list again for the given level.
+         */
+        function backToLessonList(level) {
+            document.getElementById('lessonDetails').style.display = 'none';
+            renderLessonsForLevel(level);
+        }
+
+        /* ---------------------
+           SIDEBAR PANEL LOGIC
+           --------------------- */
+        document.getElementById('side-home').addEventListener('click', () => switchPanel('homePanel', 'side-home'));
+        document.getElementById('side-leaderboard').addEventListener('click', () => switchPanel('leaderboardPanel', 'side-leaderboard'));
+        document.getElementById('side-alphabet').addEventListener('click', () => switchPanel('alphabetPanel', 'side-alphabet'));
+        document.getElementById('side-shop').addEventListener('click', () => switchPanel('shopPanel', 'side-shop'));
+        document.getElementById('side-return').addEventListener('click', () => { window.location.href = 'index.html'; });
+
+        function switchPanel(panelId, activeButtonId) {
+            // hide all, show requested
+            document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+            document.getElementById(panelId).classList.add('active');
+            // sidebar active state
+            document.querySelectorAll('.sidebar button').forEach(b => b.classList.remove('active'));
+            document.getElementById(activeButtonId).classList.add('active');
+        }
+
+        /* ---------------------
+           ALPHABET SAVE / RENDER
+           --------------------- */
+        document.getElementById('saveAlphabetBtn').addEventListener('click', () => {
+            const raw = document.getElementById('alphabetInput').value;
+            if (!raw) return;
+            const chars = raw.split(',').map(s => s.trim()).filter(Boolean);
+            renderAlphabet(chars);
+            // optionally persist to backend — omitted for brevity
+        });
+
+        function renderAlphabet(chars) {
+            const display = document.getElementById('alphabetDisplay');
+            display.innerHTML = '';
+            chars.forEach(c => {
+                const d = document.createElement('div');
+                d.className = 'alphabet-cell';
+                d.textContent = c;
+                display.appendChild(d);
+            });
+        }
+
+        /* ---------------------
+           Leaderboard (placeholder)
+           --------------------- */
+        async function loadLeaderboard() {
+            // Placeholder: fetch leaderboard from backend if available
+            const list = document.getElementById('leaderboardList');
+            list.innerHTML = '';
+            const sample = [{name:'Alicia',score:120},{name:'Kai',score:110},{name:'Noah',score:95}];
+            sample.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = `${item.name} — ${item.score} pts`;
+                list.appendChild(li);
+            });
+        }
+
+        /* ---------------------
+           SHOP (placeholder)
+           --------------------- */
+        function loadShop() {
+            const shop = document.getElementById('shopItems');
+            shop.innerHTML = `<div style="border:1px dashed var(--border);padding:12px;border-radius:8px;color:var(--muted)">No shop items configured yet.</div>`;
+        }
+
+        /* ---------------------
+           HELPERS
+           --------------------- */
+        function capitalize(s) { if (!s) return ''; return s.charAt(0).toUpperCase() + s.slice(1); }
+        function escapeHtml(str) { if (!str) return ''; return String(str).replace(/[&<>"'`=\/]/g, function (s) { return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;','/':'&#47;','`':'&#96;','=':'&#61;'})[s]; }); }
+
+        /* ---------------------
+           BOOTSTRAP: read query, initialize UI
+           --------------------- */
+        (async function init() {
+            selectedLanguage = (getQueryLanguage() || '').toLowerCase();
+            if (!selectedLanguage) {
+                // if no language param, go back to learn.html
+                window.location.href = 'learn.html';
+                return;
+            }
+
+            // update selected language UI
+            updateTotemTitle();
+
+            // wire up totem clicks: they are set by loadLanguageLessons (to lock/unlock)
+            // load data
+            await loadLanguageLessons();
+
+            // pre-load leaderboard & shop placeholders
+            loadLeaderboard();
+            loadShop();
+
+            // expose functions globally so inline handlers can call them
+            window.selectTotemSection = selectTotemSection;
+            window.showLessonDetails = showLessonDetails;
+            window.backToLessonList = backToLessonList;
+        })();
+    </script>
+</body>
+</html>

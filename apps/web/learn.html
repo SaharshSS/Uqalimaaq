@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Learn - Uqalimaaq Indigenous Language Learning</title>
     <meta name="description" content="Learn Pacific Northwest and Alaskan Indigenous languages through our totem pole learning system">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ᐅ</text></svg>">
     <script src="https://cdn.tailwindcss.com"></script>
+
     <script>
         tailwind.config = {
             theme: {
@@ -25,16 +26,18 @@
             }
         }
     </script>
+
     <style>
+        /* === EXACT ORIGINAL STYLES COPIED TO PRESERVE LOOK === */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        
+
         :root {
             --background: #fefdf8;
             --foreground: #2c1810;
             --muted: #8b7355;
             --border: #d4c4a8;
         }
-        
+
         @media (prefers-color-scheme: dark) {
             :root {
                 --background: #1a1611;
@@ -43,32 +46,32 @@
                 --border: #4a4538;
             }
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: var(--background);
             color: var(--foreground);
             line-height: 1.6;
         }
-        
+
         .gradient-bg {
             background: linear-gradient(135deg, #8B4513 0%, #228B22 50%, #4682B4 100%);
         }
-        
+
         .glass {
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        
+
         .traditional-pattern {
-            background-image: 
+            background-image:
                 radial-gradient(circle at 25% 25%, rgba(139, 69, 19, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 75% 75%, rgba(34, 139, 34, 0.1) 0%, transparent 50%);
             background-attachment: fixed;
@@ -164,6 +167,9 @@
         .lesson-item:hover {
             background: rgba(139, 69, 19, 0.05);
         }
+
+        /* Small utility for the languages container centering */
+        #languagesContainer { min-height: 160px; }
     </style>
 </head>
 <body>
@@ -214,14 +220,14 @@
             <p class="text-xl sm:text-2xl text-white mb-8 max-w-2xl mx-auto hero-subtitle">
                 Progress through Pacific Northwest and Alaskan Indigenous languages using our sacred totem pole learning system.
             </p>
-            <a href="#learningSection" class="inline-block bg-salmon text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-sunset transition-colors mt-6">
+            <a href="#languageSelection" class="inline-block bg-salmon text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-sunset transition-colors mt-6">
                 Start Your Journey
             </a>
         </div>
     </section>
 
     <!-- Language Selection -->
-    <section class="py-20 bg-white">
+    <section id="languageSelection" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-3xl sm:text-4xl font-bold text-cedar mb-4">
@@ -231,7 +237,7 @@
                     Select from our available Indigenous languages and begin your learning journey.
                 </p>
             </div>
-            
+
             <!-- Languages container will be populated dynamically -->
             <div id="languagesContainer" class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
                 <!-- Dynamic buttons injected here -->
@@ -239,76 +245,13 @@
         </div>
     </section>
 
-    <!-- Totem Pole Learning Interface -->
-    <section id="learningSection" class="py-20 bg-earth hidden">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 id="selectedLanguageTitle" class="text-3xl font-bold text-cedar mb-4"></h2>
-                <p class="text-mountain">Progress through language lessons represented by totem pole sections</p>
-            </div>
-
-            <!-- Totem Pole -->
-            <div id="totemPole" class="flex flex-col items-center space-y-4 mb-12 relative">
-                <div class="absolute left-1/2 w-2 bg-mountain/30 rounded-full h-full -z-10 -translate-x-1/2"></div>
-                <div class="relative group totem-section w-40 h-24 bg-gradient-to-b from-cedar to-forest rounded-lg flex items-center justify-center cursor-pointer opacity-50 shadow-lg" data-level="5" tabindex="0" role="button" aria-label="Select Eagle level">
-                    <div class="text-center text-white">
-                        <div class="text-3xl">🦅</div>
-                        <div class="text-sm font-semibold">Eagle</div>
-                        <div class="text-xs">Advanced</div>
-                    </div>
-                    <span class="absolute hidden group-hover:block bg-cedar text-white text-xs rounded px-2 py-1 -top-8 left-1/2 transform -translate-x-1/2">Complete previous level to unlock</span>
-                </div>
-                <div class="relative group totem-section w-40 h-24 bg-gradient-to-b from-forest to-ocean rounded-lg flex items-center justify-center cursor-pointer opacity-50 shadow-lg" data-level="4" tabindex="0" role="button" aria-label="Select Bear level">
-                    <div class="text-center text-white">
-                        <div class="text-3xl">🐻</div>
-                        <div class="text-sm font-semibold">Bear</div>
-                        <div class="text-xs">Intermediate</div>
-                    </div>
-                    <span class="absolute hidden group-hover:block bg-cedar text-white text-xs rounded px-2 py-1 -top-8 left-1/2 transform -translate-x-1/2">Complete previous level to unlock</span>
-                </div>
-                <div class="relative group totem-section w-40 h-24 bg-gradient-to-b from-ocean to-salmon rounded-lg flex items-center justify-center cursor-pointer opacity-50 shadow-lg" data-level="3" tabindex="0" role="button" aria-label="Select Salmon level">
-                    <div class="text-center text-white">
-                        <div class="text-3xl">🐟</div>
-                        <div class="text-sm font-semibold">Salmon</div>
-                        <div class="text-xs">Upper Beginner</div>
-                    </div>
-                    <span class="absolute hidden group-hover:block bg-cedar text-white text-xs rounded px-2 py-1 -top-8 left-1/2 transform -translate-x-1/2">Complete previous level to unlock</span>
-                </div>
-                <div class="relative group totem-section w-40 h-24 bg-gradient-to-b from-salmon to-sunset rounded-lg flex items-center justify-center cursor-pointer opacity-50 shadow-lg" data-level="2" tabindex="0" role="button" aria-label="Select Wolf level">
-                    <div class="text-center text-white">
-                        <div class="text-3xl">🐺</div>
-                        <div class="text-sm font-semibold">Wolf</div>
-                        <div class="text-xs">Beginner</div>
-                    </div>
-                    <span class="absolute hidden group-hover:block bg-cedar text-white text-xs rounded px-2 py-1 -top-8 left-1/2 transform -translate-x-1/2">Complete previous level to unlock</span>
-                </div>
-                <div class="relative group totem-section w-40 h-24 bg-gradient-to-b from-sunset to-mountain rounded-lg flex items-center justify-center cursor-pointer shadow-lg" data-level="1" tabindex="0" role="button" aria-label="Select Raven level">
-                    <div class="text-center text-white">
-                        <div class="text-3xl">🐦‍⬛</div>
-                        <div class="text-sm font-semibold">Raven</div>
-                        <div class="text-xs">Start Here</div>
-                    </div>
-                    <span class="absolute hidden group-hover:block bg-cedar text-white text-xs rounded px-2 py-1 -top-8 left-1/2 transform -translate-x-1/2">Start here</span>
-                </div>
-            </div>
-
-            <!-- Lesson Content -->
-            <div id="lessonContent" class="hidden" aria-live="polite">
-                <div id="lessonList" class="space-y-4"></div>
-                <div id="lessonDetails" class="hidden mt-6"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sign In Modal -->
+    <!-- Sign In Modal (kept but not duplicate-heavy) -->
     <div id="signInModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl max-w-md w-full p-8 relative">
             <button onclick="hideSignIn()" class="absolute top-4 right-4 text-mountain hover:text-cedar">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
-            
+
             <div class="text-center mb-8">
                 <div class="w-16 h-16 bg-gradient-to-r from-cedar to-forest rounded-full flex items-center justify-center mx-auto mb-4">
                     <span class="text-white text-2xl">ᐅ</span>
@@ -322,18 +265,18 @@
                     <label class="block text-sm font-medium text-cedar mb-2">Email Address</label>
                     <input type="email" required class="w-full px-4 py-3 border border-mountain/30 rounded-lg focus:ring-2 focus:ring-cedar focus:border-transparent text-black" placeholder="your@email.com">
                 </div>
-                
+
                 <div>
                     <label class="block text-sm font-medium text-cedar mb-2">Password</label>
                     <input type="password" required class="w-full px-4 py-3 border border-mountain/30 rounded-lg focus:ring-2 focus:ring-cedar focus:border-transparent text-black" placeholder="Your password">
                 </div>
-                
+
                 <button type="submit" class="w-full bg-cedar text-white py-3 rounded-lg font-semibold hover:bg-forest transition-colors">
                     Sign In
                 </button>
-                
+
                 <p class="text-center text-sm text-mountain">
-                    Don't have an account? 
+                    Don't have an account?
                     <a href="index.html" class="text-cedar hover:underline">Create one here</a>
                 </p>
             </form>
@@ -358,13 +301,13 @@
         const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRqb2RtYXF3b2RrcHl1c29obGpqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjAyOTM5OTIsImV4cCI6MjA3NTg2OTk5Mn0.tgE1IxOusOFtq2ELRMFPgsJrAcmFyNs13UbkDDjXzUI';
         const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-        // Track lessons and progress
+        // Track lessons and progress (structure identical to original)
         let lessonsData = {}; // { language: {level: [{id, title, text, completed}]}}
         let currentLevel = 1;
         let selectedLanguage = '';
         let userId = null; // Store authenticated user ID
 
-        // Sample Tlingit word dictionary for practice (based on lessons table)
+        // Sample Tlingit word dictionary for practice (same as original)
         const tlingitDictionary = {
             1: [
                 { word: 'Gunalchéesh', translation: 'Thank you' },
@@ -387,61 +330,63 @@
                 { word: 'Shuká', translation: 'Clan' }
             ],
             5: [
-                { word: 'Yéi áyá', translation: 'This is how it is' } // Placeholder for advanced phrases
+                { word: 'Yéi áyá', translation: 'This is how it is' }
             ]
         };
 
-        // Check authentication and get user ID
+        /** 
+         * Check current auth state and set userId.
+         * Purpose: retrieve the current user (if signed in) so progress can be fetched/saved.
+         */
         async function checkAuth() {
             const { data: { user } } = await supabase.auth.getUser();
-            if (user) {
-                userId = user.id;
-            }
+            if (user) userId = user.id;
         }
 
-        // Handle sign-in
+        /**
+         * Handle form sign-in with email/password.
+         * Purpose: sign the user in and reload lessons to include their progress.
+         */
         async function handleSignIn(event) {
             event.preventDefault();
             const email = event.target.querySelector('input[type="email"]').value;
             const password = event.target.querySelector('input[type="password"]').value;
-            const { data, error } = await supabase.auth.signInWithPassword({
-                email,
-                password
-            });
+            const { data, error } = await supabase.auth.signInWithPassword({ email, password });
             if (error) {
                 console.error('Sign-in error:', error);
                 alert('Sign-in failed. Please check your credentials.');
             } else {
                 userId = data.user.id;
                 hideSignIn();
-                loadLessons(); // Reload lessons to fetch user progress
+                // reload lessons to reflect user's progress
+                await loadLessons();
             }
         }
 
-        // Handle Google sign-in
+        /**
+         * Sign in with Google OAuth.
+         * Purpose: provide quick authentication; Supabase handles the redirect.
+         */
         async function signInWithGoogle() {
-            const { error } = await supabase.auth.signInWithOAuth({
-                provider: 'google'
-            });
+            const { error } = await supabase.auth.signInWithOAuth({ provider: 'google' });
             if (error) {
                 console.error('Google sign-in error:', error);
                 alert('Google sign-in failed.');
             }
         }
 
-        // Fetch lessons and user progress
+        /**
+         * Fetch lessons and user progress from Supabase, organize them into lessonsData.
+         * Purpose: populate the language buttons with accurate progress numbers.
+         */
         async function loadLessons() {
             await checkAuth();
-            const { data, error } = await supabase
-                .from('lessons')
-                .select('*');
-
+            const { data, error } = await supabase.from('lessons').select('*');
             if (error) {
                 console.error('Error fetching lessons:', error);
                 return;
             }
 
-            // Organize lessons by language and level
             lessonsData = {};
             data.forEach(lesson => {
                 if (!lessonsData[lesson.language]) lessonsData[lesson.language] = {};
@@ -450,17 +395,15 @@
                     id: lesson.id,
                     title: lesson.title,
                     text: lesson.text,
-                    completed: false // Default state
+                    completed: false
                 });
             });
 
-            // Load user progress if authenticated
             if (userId) {
                 const { data: progressData, error: progressError } = await supabase
                     .from('user_progress')
                     .select('lesson_id, completed')
                     .eq('user_id', userId);
-
                 if (progressError) {
                     console.error('Error fetching progress:', progressError);
                 } else {
@@ -468,9 +411,7 @@
                         Object.keys(lessonsData).forEach(language => {
                             Object.keys(lessonsData[language]).forEach(level => {
                                 lessonsData[language][level].forEach(lesson => {
-                                    if (lesson.id === progress.lesson_id) {
-                                        lesson.completed = progress.completed;
-                                    }
+                                    if (lesson.id === progress.lesson_id) lesson.completed = progress.completed;
                                 });
                             });
                         });
@@ -482,7 +423,10 @@
             updateProgressIndicators();
         }
 
-        // Update progress indicators for language buttons
+        /**
+         * Update the small progress indicator in each language button.
+         * Purpose: present accurate percent complete per language.
+         */
         function updateProgressIndicators() {
             const languageButtons = document.querySelectorAll('.language-btn');
             languageButtons.forEach(btn => {
@@ -503,7 +447,11 @@
             });
         }
 
-        // Render language selection buttons dynamically
+        /**
+         * Render the language selection buttons.
+         * Purpose: allow the user to pick which language to learn.
+         * NOTE: Clicking a language will navigate to language-lessons.html with ?language=<name>
+         */
         function renderLanguageButtons() {
             const container = document.getElementById('languagesContainer');
             container.innerHTML = '';
@@ -513,260 +461,43 @@
                               language === 'tsimshian' ? '🐟' : '🌿';
 
                 const btn = document.createElement('button');
-                btn.className = `language-btn bg-${language}/10 hover:bg-${language}/20 p-8 rounded-2xl transition-all duration-300 transform hover:-translate-y-2`;
+                btn.className = `language-btn bg-${language}/10 hover:bg-${language}/20 p-8 rounded-2xl transition-all duration-300 transform hover:-translate-y-2 relative`;
                 btn.innerHTML = `
                     <div class="absolute top-2 right-2 bg-cedar text-white text-xs rounded-full w-8 h-8 flex items-center justify-center progress-indicator">0%</div>
                     <div class="text-4xl mb-4">${emoji}</div>
                     <h3 class="text-xl font-semibold text-cedar mb-4">${language.charAt(0).toUpperCase() + language.slice(1)}</h3>
                     <p class="text-mountain">Start learning ${language} with interactive lessons.</p>
                 `;
-                btn.onclick = () => selectLanguage(language, btn);
+                btn.onclick = () => {
+                    // set selectedLanguage locally and navigate
+                    selectedLanguage = language;
+                    // navigate to the lessons page with query param
+                    window.location.href = `language-lessons.html?language=${encodeURIComponent(language)}`;
+                };
                 container.appendChild(btn);
             });
         }
 
-        // Handle language selection
-        function selectLanguage(language, btn) {
-            selectedLanguage = language;
-            currentLevel = 1;
+        /* UI helpers (sign-in modal / mobile menu) */
+        function showSignIn() { document.getElementById('signInModal').classList.remove('hidden'); }
+        function hideSignIn() { document.getElementById('signInModal').classList.add('hidden'); }
+        function toggleMobileMenu() { const menu = document.getElementById('mobileMenu'); menu.classList.toggle('hidden'); }
 
-            // Highlight the selected button
-            document.querySelectorAll('.language-btn').forEach(b => b.classList.remove('ring-4', 'ring-cedar'));
-            btn.classList.add('ring-4', 'ring-cedar');
-
-            // Show learning section
-            const learningSection = document.getElementById('learningSection');
-            const selectedLanguageTitle = document.getElementById('selectedLanguageTitle');
-            learningSection.classList.remove('hidden');
-            selectedLanguageTitle.textContent = `${language.charAt(0).toUpperCase() + language.slice(1)} Language Learning`;
-
-            // Enable first totem section
-            const totemSections = document.querySelectorAll('.totem-section');
-            totemSections.forEach(section => {
-                const level = parseInt(section.dataset.level);
-                if (level === 1) {
-                    section.classList.remove('opacity-50');
-                    section.onclick = () => selectTotemSection(1);
-                } else {
-                    section.classList.add('opacity-50');
-                    section.onclick = null;
-                }
-            });
-
-            // Clear lesson content
-            document.getElementById('lessonList').innerHTML = '';
-            document.getElementById('lessonDetails').classList.add('hidden');
-
-            // Scroll to learning section
-            learningSection.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // Handle totem section selection (show lesson list)
-        function selectTotemSection(level) {
-            if (level > currentLevel) return;
-
-            const lessonList = document.getElementById('lessonList');
-            const lessonDetails = document.getElementById('lessonDetails');
-            lessonList.innerHTML = '';
-            lessonDetails.classList.add('hidden');
-
-            if (selectedLanguage && lessonsData[selectedLanguage] && lessonsData[selectedLanguage][level]) {
-                const lessons = lessonsData[selectedLanguage][level];
-
-                // Create lesson list
-                lessons.forEach((lesson, index) => {
-                    const lessonItem = document.createElement('div');
-                    lessonItem.className = 'lesson-item bg-white rounded-2xl p-6 shadow-lg cursor-pointer';
-                    lessonItem.innerHTML = `
-                        <h3 class="text-xl font-semibold text-cedar mb-2">${lesson.title}</h3>
-                        <p class="text-mountain">${lesson.completed ? '✅ Completed' : '⬜ Not Started'}</p>
-                    `;
-                    lessonItem.onclick = () => showLessonDetails(lesson, level, index);
-                    lessonList.appendChild(lessonItem);
-
-                    if (index < lessons.length - 1) {
-                        const divider = document.createElement('div');
-                        divider.className = 'cultural-divider';
-                        lessonList.appendChild(divider);
-                    }
-                });
-
-                document.getElementById('lessonContent').classList.remove('hidden');
-
-                // Scroll to lesson content
-                lessonList.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-
-        // Show individual lesson details
-        function showLessonDetails(lesson, level, lessonIndex) {
-            const lessonList = document.getElementById('lessonList');
-            const lessonDetails = document.getElementById('lessonDetails');
-            lessonDetails.innerHTML = `
-                <div class="bg-white rounded-2xl p-6 shadow-lg">
-                    <button class="mb-4 text-cedar hover:text-salmon transition-colors" onclick="backToLessonList(${level})">← Back to Lessons</button>
-                    <h3 class="text-xl font-semibold text-cedar mb-2">${lesson.title}</h3>
-                    <p class="text-mountain text-lg mb-4">${lesson.text}</p>
-                    <div class="flex flex-wrap gap-4">
-                        <button class="bg-cedar text-white px-6 py-3 rounded-lg hover:bg-forest transition-colors relative group">
-                            <span class="flex items-center space-x-2">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-6.586-3.793A1 1 0 007 8.293v7.414a1 1 0 001.166.918l6.586-3.793a1 1 0 000-1.836z"></path></svg>
-                                <span>Play Audio</span>
-                            </span>
-                            <span class="absolute hidden group-hover:block bg-cedar text-white text-xs rounded px-2 py-1 -top-8 left-1/2 transform -translate-x-1/2">Listen to pronunciation</span>
-                        </button>
-                        <button class="practice-btn bg-ocean text-white px-6 py-3 rounded-lg hover:bg-sky transition-colors relative group" data-level="${level}" data-lesson-id="${lesson.id}">
-                            <span class="flex items-center space-x-2">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a3.5 3.5 0 113.536 6.041L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
-                                <span>Practice</span>
-                            </span>
-                            <span class="absolute hidden group-hover:block bg-ocean text-white text-xs rounded px-2 py-1 -top-8 left-1/2 transform -translate-x-1/2">Start practice exercises</span>
-                        </button>
-                        <button class="mark-complete bg-forest text-white px-6 py-3 rounded-lg hover:bg-cedar transition-colors relative group ${lesson.completed ? 'opacity-50' : ''}" data-lesson-id="${lesson.id}" data-level="${level}" data-index="${lessonIndex}">
-                            <span class="flex items-center space-x-2">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span>${lesson.completed ? 'Completed' : 'Mark Complete'}</span>
-                            </span>
-                            <span class="absolute hidden group-hover:block bg-forest text-white text-xs rounded px-2 py-1 -top-8 left-1/2 transform -translate-x-1/2">${lesson.completed ? 'Already completed' : 'Mark this lesson as complete'}</span>
-                        </button>
-                    </div>
-                    <div id="practiceArea-${lesson.id}" class="hidden mt-4 p-4 bg-mountain/10 rounded-lg">
-                        <p id="practiceQuestion-${lesson.id}" class="text-cedar font-semibold mb-2"></p>
-                        <input type="text" id="practiceInput-${lesson.id}" class="w-full px-4 py-2 border border-mountain/30 rounded-lg focus:ring-2 focus:ring-cedar focus:border-transparent text-black" placeholder="Enter translation">
-                        <button id="submitPractice-${lesson.id}" class="mt-2 bg-forest text-white px-4 py-2 rounded-lg hover:bg-cedar transition-colors">Submit</button>
-                        <p id="practiceFeedback-${lesson.id}" class="mt-2 text-mountain"></p>
-                    </div>
-                </div>
-            `;
-            lessonDetails.classList.remove('hidden');
-            lessonList.classList.add('hidden');
-
-            // Add event listeners for Mark Complete buttons
-            document.querySelectorAll('.mark-complete').forEach(button => {
-                button.onclick = async () => {
-                    if (button.classList.contains('opacity-50')) return; // Prevent re-marking completed lessons
-
-                    const lessonId = button.dataset.lessonId;
-                    const level = parseInt(button.dataset.level);
-                    const index = parseInt(button.dataset.index);
-
-                    // Update local state
-                    lessonsData[selectedLanguage][level][index].completed = true;
-                    button.querySelector('span span').textContent = 'Completed';
-                    button.classList.add('opacity-50');
-
-                    // Update Supabase if user is authenticated
-                    if (userId) {
-                        const { error } = await supabase
-                            .from('user_progress')
-                            .upsert({
-                                user_id: userId,
-                                lesson_id: lessonId,
-                                completed: true
-                            });
-
-                        if (error) {
-                            console.error('Error saving progress:', error);
-                            alert('Failed to save progress. Please try again.');
-                        }
-                    }
-
-                    // Update progress indicators
-                    updateProgressIndicators();
-
-                    // Check if all lessons in the current level are completed
-                    const allCompleted = lessonsData[selectedLanguage][level].every(lesson => lesson.completed);
-                    if (allCompleted && level < 5) {
-                        currentLevel = level + 1;
-                        const nextSection = document.querySelector(`[data-level="${currentLevel}"]`);
-                        if (nextSection) {
-                            nextSection.classList.remove('opacity-50');
-                            nextSection.onclick = () => selectTotemSection(currentLevel);
-                        }
-                    }
-                };
-            });
-
-            // Add event listeners for Practice buttons
-            document.querySelectorAll('.practice-btn').forEach(button => {
-                button.onclick = () => {
-                    const lessonId = button.dataset.lessonId;
-                    const level = parseInt(button.dataset.level);
-                    const practiceArea = document.getElementById(`practiceArea-${lessonId}`);
-                    const practiceQuestion = document.getElementById(`practiceQuestion-${lessonId}`);
-                    const practiceInput = document.getElementById(`practiceInput-${lessonId}`);
-                    const practiceFeedback = document.getElementById(`practiceFeedback-${lessonId}`);
-                    const submitPractice = document.getElementById(`submitPractice-${lessonId}`);
-
-                    // Show practice area
-                    practiceArea.classList.remove('hidden');
-
-                    // Select a random word from the level's dictionary (Tlingit only for now)
-                    if (selectedLanguage === 'tlingit' && tlingitDictionary[level]) {
-                        const words = tlingitDictionary[level];
-                        const randomWord = words[Math.floor(Math.random() * words.length)];
-                        practiceQuestion.textContent = `Translate "${randomWord.word}" into English:`;
-                        practiceInput.value = '';
-
-                        submitPractice.onclick = () => {
-                            const userAnswer = practiceInput.value.trim().toLowerCase();
-                            const correctAnswer = randomWord.translation.toLowerCase();
-                            if (userAnswer === correctAnswer) {
-                                practiceFeedback.textContent = 'Correct! 🎉';
-                                practiceFeedback.classList.remove('text-sunset');
-                                practiceFeedback.classList.add('text-forest');
-                            } else {
-                                practiceFeedback.textContent = `Incorrect. The correct translation is "${randomWord.translation}". Try another!`;
-                                practiceFeedback.classList.remove('text-forest');
-                                practiceFeedback.classList.add('text-sunset');
-                                // Show a new word
-                                const newWord = words[Math.floor(Math.random() * words.length)];
-                                practiceQuestion.textContent = `Translate "${newWord.word}" into English:`;
-                                practiceInput.value = '';
-                            }
-                        };
-                    } else {
-                        practiceQuestion.textContent = 'Practice not available for this lesson.';
-                        practiceInput.classList.add('hidden');
-                        submitPractice.classList.add('hidden');
-                    }
-                };
-            });
-
-            // Scroll to lesson details
-            lessonDetails.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // Return to lesson list
-        window.backToLessonList = function(level) {
-            document.getElementById('lessonDetails').classList.add('hidden');
-            document.getElementById('lessonList').classList.remove('hidden');
-            selectTotemSection(level); // Refresh list to ensure completion status is updated
-        }
-
-        // Sign In modal controls
-        function showSignIn() {
-            document.getElementById('signInModal').classList.remove('hidden');
-        }
-
-        function hideSignIn() {
-            document.getElementById('signInModal').classList.add('hidden');
-        }
-
-        // Mobile menu toggle
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('hidden');
-        }
-
-        // Scrolled navigation
+        /* scroll nav style */
         window.addEventListener('scroll', () => {
             const nav = document.querySelector('nav');
             nav.classList.toggle('scrolled', window.scrollY > 50);
         });
 
-        // Initialize
+        // Start: load lessons (so language buttons are populated)
         loadLessons();
+
+        // Expose sign-in handler for the form
+        window.handleSignIn = handleSignIn;
+        window.signInWithGoogle = signInWithGoogle;
+        window.toggleMobileMenu = toggleMobileMenu;
+        window.showSignIn = showSignIn;
+        window.hideSignIn = hideSignIn;
     </script>
 </body>
 </html>
