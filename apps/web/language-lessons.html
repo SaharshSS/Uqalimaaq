@@ -1,542 +1,1276 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Language Lessons - Uqalimaaq</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Uqalimaaq Lessons</title>
 
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ᐅ</text></svg>">
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        cedar: '#8B4513',
+        forest: '#228B22',
+        ocean: '#4682B4',
+        salmon: '#FA8072',
+        sunset: '#FF6347',
+        earth: '#D2B48C',
+        mountain: '#708090',
+        gold: '#FFD700',
+        silver: '#C0C0C0',
+        bronze: '#CD7F32',
+      }
+    }
+  }
+}
+</script>
 
-    <!-- Duplicate original styles to preserve exact appearance -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        cedar: '#8B4513',
-                        salmon: '#FA8072',
-                        forest: '#228B22',
-                        ocean: '#4682B4',
-                        earth: '#D2B48C',
-                        sunset: '#FF6347',
-                        sky: '#87CEEB',
-                        mountain: '#708090',
-                    }
-                }
-            }
-        }
-    </script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+body {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+  color: white;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
 
-    <style>
-        /* === ORIGINAL STYLE BLOCK (same as learn.html) === */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        :root { --background:#fefdf8; --foreground:#2c1810; --muted:#8b7355; --border:#d4c4a8; }
-        @media (prefers-color-scheme: dark) { :root { --background:#1a1611; --foreground:#f4f1e8; --muted:#b8a082; --border:#4a4538; } }
-        *{margin:0;padding:0;box-sizing:border-box;}
-        body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--background);color:var(--foreground);line-height:1.6;}
-        .gradient-bg{background:linear-gradient(135deg,#8B4513 0%,#228B22 50%,#4682B4 100%);}
-        .glass{background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.2);}
-        .traditional-pattern{background-image:radial-gradient(circle at 25% 25%, rgba(139,69,19,0.1) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(34,139,34,0.1) 0%, transparent 50%); background-attachment:fixed;background-size:cover;}
-        nav{transition:background 0.3s ease,backdrop-filter 0.3s ease;}
-        .nav-active{border-bottom:2px solid var(--salmon); color:var(--salmon);}
-        .totem-section{transition:transform 0.2s ease,box-shadow 0.2s ease;}
-        .totem-section:not(.opacity-50):hover{transform:scale(1.05);box-shadow:0 6px 20px rgba(0,0,0,0.2);}
-        .lesson-item{transition:background 0.2s ease;}
-        .lesson-item:hover{background:rgba(139,69,19,0.05);}
-        /* layout */
-        .page-grid { display: grid; grid-template-columns: 260px 1fr; gap: 24px; min-height: 100vh; padding: 84px 32px 48px; }
-        .sidebar { background: rgba(255,255,255,0.06); border-radius: 16px; padding: 18px; position: sticky; top: 84px; height: calc(100vh - 120px); }
-        .sidebar button { display: block; width:100%; text-align:left; padding:12px 14px; border-radius:10px; margin-bottom:8px; background:transparent; border:none; cursor:pointer; }
-        .sidebar button.active { background: rgba(139,69,19,0.08); }
-        .main { background: transparent; }
-        .totem-column { display:flex; flex-direction:column; align-items:center; gap:12px; margin-bottom:18px; }
-        .totem-section { width:180px; height:90px; border-radius:12px; display:flex; align-items:center; justify-content:center; color:white; cursor:pointer; }
-        .totem-1 { background: linear-gradient(to bottom, var(--sunset), var(--mountain)); }
-        .totem-2 { background: linear-gradient(to bottom, var(--salmon), var(--sunset)); }
-        .totem-3 { background: linear-gradient(to bottom, var(--ocean), var(--salmon)); }
-        .totem-4 { background: linear-gradient(to bottom, var(--forest), var(--ocean)); }
-        .totem-5 { background: linear-gradient(to bottom, var(--cedar), var(--forest)); }
-        .lessons-wrap { background: white; padding:18px; border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,0.08); }
-        .lesson-item { padding:14px; border-radius:10px; margin-bottom:10px; }
-        .section-title { font-size:1.25rem; color: var(--cedar); margin-bottom:8px; }
-        .panel { display:none; }
-        .panel.active { display:block; }
-        .alphabet-list { display:flex; flex-wrap:wrap; gap:8px; }
-        .alphabet-cell { padding:8px 10px; border-radius:8px; background: #f7f3ef; border:1px solid var(--border); min-width:40px; text-align:center; }
-    </style>
+/* FULL PAGE MODAL-STYLE BACKGROUND */
+.fullscreen-content-style {
+  background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+  color: white;
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  backdrop-filter: blur(12px);
+}
+
+/* NAVBAR: MATCH MODAL STYLE */
+nav {
+  background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+  backdrop-filter: blur(12px);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  padding: 0.75rem 1.5rem;
+}
+nav .max-w-6xl {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+nav a, nav button {
+  color: white !important;
+  font-weight: 600;
+}
+nav .bg-gradient-to-r {
+  background: linear-gradient(to right, #f59e0b, #f97316);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+}
+
+/* TOTEM IMAGE */
+.totem-image {
+  cursor: pointer;
+  transition: transform .25s ease;
+  width: 250px;
+  height: 80px;
+}
+.totem-image:hover {
+  transform: scale(1.15);
+}
+
+/* CIRCLE BUTTON */
+.lesson-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 4px 6px rgba(0,0,0,.1);
+  border: 4px solid #6b7280;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #1f2937;
+  transition: all .2s;
+  cursor: pointer;
+}
+.lesson-circle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 12px rgba(0,0,0,.15);
+}
+.lesson-circle.completed {
+  background: #d1fae5;
+  border-color: #34d399;
+  color: #065f46;
+}
+.lesson-circle .checkmark {
+  width: 32px;
+  height: 32px;
+}
+
+/* FULL-SCREEN MODALS */
+.fullscreen-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+.fullscreen-content {
+  background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+  color: white;
+  border-radius: 20px;
+  padding: 2.5rem;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+.fullscreen-content h3 {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #f59e0b;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+.fullscreen-content p {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  color: #e2e8f0;
+  flex: 1;
+  margin-bottom: 2rem;
+}
+.close-x {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 2.5rem;
+  cursor: pointer;
+  color: #cbd5e0;
+  transition: color .2s;
+  z-index: 100;
+}
+.close-x:hover {
+  color: #fff;
+}
+
+/* SIDEBAR */
+.sidebar-btn {
+  color: #e2e8f0 !important;
+  font-weight: 500;
+  width: 100%;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  transition: all 0.2s;
+}
+.sidebar-btn:hover {
+  background: rgba(255,255,255,0.1);
+  transform: translateX(4px);
+}
+.rank-1 { color: #FFD700; font-weight: bold; }
+.rank-2 { color: #C0C0C0; font-weight: bold; }
+.rank-3 { color: #CD7F32; font-weight: bold; }
+.rank-other { color: #94a3b8; }
+
+/* LEADERBOARD: USER + LESSON COUNT = WHITE */
+.leaderboard-text { color: white !important; font-weight: 500; }
+
+/* TOTEM */
+#totemPole {
+  gap: 0.1rem !important;
+}
+#totemPole img {
+  margin-bottom: 0.25rem;
+}
+#totemPole img[data-level="1"] {
+  margin-top: -1.65rem;
+  position: relative;
+  left: 2.5px;
+}
+
+/* HIDDEN SVG SYMBOLS */
+.hidden-svg {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+/* PRACTICE QUIZ */
+#practiceContent {
+  background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+  color: white;
+  padding: 2rem;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+#quizHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  z-index: 10;
+  gap: 1rem;
+}
+
+#progressContainer {
+  flex: 1;
+  height: 8px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+  max-width: 90%; /* Prevents overlap with lives */
+}
+
+#progressBar {
+  height: 100%;
+  background: linear-gradient(90deg, #34d399, #10b981);
+  border-radius: 4px;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 10px rgba(52, 211, 153, 0.6);
+}
+
+#lives {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  position: relative;
+  z-index: 5;
+  justify-content: flex-end;
+  flex-shrink: 0;
+  margin-right: 2.5rem;
+}
+
+#lives img {
+  width: 2rem;
+  height: 2rem;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+  transition: all 0.3s ease;
+  animation: float 2s infinite ease-in-out;
+}
+
+#lives img.lost {
+  filter: grayscale(100%) brightness(0.5);
+  animation: fadeOut 0.6s forwards;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; transform: scale(0.5); }
+}
+
+#quizQuestion {
+  text-align: center;
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  color: #e2e8f0;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+#character {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+  position: relative;
+}
+
+#character .avatar {
+  width: 200px;
+  height: 200px;
+  background: url('media/raven_inverted.png') center/contain no-repeat;
+  background-size: 90%;
+  animation: bob 2s infinite ease-in-out;
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+#speechBubble {
+  background: #4a5568;
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 9999px;
+  font-size: 1.5rem;
+  font-weight: 500;
+  max-width: 70%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  position: relative;
+}
+
+#speechBubble::after {
+  content: '';
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0; height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid #4a5568;
+}
+
+#audioBtn {
+  background: #4a5568;
+  color: white;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: absolute;
+  right: -16px;
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#audioBtn:hover {
+  background: #718096;
+  transform: translateY(-50%) scale(1.1);
+}
+
+#audioBtn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  transform: scale(0);
+  animation: ripple 1.5s infinite;
+}
+
+@keyframes ripple {
+  to { transform: scale(2); opacity: 0; }
+}
+
+#options {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex: 1;
+}
+
+.option-btn {
+  background: #2d3748;
+  color: white;
+  padding: 1.25rem;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+  border: 2px solid transparent;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.option-btn:hover {
+  background: #4a5568;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.option-btn.selected {
+  background: #1a6d1a;
+  border-color: #34d399;
+  box-shadow: 0 0 20px rgba(52, 211, 153, 0.4);
+}
+
+.option-btn.bg-green-600 {
+  background: #16a34a !important;
+  animation: correctPulse 0.6s ease;
+}
+
+.option-btn.bg-red-600 {
+  background: #dc2626 !important;
+  animation: wrongShake 0.5s ease;
+}
+
+@keyframes correctPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes wrongShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-8px); }
+  75% { transform: translateX(8px); }
+}
+
+#quizFooter {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 1.5rem;
+  gap: 1rem;
+}
+
+#skipBtn, #checkBtn {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+#skipBtn {
+  background: #4a5568;
+  color: white;
+}
+
+#skipBtn:hover {
+  background: #718096;
+  transform: translateY(-2px);
+}
+
+#checkBtn {
+  background: #228B22;
+  color: white;
+  box-shadow: 0 0 20px rgba(34, 139, 34, 0.5);
+}
+
+#checkBtn:hover:not(:disabled) {
+  background: #1a6d1a;
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(26, 109, 26, 0.7);
+}
+
+#checkBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* PRACTICE BUTTON */
+#practiceBtn {
+  align-self: center;
+  padding: 1rem 2rem;
+  background: #228B22;
+  color: white;
+  font-weight: 600;
+  font-size: 1.25rem;
+  border-radius: 9999px;
+  box-shadow: 0 0 20px rgba(34, 139, 34, 0.5);
+  transition: all 0.3s ease;
+}
+#practiceBtn:hover {
+  background: #1a6d1a;
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(26, 109, 26, 0.7);
+}
+
+/* SHOP GRID */
+.shop-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+.shop-item {
+  background: rgba(255,255,255,0.1);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: transform .2s;
+  backdrop-filter: blur(8px);
+}
+.shop-item:hover { transform: scale(1.03); }
+.shop-item.bought { opacity: 0.6; pointer-events: none; }
+.shop-item h4 { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; }
+.shop-item .price { font-weight: 600; color: #34d399; }
+
+/* ALPHABET GRID */
+.alphabet-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+  max-width: 800px;
+  margin: 2rem auto;
+}
+.alph-cell {
+  background: rgba(255,255,255,0.1);
+  border-radius: 1rem;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform .2s;
+  backdrop-filter: blur(8px);
+  position: relative;
+}
+.alph-cell:hover { transform: scale(1.08); }
+.alph-cell .char { font-size: 2rem; font-weight: bold; display: block; }
+.alph-cell .trans { font-size: 0.9rem; color: #aaa; margin-top: 0.25rem; }
+
+/* SPEAKER BUTTON IN ALPHABET */
+.alph-cell .speaker-btn {
+  position: absolute;
+  top: 4px; right: 4px;
+  width: 28px; height: 28px;
+  background: rgba(255,255,255,0.25);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity .2s;
+}
+.alph-cell:hover .speaker-btn {
+  opacity: 1;
+}
+
+/* NO LIVES MESSAGE */
+#noLivesMessage {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fca5a5;
+  margin: 2rem 0;
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+</style>
 </head>
-<body>
-    <!-- Top nav preserved minimally -->
-    <nav class="fixed top-0 w-full z-50 glass" style="height:72px;">
-        <div style="max-width:1200px;margin:0 auto;padding:12px 24px;display:flex;justify-content:space-between;align-items:center;">
-            <div style="display:flex;align-items:center;gap:12px">
-                <div style="width:40px;height:40px;background:linear-gradient(90deg,var(--cedar),var(--forest));border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;">ᐅ</div>
-                <a href="index.html" style="color:white;font-weight:700;text-decoration:none">Uqalimaaq</a>
-            </div>
-            <div style="color:white">Language Lessons</div>
-        </div>
-    </nav>
 
-    <!-- Two-column page: sidebar + main -->
-    <div class="page-grid">
-        <!-- Sidebar -->
-        <aside class="sidebar" id="sidebar">
-            <button id="side-home" class="active">🏠 Home (Totem)</button>
-            <button id="side-leaderboard">🏆 Leaderboard</button>
-            <button id="side-alphabet">🔤 Alphabet</button>
-            <button id="side-shop">🛒 Shop</button>
-            <button id="side-return">⤴ Return to Index</button>
-            <hr style="margin:12px 0;border:none;border-top:1px solid var(--border)">
-            <div style="font-size:0.9rem;color:var(--muted);">Selected language:</div>
-            <div id="selectedLanguageLabel" style="font-weight:600;margin-top:6px"></div>
-        </aside>
+<body class="min-h-screen">
 
-        <!-- Main content -->
-        <main class="main">
-            <!-- Totem + Lessons Area -->
-            <section id="homePanel" class="panel active">
-                <div class="totem-column">
-                    <div class="section-title" id="totemTitle"></div>
-                    <div id="totemPole" style="display:flex;flex-direction:column;align-items:center;gap:10px;">
-                        <div tabindex="0" role="button" class="totem-section totem-5 opacity-50" data-level="5"><div style="text-align:center"><div style="font-size:22px">🦅</div><div style="font-weight:600">Eagle</div><div style="font-size:12px">Advanced</div></div></div>
-                        <div tabindex="0" role="button" class="totem-section totem-4 opacity-50" data-level="4"><div style="text-align:center"><div style="font-size:22px">🐻</div><div style="font-weight:600">Bear</div><div style="font-size:12px">Intermediate</div></div></div>
-                        <div tabindex="0" role="button" class="totem-section totem-3 opacity-50" data-level="3"><div style="text-align:center"><div style="font-size:22px">🐟</div><div style="font-weight:600">Salmon</div><div style="font-size:12px">Upper Beginner</div></div></div>
-                        <div tabindex="0" role="button" class="totem-section totem-2 opacity-50" data-level="2"><div style="text-align:center"><div style="font-size:22px">🐺</div><div style="font-weight:600">Wolf</div><div style="font-size:12px">Beginner</div></div></div>
-                        <div tabindex="0" role="button" class="totem-section totem-1" data-level="1"><div style="text-align:center"><div style="font-size:22px">🐦‍⬛</div><div style="font-weight:600">Raven</div><div style="font-size:12px">Start Here</div></div></div>
-                    </div>
-                </div>
+<!-- HIDDEN SVG SYMBOLS -->
+<svg class="hidden-svg">
+  <symbol id="speaker-icon" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M12 3v18c-3.31 0-6-2.69-6-6v-6c0-3.31 2.69-6 6-6zm5 6v6c0 1.66 1.34 3 3 3s3-1.34 3-3v-6c0-1.66-1.34-3-3-3s-3 1.34-3 3zm-5 6c0 1.66 1.34 3 3 3s3-1.34 3-3v-6c0-1.66-1.34-3-3-3s-3 1.34-3 3v6z"/>
+  </symbol>
+</svg>
 
-                <div class="lessons-wrap" style="margin-top:18px;">
-                    <div class="section-title">Lessons</div>
-                    <div id="lessonList"></div>
-                    <div id="lessonDetails" style="display:none;margin-top:14px;"></div>
-                </div>
-            </section>
-
-            <!-- Leaderboard Panel -->
-            <section id="leaderboardPanel" class="panel">
-                <div class="section-title">Leaderboard</div>
-                <div id="leaderboardContent" style="margin-top:12px;">
-                    <p style="color:var(--muted)">Leaderboard loading… (placeholder)</p>
-                    <ul id="leaderboardList" style="margin-top:12px"></ul>
-                </div>
-            </section>
-
-            <!-- Alphabet Panel -->
-            <section id="alphabetPanel" class="panel">
-                <div class="section-title">Alphabet</div>
-                <div style="margin-top:10px">
-                    <div id="alphabetInstructions" style="color:var(--muted);margin-bottom:10px">You may supply the characters for the selected language via the UI below.</div>
-                    <div id="alphabetDisplay" class="alphabet-list"></div>
-                    <div style="margin-top:12px">
-                        <input id="alphabetInput" placeholder="Enter characters separated by commas (e.g. A, Á, B, C)" style="width:60%;padding:8px;border-radius:8px;border:1px solid var(--border)">
-                        <button id="saveAlphabetBtn" style="padding:8px 12px;margin-left:8px;border-radius:8px;background:var(--forest);color:white;border:none;cursor:pointer">Save</button>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Shop Panel -->
-            <section id="shopPanel" class="panel">
-                <div class="section-title">Shop</div>
-                <div style="margin-top:12px">
-                    <p style="color:var(--muted)">In-game shop placeholder. You may populate items from your backend.</p>
-                    <div id="shopItems" style="margin-top:12px"></div>
-                </div>
-            </section>
-        </main>
+<!-- NAVBAR -->
+<nav class="fixed top-0 left-0 w-full z-50">
+  <div class="max-w-6xl mx-auto flex justify-between items-center">
+    <div class="flex items-center gap-3">
+      <div class="bg-gradient-to-r from-cedar to-forest rounded-lg w-10 h-10 flex items-center justify-center font-bold text-white">ᐅ</div>
+      <a href="index.html" class="font-bold text-lg">Uqalimaaq</a>
     </div>
+    <button id="authButton" class="bg-cedar hover:bg-forest text-white font-semibold px-4 py-2 rounded-lg transition">Sign in with Google</button>
+  </div>
+</nav>
 
-    <!-- Script: Supabase + full logic -->
-    <script type="module">
-        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+<!-- MAIN GRID -->
+<div class="pt-24 px-10 min-h-screen">
+  <div class="grid grid-cols-[260px_1fr_300px] gap-8">
+    <!-- Left Sidebar -->
+    <aside class="bg-white/10 backdrop-blur-md rounded-xl p-4 h-fit">
+      <button id="side-home" class="sidebar-btn mb-2">Home</button>
+      <button id="side-leaderboard" class="sidebar-btn mb-2">Leaderboard</button>
+      <button id="side-alphabet" class="sidebar-btn mb-2">Alphabet</button>
+      <button id="side-shop" class="sidebar-btn mb-2">Rewards</button>
+      <hr class="my-3 border-t border-white/20">
+      <p class="text-sm text-gray-300">Selected language:</p>
+      <p id="selectedLanguageLabel" class="font-semibold text-base mt-1"></p>
+    </aside>
 
-        // === Supabase initialization (same credentials) ===
-        const supabaseUrl = 'https://tjodmaqwodkpyusohljj.supabase.co';
-        const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRqb2RtYXF3b2RrcHl1c29obGpqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjAyOTM5OTIsImV4cCI6MjA3NTg2OTk5Mn0.tgE1IxOusOFtq2ELRMFPgsJrAcmFyNs13UbkDDjXzUI';
-        const supabase = createClient(supabaseUrl, supabaseAnonKey);
+    <!-- Totem Column -->
+    <section class="flex flex-col items-center gap-1" id="totemPole">
+      <h2 class="text-amber-400 text-xl font-bold mb-2">Progress</h2>
+      <div class="flex items-center justify-center gap-3 w-full">
+        <span class="text-amber-400 font-semibold text-base w-[150px] text-right pr-2">Expert</span>
+        <img src="media/Advanced Grey.png" class="totem-image opacity-50" data-level="5" width="180" height="90" alt="Advanced Level">
+        <div class="w-[150px]"></div>
+      </div>
+      <div class="flex items-center justify-center gap-3 w-full">
+        <span class="text-amber-400 font-semibold text-base w-[150px] text-right pr-2">Advanced</span>
+        <img src="media/Intermediate Grey.png" class="totem-image opacity-50" data-level="4" width="180" height="90" alt="Intermediate Level">
+        <div class="w-[150px]"></div>
+      </div>
+      <div class="flex items-center justify-center gap-3 w-full">
+        <span class="text-amber-400 font-semibold text-base w-[150px] text-right pr-2">Intermediate</span>
+        <img src="media/Upper Beginner Grey.png" class="totem-image opacity-50" data-level="3" width="180" height="90" alt="Upper Beginner">
+        <div class="w-[150px]"></div>
+      </div>
+      <div class="flex items-center justify-center gap-3 w-full">
+        <span class="text-amber-400 font-semibold text-base w-[150px] text-right pr-2">Beginner</span>
+        <img src="media/Beginner Grey.png" class="totem-image opacity-50" data-level="2" width="180" height="90" alt="Beginner">
+        <div class="w-[150px]"></div>
+      </div>
+      <div class="flex items-center justify-center gap-3 w-full">
+        <span class="text-amber-400 font-semibold text-base w-[150px] text-right pr-2">Start Here</span>
+        <img src="media/Start Here Color.png" class="totem-image" data-level="1" width="180" height="90" alt="Start Here">
+        <div class="w-[150px]"></div>
+      </div>
+    </section>
 
-        // State
-        let selectedLanguage = '';
-        let lessonsData = {}; // { level: [lesson,...] }
-        let currentLevel = 1;
-        let userId = null;
+    <!-- Right Panel -->
+    <section id="lessonPanel" class="bg-white/10 backdrop-blur-md rounded-xl p-5 overflow-y-auto">
+      <h2 class="text-amber-400 text-xl font-bold mb-4">Lessons</h2>
+      <div id="lessonList" class="flex flex-col items-center space-y-4"></div>
+    </section>
+  </div>
+</div>
 
-        const tlingitDictionary = {
-            1: [{ word: 'Gunalchéesh', translation: 'Thank you' },{ word: 'Wáa sá iyatee?', translation: 'How are you?' },{ word: 'Aadé', translation: 'Hello' }],
-            2: [{ word: 'Aaná', translation: 'Mother' },{ word: 'Táa', translation: 'Father' },{ word: 'Sháan', translation: 'Grandmother' }],
-            3: [{ word: 'Héen', translation: 'Water' },{ word: 'Sʼíxʼ', translation: 'Tree' },{ word: 'Chʼáakʼ', translation: 'Eagle' }],
-            4: [{ word: 'Kʼusteeyí', translation: 'Potlatch' },{ word: 'At.óow', translation: 'Treasure' },{ word: 'Shuká', translation: 'Clan' }],
-            5: [{ word: 'Yéi áyá', translation: 'This is how it is' }]
-        };
+<!-- LESSON MODAL -->
+<div id="lessonFullscreenModal" class="hidden fullscreen-modal">
+  <div class="fullscreen-content">
+    <button class="close-x" id="closeLessonBtn">X</button>
+    <h3 id="lessonTitle"></h3>
+    <p id="lessonText" class="flex-1 text-lg leading-relaxed"></p>
+    <button id="practiceBtn" class="mt-4">
+      Practice Lesson
+    </button>
+  </div>
+</div>
 
-        /* ---------------------
-           Utility: get language from URL
-           --------------------- */
-        function getQueryLanguage() {
-            const params = new URLSearchParams(window.location.search);
-            return params.get('language') || params.get('lang');
-        }
+<!-- PRACTICE QUIZ MODAL -->
+<div id="practiceModal" class="hidden fullscreen-modal">
+  <div class="fullscreen-content" id="practiceContent">
+    <button class="close-x" id="closePracticeBtn">X</button>
+    <div id="quizHeader">
+      <div id="progressContainer">
+        <div id="progressBar" style="width: 0%"></div>
+      </div>
+      <div id="lives"></div>
+    </div>
+    <p id="quizQuestion" class="text-center text-xl mb-4"></p>
+    <div id="noLivesMessage" class="hidden"></div>
+    <div id="character" class="flex justify-center mb-6">
+      <div class="avatar"></div>
+      <div id="speechBubble" class="text-xl"></div>
+      <!-- Real speaker button -->
+      <button id="audioBtn" class="p-2 rounded-md bg-gray-200 hover:bg-gray-300 focus:outline-none">
+        <img src="https://www.svgrepo.com/show/505507/speaker-2.svg" alt="Speaker Icon" class="w-6 h-6">
+      </button>            
+    </div>
+    <div id="options" class="flex flex-col gap-4 mb-8"></div>
+    <div id="quizFooter">
+      <button id="skipBtn">SKIP</button>
+      <button id="checkBtn" disabled>CHECK</button>
+    </div>
+  </div>
+</div>
 
-        /* ---------------------
-           AUTH HELPERS
-           --------------------- */
+<!-- LEADERBOARD MODAL -->
+<div id="leaderboardModal" class="hidden fullscreen-modal">
+  <div class="fullscreen-content">
+    <button class="close-x" id="closeLeaderboardBtn">X</button>
+    <h3>Leaderboard</h3>
+    <div id="leaderboardContent" class="flex-1 space-y-3"></div>
+  </div>
+</div>
 
-        /**
-         * checkAuth: retrieves the current authenticated user (if any) and sets userId.
-         */
-        async function checkAuth() {
-            const { data: { user } } = await supabase.auth.getUser();
-            if (user) userId = user.id;
-        }
+<!-- ALPHABET MODAL -->
+<div id="alphabetModal" class="hidden fullscreen-modal">
+  <div class="fullscreen-content p-8">
+    <button class="close-x" id="closeAlphabetBtn">X</button>
+    <h3 class="mb-6">Alphabet – <span id="alphLang"></span></h3>
+    <div id="alphabetGrid" class="alphabet-grid"></div>
+  </div>
+</div>
 
-        /* ---------------------
-           LOAD LESSONS FOR SELECTED LANGUAGE
-           --------------------- */
+<!-- SHOP MODAL -->
+<div id="shopModal" class="hidden fullscreen-modal">
+  <div class="fullscreen-content p-8">
+    <button class="close-x" id="closeShopBtn">X</button>
+    <div class="flex justify-between items-center mb-6">
+      <h3>Rewards – Themes</h3>
+      <div class="flex items-center gap-2">
+        <img src="https://www.svgrepo.com/show/505689/abalone.svg" width="32" alt="abalone">
+        <span id="shellBalance" class="text-2xl font-bold">0</span>
+      </div>
+    </div>
+    <div id="shopGrid" class="shop-grid"></div>
+  </div>
+</div>
 
-        /**
-         * loadLanguageLessons: fetches lessons for the selected language from Supabase
-         * and the user's progress if authenticated. Populates `lessonsData`.
-         */
-        async function loadLanguageLessons() {
-            await checkAuth();
-            // fetch lessons for this specific language
-            const { data, error } = await supabase
-                .from('lessons')
-                .select('*')
-                .eq('language', selectedLanguage);
+<!-- CONFETTI + SUPABASE -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.44.4/dist/umd/supabase.min.js"></script>
+<script>
+// ------------------------------------------------------------
+// SUPABASE & STATE
+// ------------------------------------------------------------
+const supabaseUrl = "https://tjodmaqwodkpyusohljj.supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRqb2RtYXF3b2RrcHl1c29obGpqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjAyOTM5OTIsImV4cCI6MjA3NTg2OTk5Mn0.tgE1IxOusOFtq2ELRMFPgsJrAcmFyNs13UbkDDjXzUI";
+const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-            if (error) {
-                console.error('Error loading lessons:', error);
-                document.getElementById('lessonList').innerHTML = '<p style="color:var(--muted)">Failed to load lessons.</p>';
-                return;
-            }
+let currentUser = null;
+let currentLevel = 1;
+let unlockedLevel = 1;
+let currentLessons = [];
+let completedLessons = [];
+let currentLessonId = null;
+let shells = 0;
+let ownedThemes = [];
+let currentLang = 'tl';
 
-            // organize by level
-            lessonsData = {};
-            (data || []).forEach(lesson => {
-                if (!lessonsData[lesson.level]) lessonsData[lesson.level] = [];
-                lessonsData[lesson.level].push({
-                    id: lesson.id,
-                    title: lesson.title,
-                    text: lesson.text,
-                    completed: false
-                });
-            });
+// ------------------------------------------------------------
+// AUDIO CONTEXT (SHARED)
+// ------------------------------------------------------------
+let audioContext = null;
+const unlockAudio = () => {
+  if (!audioContext) {
+    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    document.removeEventListener('click', unlockAudio);
+    document.removeEventListener('touchstart', unlockAudio);
+  }
+};
+document.addEventListener('click', unlockAudio);
+document.addEventListener('touchstart', unlockAudio);
 
-            // if user is authenticated, fetch their progress
-            if (userId) {
-                const { data: progressData, error: progressError } = await supabase
-                    .from('user_progress')
-                    .select('lesson_id, completed')
-                    .eq('user_id', userId);
+const playAudioUrl = async (url) => {
+  if (!url || !audioContext) return;
+  try {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error("Audio not found");
+    const arrayBuffer = await response.arrayBuffer();
+    const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+    const source = audioContext.createBufferSource();
+    source.buffer = audioBuffer;
+    source.connect(audioContext.destination);
+    source.start();
+  } catch (e) {
+    console.warn("Audio playback failed:", e.message);
+  }
+};
 
-                if (progressError) {
-                    console.error('Error fetching progress:', progressError);
-                } else {
-                    progressData.forEach(p => {
-                        Object.keys(lessonsData).forEach(lvl => {
-                            lessonsData[lvl].forEach(lesson => {
-                                if (lesson.id === p.lesson_id) lesson.completed = p.completed;
-                            });
-                        });
-                    });
-                }
-            }
+// ------------------------------------------------------------
+// PRACTICE QUIZ
+// ------------------------------------------------------------
+document.getElementById("practiceBtn").addEventListener("click", async () => {
+  document.getElementById("lessonFullscreenModal").classList.add("hidden");
 
-            // render default: show level 1 lessons unlocked
-            currentLevel = 1;
-            enableTotemSections();
-            renderLessonsForLevel(1);
-            updateTotemTitle();
-        }
+  const { data, error } = await supabase
+    .from('practice')
+    .select('*')
+    .eq('lesson_id', currentLessonId);
 
-        /* ---------------------
-           RENDER / UI FUNCTIONS
-           --------------------- */
+  if (error || !data || data.length === 0) {
+    alert("No practice questions available for this lesson.");
+    return;
+  }
 
-        /**
-         * updateTotemTitle: updates header label showing selected language
-         */
-        function updateTotemTitle() {
-            const totemTitle = document.getElementById('totemTitle');
-            totemTitle.textContent = `${capitalize(selectedLanguage)} Language Learning`;
-            document.getElementById('selectedLanguageLabel').textContent = capitalize(selectedLanguage);
-        }
+  const questions = data.map(q => ({
+    prompt: q.prompt,
+    options: q.options || [],
+    correct: q.correct_index,
+    audio_url: q.audio_url
+  }));
 
-        /**
-         * enableTotemSections: unlocks only the allowed levels (initially level 1)
-         * Purpose: matches the original behavior where only Raven (level 1) is enabled initially.
-         */
-        function enableTotemSections() {
-            document.querySelectorAll('#totemPole .totem-section').forEach(section => {
-                const level = parseInt(section.dataset.level);
-                if (level === 1) {
-                    section.classList.remove('opacity-50');
-                    section.onclick = () => selectTotemSection(level);
-                } else {
-                    section.classList.add('opacity-50');
-                    section.onclick = null;
-                }
-            });
-        }
+  let idx = 0;
+  let lives = 3;
+  let score = 0;
+  let selected = null;
 
-        /**
-         * selectTotemSection:
-         * Purpose: invoked when a totem level is clicked; renders the lesson list for that level.
-         */
-        function selectTotemSection(level) {
-            if (level > currentLevel) return; // locked
-            renderLessonsForLevel(level);
-        }
+  const els = {
+    question: document.getElementById("quizQuestion"),
+    speech: document.getElementById("speechBubble"),
+    options: document.getElementById("options"),
+    progress: document.getElementById("progressBar"),
+    livesEl: document.getElementById("lives"),
+    checkBtn: document.getElementById("checkBtn"),
+    skipBtn: document.getElementById("skipBtn"),
+    audioBtn: document.getElementById("audioBtn"),
+    noLivesMsg: document.getElementById("noLivesMessage")
+  };
 
-        /**
-         * renderLessonsForLevel:
-         * Purpose: populate #lessonList with the lessons for the given level (if any).
-         */
-        function renderLessonsForLevel(level) {
-            const list = document.getElementById('lessonList');
-            const details = document.getElementById('lessonDetails');
-            list.innerHTML = '';
-            details.style.display = 'none';
+  const renderLives = () => {
+    els.livesEl.innerHTML = Array(3).fill('').map((_, i) => 
+      `<img src="https://www.svgrepo.com/show/191463/salmon-fish.svg" alt="salmon" class="${i >= lives ? 'lost' : ''}">`
+    ).join('');
+  };
 
-            const lessons = lessonsData[level] || [];
-            if (lessons.length === 0) {
-                list.innerHTML = `<p style="color:var(--muted)">No lessons available for this level yet.</p>`;
-                return;
-            }
+  const showNoLives = () => {
+    els.noLivesMsg.textContent = "No lives left!";
+    els.noLivesMsg.classList.remove("hidden");
+    setTimeout(finishQuiz, 1500);
+  };
 
-            lessons.forEach((lesson, idx) => {
-                const el = document.createElement('div');
-                el.className = 'lesson-item';
-                el.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center">
-                                    <div>
-                                      <div style="font-weight:600;color:var(--cedar)">${escapeHtml(lesson.title)}</div>
-                                      <div style="color:var(--muted);font-size:0.9rem">${lesson.completed ? '✅ Completed' : '⬜ Not Started'}</div>
-                                    </div>
-                                    <div>
-                                      <button style="padding:8px 12px;border-radius:8px;background:var(--ocean);color:white;border:none;cursor:pointer" onclick="showLessonDetailsByLevel(${level}, ${idx})">Open</button>
-                                    </div>
-                                 </div>`;
-                list.appendChild(el);
-            });
+  const loadQuestion = () => {
+    const q = questions[idx];
+    selected = null;
+    els.question.textContent = "How do you say this in Tlingit?";
+    els.speech.textContent = q.prompt;
+    els.options.innerHTML = "";
+    els.checkBtn.disabled = true;
+    els.checkBtn.textContent = "CHECK";
+    els.noLivesMsg.classList.add("hidden");
 
-            // scroll into view
-            list.scrollIntoView({ behavior: 'smooth' });
-        }
+    q.options.forEach((opt, i) => {
+      const btn = document.createElement("button");
+      btn.className = "option-btn flex items-center gap-2 px-4 py-3 text-left";
+      btn.innerHTML = `<span class="font-bold text-lg">${i+1}.</span> ${opt}`;
+      btn.onclick = () => {
+        document.querySelectorAll(".option-btn").forEach(b => b.classList.remove("selected"));
+        btn.classList.add("selected");
+        selected = i;
+        els.checkBtn.disabled = false;
+      };
+      els.options.appendChild(btn);
+    });
 
-        /**
-         * showLessonDetailsByLevel:
-         * Purpose: helper to call showLessonDetails with correct lesson object.
-         */
-        function showLessonDetailsByLevel(level, index) {
-            const lesson = (lessonsData[level] || [])[index];
-            if (!lesson) return;
-            showLessonDetails(lesson, level, index);
-        }
+    // Audio Button
+    if (q.audio_url) {
+      els.audioBtn.classList.remove("hidden");
+      els.audioBtn.onclick = () => playAudioUrl(q.audio_url);
+    } else {
+      els.audioBtn.classList.add("hidden");
+    }
 
-        /**
-         * showLessonDetails:
-         * Purpose: displays the lesson details panel and wires up practice and complete controls.
-         */
-        function showLessonDetails(lesson, level, lessonIndex) {
-            const details = document.getElementById('lessonDetails');
-            details.style.display = 'block';
-            details.innerHTML = `
-                <div style="background:#fff;padding:14px;border-radius:10px;">
-                    <button style="background:transparent;border:none;color:var(--cedar);margin-bottom:8px;cursor:pointer" onclick="backToLessonList(${level})">← Back to Lessons</button>
-                    <h3 style="font-weight:700;color:var(--cedar);margin-bottom:8px">${escapeHtml(lesson.title)}</h3>
-                    <p style="color:var(--muted);margin-bottom:12px">${escapeHtml(lesson.text || '')}</p>
+    els.progress.style.width = `${((idx) / questions.length) * 100}%`;
+    renderLives();
+  };
 
-                    <div style="display:flex;gap:8px;flex-wrap:wrap">
-                        <button id="playAudioBtn" style="padding:8px 12px;background:var(--cedar);color:white;border:none;border-radius:8px;cursor:pointer">Play Audio</button>
-                        <button id="practiceBtn" style="padding:8px 12px;background:var(--ocean);color:white;border:none;border-radius:8px;cursor:pointer">Practice</button>
-                        <button id="markCompleteBtn" style="padding:8px 12px;background:var(--forest);color:white;border:none;border-radius:8px;cursor:pointer">${lesson.completed ? 'Completed' : 'Mark Complete'}</button>
-                    </div>
+  const checkAnswer = () => {
+    const q = questions[idx];
+    const correct = q.correct === selected;
+    const btns = els.options.querySelectorAll(".option-btn");
 
-                    <div id="practiceArea" style="display:none;margin-top:12px;padding:10px;border-radius:8px;background:rgba(112,128,144,0.06)">
-                        <p id="practiceQuestion" style="font-weight:600;color:var(--cedar)"></p>
-                        <input id="practiceInput" placeholder="Enter translation" style="width:100%;padding:8px;border-radius:8px;border:1px solid var(--border);margin-top:8px">
-                        <div style="margin-top:8px">
-                            <button id="submitPracticeBtn" style="padding:8px 12px;background:var(--forest);color:white;border:none;border-radius:8px;cursor:pointer">Submit</button>
-                        </div>
-                        <p id="practiceFeedback" style="margin-top:8px;color:var(--muted)"></p>
-                    </div>
-                </div>
-            `;
+    btns[q.correct].classList.add("bg-green-600", "text-white");
+    if (!correct && selected !== null) {
+      btns[selected].classList.add("bg-red-600", "text-white");
+    }
 
-            // wire up buttons
-            document.getElementById('practiceBtn').onclick = () => {
-                const practiceArea = document.getElementById('practiceArea');
-                practiceArea.style.display = 'block';
+    if (correct) {
+      score++;
+      confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+    } else {
+      lives--;
+      renderLives();
+      if (lives <= 0) {
+        els.checkBtn.disabled = true;
+        setTimeout(showNoLives, 800);
+        return;
+      }
+    }
 
-                if (selectedLanguage === 'tlingit' && tlingitDictionary[level]) {
-                    const words = tlingitDictionary[level];
-                    const randomWord = words[Math.floor(Math.random() * words.length)];
-                    document.getElementById('practiceQuestion').textContent = `Translate "${randomWord.word}" into English:`;
-                    document.getElementById('practiceInput').value = '';
-                    document.getElementById('submitPracticeBtn').onclick = () => {
-                        const userAnswer = document.getElementById('practiceInput').value.trim().toLowerCase();
-                        const correctAnswer = randomWord.translation.toLowerCase();
-                        const feedback = document.getElementById('practiceFeedback');
-                        if (userAnswer === correctAnswer) {
-                            feedback.style.color = 'var(--forest)';
-                            feedback.textContent = 'Correct! 🎉';
-                        } else {
-                            feedback.style.color = 'var(--sunset)';
-                            feedback.textContent = `Incorrect. The correct translation is "${randomWord.translation}".`;
-                        }
-                    };
-                } else {
-                    document.getElementById('practiceQuestion').textContent = 'Practice not available for this language/level.';
-                    document.getElementById('submitPracticeBtn').onclick = null;
-                }
-            };
+    els.checkBtn.textContent = correct ? "Correct!" : "Try again...";
+    els.checkBtn.disabled = true;
 
-            document.getElementById('markCompleteBtn').onclick = async () => {
-                if (lesson.completed) return;
-                lesson.completed = true;
-                // update UI immediately
-                document.getElementById('markCompleteBtn').textContent = 'Completed';
-                // persist to Supabase if authenticated
-                if (userId) {
-                    const { error } = await supabase.from('user_progress').upsert({
-                        user_id: userId,
-                        lesson_id: lesson.id,
-                        completed: true
-                    });
-                    if (error) {
-                        console.error('Failed to save progress:', error);
-                        alert('Failed to save progress.');
-                    }
-                }
-                // check if all lessons in level completed -> unlock next level
-                const allCompleted = (lessonsData[level] || []).every(l => l.completed);
-                if (allCompleted && level < 5) {
-                    currentLevel = level + 1;
-                    const nextSection = document.querySelector(`#totemPole .totem-section[data-level="${currentLevel}"]`);
-                    if (nextSection) {
-                        nextSection.classList.remove('opacity-50');
-                        nextSection.onclick = () => selectTotemSection(currentLevel);
-                    }
-                }
-                renderLessonsForLevel(level);
-            };
+    setTimeout(() => {
+      idx++;
+      if (idx < questions.length && lives > 0) {
+        loadQuestion();
+      } else if (lives <= 0) {
+        showNoLives();
+      } else {
+        finishQuiz();
+      }
+    }, 1400);
+  };
 
-            // Play audio stub (user can replace with actual audio)
-            document.getElementById('playAudioBtn').onclick = () => {
-                alert('Audio playback not implemented in this build — replace with actual audio source.');
-            };
+  const finishQuiz = () => {
+    const accuracy = Math.round((score / questions.length) * 100);
+    document.getElementById("practiceContent").innerHTML = `
+      <button class="close-x" id="closePracticeBtn">X</button>
+      <div class="flex flex-col items-center justify-center h-full text-center space-y-6">
+        <h2 class="text-4xl font-bold text-amber-400">Quiz Complete!</h2>
+        <p class="text-2xl">You got <span class="text-green-400 font-bold">${score}</span> out of <span class="font-bold">${questions.length}</span> correct.</p>
+        <p class="text-xl">Accuracy: <span class="text-green-400 font-bold">${accuracy}%</span></p>
+        <button id="restartBtn" class="mt-6 px-8 py-3 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg transition">
+          Practice Again
+        </button>
+      </div>
+    `;
 
-            // scroll to details
-            details.scrollIntoView({ behavior: 'smooth' });
-        }
+    document.getElementById("restartBtn").onclick = () => location.reload();
+    document.getElementById("closePracticeBtn").onclick = () => {
+      document.getElementById("practiceModal").classList.add("hidden");
+    };
+  };
 
-        /**
-         * backToLessonList:
-         * Purpose: hide detail panel and show list again for the given level.
-         */
-        function backToLessonList(level) {
-            document.getElementById('lessonDetails').style.display = 'none';
-            renderLessonsForLevel(level);
-        }
+  els.checkBtn.onclick = checkAnswer;
+  els.skipBtn.onclick = () => {
+    idx++;
+    if (idx < questions.length && lives > 0) loadQuestion();
+    else if (lives <= 0) showNoLives();
+    else finishQuiz();
+  };
 
-        /* ---------------------
-           SIDEBAR PANEL LOGIC
-           --------------------- */
-        document.getElementById('side-home').addEventListener('click', () => switchPanel('homePanel', 'side-home'));
-        document.getElementById('side-leaderboard').addEventListener('click', () => switchPanel('leaderboardPanel', 'side-leaderboard'));
-        document.getElementById('side-alphabet').addEventListener('click', () => switchPanel('alphabetPanel', 'side-alphabet'));
-        document.getElementById('side-shop').addEventListener('click', () => switchPanel('shopPanel', 'side-shop'));
-        document.getElementById('side-return').addEventListener('click', () => { window.location.href = 'index.html'; });
+  loadQuestion();
+  document.getElementById("practiceModal").classList.remove("hidden");
+});
 
-        function switchPanel(panelId, activeButtonId) {
-            // hide all, show requested
-            document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-            document.getElementById(panelId).classList.add('active');
-            // sidebar active state
-            document.querySelectorAll('.sidebar button').forEach(b => b.classList.remove('active'));
-            document.getElementById(activeButtonId).classList.add('active');
-        }
+// ------------------------------------------------------------
+// ALPHABET AUDIO (FIXED)
+// ------------------------------------------------------------
+async function loadAlphabet() {
+  const { data } = await supabase.from('alphabet')
+    .select('character,transliteration')
+    .eq('language', currentLang)
+    .order('order');
 
-        /* ---------------------
-           ALPHABET SAVE / RENDER
-           --------------------- */
-        document.getElementById('saveAlphabetBtn').addEventListener('click', () => {
-            const raw = document.getElementById('alphabetInput').value;
-            if (!raw) return;
-            const chars = raw.split(',').map(s => s.trim()).filter(Boolean);
-            renderAlphabet(chars);
-            // optionally persist to backend — omitted for brevity
-        });
+  const grid = document.getElementById('alphabetGrid');
+  grid.innerHTML = data.map(item => `
+    <div class="alph-cell group">
+      <div class="char">${item.character}</div>
+      <div class="trans">${item.transliteration}</div>
+      <button class="speaker-btn">
+        <svg width="16" height="16" fill="currentColor"><use href="#speaker-icon"/></svg>
+      </button>
+    </div>
+  `).join('');
 
-        function renderAlphabet(chars) {
-            const display = document.getElementById('alphabetDisplay');
-            display.innerHTML = '';
-            chars.forEach(c => {
-                const d = document.createElement('div');
-                d.className = 'alphabet-cell';
-                d.textContent = c;
-                display.appendChild(d);
-            });
-        }
+  grid.querySelectorAll('.speaker-btn').forEach(async (btn, i) => {
+    const ipa = data[i].transliteration.replace(/[\/\[\]]/g, '').trim();
+    btn.onclick = async (e) => {
+      e.stopPropagation();
+      const url = await getWiktionaryAudio(ipa);
+      if (url) await playAudioUrl(url);
+    };
+  });
 
-        /* ---------------------
-           Leaderboard (placeholder)
-           --------------------- */
-        async function loadLeaderboard() {
-            // Placeholder: fetch leaderboard from backend if available
-            const list = document.getElementById('leaderboardList');
-            list.innerHTML = '';
-            const sample = [{name:'Alicia',score:120},{name:'Kai',score:110},{name:'Noah',score:95}];
-            sample.forEach(item => {
-                const li = document.createElement('li');
-                li.textContent = `${item.name} — ${item.score} pts`;
-                list.appendChild(li);
-            });
-        }
+  document.getElementById('alphLang').textContent = currentLang.toUpperCase();
+  document.getElementById("alphabetModal").classList.remove('hidden');
+}
 
-        /* ---------------------
-           SHOP (placeholder)
-           --------------------- */
-        function loadShop() {
-            const shop = document.getElementById('shopItems');
-            shop.innerHTML = `<div style="border:1px dashed var(--border);padding:12px;border-radius:8px;color:var(--muted)">No shop items configured yet.</div>`;
-        }
+// Wiktionary Audio (Improved)
+async function getWiktionaryAudio(ipa) {
+  const map = {
+    'p': 'p', 'pʰ': 'p', 't': 't', 'tʰ': 't', 'k': 'k', 'kʰ': 'k',
+    'kʼ': 'k%CA%BC', 'q': 'q', 'qʰ': 'q', 'qʼ': 'q%CA%BC',
+    'tɬ': 't%C9%AC', 'tɬʼ': 't%C9%AC%CA%BC', 'ts': 'ts', 'tsʼ': 'ts%CA%BC',
+    'tʃ': 't%CA%83', 'tʃʼ': 't%CA%83%CA%BC',
+    's': 's', 'ʃ': '%CA%83', 'x': 'x', 'χ': 'x%CC%B1', 'h': 'h', 'ɬ': '%C9%AC',
+    'a': 'a', 'aː': '%C3%A1', 'ɛ': 'e', 'ɛː': '%C3%A9', 'i': 'i', 'iː': '%C3%AD', 'u': 'o', 'uː': '%C3%B3'
+  };
+  const term = map[ipa] || encodeURIComponent(ipa);
+  try {
+    const resp = await fetch(`https://en.wiktionary.org/api/rest_v1/page/html/${term}`);
+    if (!resp.ok) return null;
+    const html = await resp.text();
+    const match = html.match(/https:\/\/upload\.wikimedia\.org\/[^"]+\.ogg/);
+    return match ? match[0] : null;
+  } catch {
+    return null;
+  }
+}
 
-        /* ---------------------
-           HELPERS
-           --------------------- */
-        function capitalize(s) { if (!s) return ''; return s.charAt(0).toUpperCase() + s.slice(1); }
-        function escapeHtml(str) { if (!str) return ''; return String(str).replace(/[&<>"'`=\/]/g, function (s) { return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;','/':'&#47;','`':'&#96;','=':'&#61;'})[s]; }); }
+// ------------------------------------------------------------
+// REST OF YOUR CODE (unchanged below)
+// ------------------------------------------------------------
 
-        /* ---------------------
-           BOOTSTRAP: read query, initialize UI
-           --------------------- */
-        (async function init() {
-            selectedLanguage = (getQueryLanguage() || '').toLowerCase();
-            if (!selectedLanguage) {
-                // if no language param, go back to learn.html
-                window.location.href = 'learn.html';
-                return;
-            }
+async function fetchCompletedLessons() {
+  if (!currentUser) return;
+  const { data, error } = await supabase
+    .from("progress")
+    .select("lesson_id")
+    .eq("user_id", currentUser.id)
+    .eq("completed", true);
+  if (error) console.error("Error fetching progress:", error);
+  else completedLessons = data.map(item => item.lesson_id);
+}
 
-            // update selected language UI
-            updateTotemTitle();
+async function fetchLessons(level = currentLevel) {
+  const listEl = document.getElementById("lessonList");
+  listEl.innerHTML = "<p class='text-gray-400'>Loading lessons...</p>";
 
-            // wire up totem clicks: they are set by loadLanguageLessons (to lock/unlock)
-            // load data
-            await loadLanguageLessons();
+  const { data, error } = await supabase.from("lessons").select("*").eq("level", level).order("id");
+  if (error) {
+    console.error(error);
+    listEl.innerHTML = "<p class='text-red-500'>Error fetching lessons.</p>";
+    return;
+  }
+  currentLessons = data;
+  listEl.innerHTML = "";
 
-            // pre-load leaderboard & shop placeholders
-            loadLeaderboard();
-            loadShop();
+  data.forEach((lesson) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "lesson-circle";
+    btn.dataset.lessonId = lesson.id;
+    btn.textContent = lesson.id;
 
-            // expose functions globally so inline handlers can call them
-            window.selectTotemSection = selectTotemSection;
-            window.showLessonDetails = showLessonDetails;
-            window.backToLessonList = backToLessonList;
-        })();
-    </script>
+    if (completedLessons.includes(lesson.id)) {
+      btn.classList.add("completed");
+      btn.innerHTML = `<svg class="checkmark" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+      </svg>`;
+    }
+
+    btn.addEventListener("click", () => {
+      currentLessonId = lesson.id;
+      openAndCompleteLesson(lesson, btn);
+    });
+    listEl.appendChild(btn);
+  });
+}
+
+async function openAndCompleteLesson(lesson, lessonBtn) {
+  document.getElementById("lessonTitle").textContent = lesson.title;
+  document.getElementById("lessonText").textContent = lesson.text;
+  document.getElementById("lessonFullscreenModal").classList.remove("hidden");
+
+  if (completedLessons.includes(lesson.id)) return;
+
+  if (!currentUser) {
+    alert("Please sign in to save progress.");
+    return;
+  }
+
+  const { error } = await supabase.from("progress").upsert(
+    [{ user_id: currentUser.id, lesson_id: lesson.id, completed: true }],
+    { onConflict: 'user_id,lesson_id' }
+  );
+
+  if (error) {
+    console.error(error);
+    alert("Failed to save progress.");
+    return;
+  }
+
+  lessonBtn.classList.add("completed");
+  lessonBtn.innerHTML = `<svg class="checkmark" fill="currentColor" viewBox="0 0 20 20">
+    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+  </svg>`;
+  completedLessons.push(lesson.id);
+  shells++;
+  document.getElementById("shellBalance").textContent = shells;
+  await saveStats();
+  checkLevelCompletion(currentLevel);
+}
+
+document.getElementById("closeLessonBtn").addEventListener("click", () => {
+  document.getElementById("lessonFullscreenModal").classList.add("hidden");
+});
+document.getElementById("closePracticeBtn").addEventListener("click", () => {
+  document.getElementById("practiceModal").classList.add("hidden");
+});
+
+async function loadLeaderboard() {
+  const contentEl = document.getElementById("leaderboardContent");
+  contentEl.innerHTML = "<p class='text-gray-400'>Loading leaderboard...</p>";
+
+  const { data, error } = await supabase
+    .from('progress')
+    .select('user_id')
+    .eq('completed', true);
+
+  if (error) {
+    console.error(error);
+    contentEl.innerHTML = "<p class='text-red-500'>Error loading leaderboard.</p>";
+    return;
+  }
+
+  const counts = {};
+  data.forEach(row => {
+    counts[row.user_id] = (counts[row.user_id] || 0) + 1;
+  });
+
+  const sorted = Object.entries(counts)
+    .map(([user_id, count]) => ({ user_id, count }))
+    .sort((a, b) => b.count - a.count);
+
+  contentEl.innerHTML = "";
+  if (sorted.length === 0) {
+    contentEl.innerHTML = "<p class='text-gray-500'>No data yet.</p>";
+  } else {
+    sorted.forEach((item, i) => {
+      const rankClass = i === 0 ? 'rank-1' : i === 1 ? 'rank-2' : i === 2 ? 'rank-3' : 'rank-other';
+      const medal = i === 0 ? 'Gold' : i === 1 ? 'Silver' : i === 2 ? 'Bronze' : '';
+      const div = document.createElement("div");
+      div.className = `flex justify-between items-center py-4 px-2 border-b border-gray-200 text-xl leaderboard-text`;
+      div.innerHTML = `
+        <span class="${rankClass} font-bold">#${i + 1} ${medal}</span>
+        <span class="font-medium">User ${item.user_id.slice(0, 8)}...</span>
+        <span class="font-bold">${item.count} lessons</span>
+      `;
+      contentEl.appendChild(div);
+    });
+  }
+
+  document.getElementById("leaderboardModal").classList.remove("hidden");
+}
+document.getElementById("side-leaderboard").addEventListener("click", loadLeaderboard);
+document.getElementById("closeLeaderboardBtn").addEventListener("click", () => {
+  document.getElementById("leaderboardModal").classList.add("hidden");
+});
+
+document.getElementById("side-alphabet").addEventListener("click", loadAlphabet);
+document.getElementById("closeAlphabetBtn").addEventListener("click", () => {
+  document.getElementById("alphabetModal").classList.add("hidden");
+});
+
+const themes = [
+  { id: 'forest',   name: 'Forest Spirit',   price: 5,  class: 'theme-forest' },
+  { id: 'ocean',    name: 'Ocean Whisper',  price: 8,  class: 'theme-ocean' },
+  { id: 'sunset',   name: 'Sunset Fire',    price: 7,  class: 'theme-sunset' },
+  { id: 'earth',    name: 'Earth Mother',   price: 6,  class: 'theme-earth' },
+  { id: 'mountain', name: 'Mountain Echo',  price: 9,  class: 'theme-mountain' }
+];
+
+function renderShop() {
+  const grid = document.getElementById('shopGrid');
+  grid.innerHTML = '';
+  themes.forEach(t => {
+    const bought = ownedThemes.includes(t.id);
+    const item = document.createElement('div');
+    item.className = `shop-item ${bought ? 'bought' : ''}`;
+    item.innerHTML = `<h4>${t.name}</h4><p class="price">${t.price} shells</p>`;
+    if (!bought) {
+      item.onclick = async () => {
+        if (shells < t.price) { alert('Not enough shells!'); return; }
+        shells -= t.price;
+        ownedThemes.push(t.id);
+        await saveStats();
+        document.getElementById('shellBalance').textContent = shells;
+        applyTheme(t.class);
+        renderShop();
+      };
+    }
+    grid.appendChild(item);
+  });
+}
+function applyTheme(cls) {
+  document.body.className = `theme-active ${cls}`;
+  localStorage.setItem('activeTheme', cls);
+}
+function loadSavedTheme() {
+  const saved = localStorage.getItem('activeTheme');
+  if (saved && ownedThemes.includes(themes.find(t => t.class === saved)?.id)) {
+    applyTheme(saved);
+  }
+}
+document.getElementById("side-shop").addEventListener("click", () => {
+  renderShop();
+  document.getElementById("shopModal").classList.remove("hidden");
+});
+document.getElementById("closeShopBtn").addEventListener("click", () => {
+  document.getElementById("shopModal").classList.add("hidden");
+});
+
+async function loadStats() {
+  if (!currentUser) return;
+  const { data } = await supabase.from('user_stats').select('shells,owned_themes').eq('user_id', currentUser.id).single();
+  shells = data?.shells ?? 0;
+  ownedThemes = data?.owned_themes ?? [];
+  document.getElementById('shellBalance').textContent = shells;
+  loadSavedTheme();
+}
+async function saveStats() {
+  if (!currentUser) return;
+  await supabase.from('user_stats').upsert({
+    user_id: currentUser.id,
+    shells,
+    owned_themes: ownedThemes
+  }, { onConflict: 'user_id' });
+}
+
+function initialiseTotem() {
+  const totemImages = Array.from(document.querySelectorAll('.totem-image'));
+  totemImages.forEach((img) => {
+    const level = parseInt(img.dataset.level);
+    img.addEventListener('click', () => {
+      if (level > unlockedLevel + 1) return;
+      if (level > unlockedLevel) {
+        img.src = img.src.replace("Grey", "Color");
+        img.classList.remove("opacity-50");
+        unlockedLevel = level;
+      }
+      currentLevel = level;
+      fetchLessons(currentLevel);
+      img.style.transform = 'scale(1.15)';
+      setTimeout(() => img.style.transform = 'scale(1)', 150);
+    });
+  });
+}
+
+async function checkLevelCompletion(level) {
+  const { data, error } = await supabase.from("lessons").select("id").eq("level", level);
+  if (error || !data) return;
+  const allLessonIds = data.map(l => l.id);
+  const completedThisLevel = allLessonIds.every(id => completedLessons.includes(id));
+  if (completedThisLevel) unlockNextTotem(level);
+}
+function unlockNextTotem(level) {
+  const nextImg = document.querySelector(`.totem-image[data-level="${level + 1}"]`);
+  if (nextImg && nextImg.src.includes("Grey")) {
+    nextImg.src = nextImg.src.replace("Grey", "Color");
+    nextImg.classList.remove("opacity-50");
+    unlockedLevel = level + 1;
+  }
+}
+
+document.getElementById("side-home").addEventListener("click", () => {
+  document.querySelectorAll('.fullscreen-modal').forEach(m => m.classList.add("hidden"));
+  fetchLessons(currentLevel);
+});
+
+document.addEventListener("DOMContentLoaded", async () => {
+  const authBtn = document.getElementById("authButton");
+  authBtn.addEventListener("click", async () => {
+    if (currentUser) await signOut();
+    else await signInWithGoogle();
+  });
+  await fetchUser();
+  initialiseTotem();
+});
+
+async function fetchUser() {
+  const { data: { user }, error } = await supabase.auth.getUser();
+  if (error) return;
+  if (user) {
+    currentUser = user;
+    document.getElementById("authButton").textContent = "Sign out";
+    await Promise.all([fetchCompletedLessons(), loadStats()]);
+    fetchLessons(currentLevel);
+  } else {
+    document.getElementById("lessonList").innerHTML = "<p class='text-gray-400'>Please sign in to view lessons.</p>";
+  }
+}
+
+async function signInWithGoogle() {
+  const { error } = await supabase.auth.signInWithOAuth({
+    provider: 'google',
+    options: { redirectTo: window.location.href }
+  });
+  if (error) console.error("Sign in error:", error.message);
+}
+async function signOut() {
+  await supabase.auth.signOut();
+  currentUser = null;
+  document.getElementById("authButton").textContent = "Sign in with Google";
+  document.getElementById("lessonList").innerHTML = "<p class='text-gray-400'>Please sign in to view lessons.</p>";
+  completedLessons = [];
+}
+</script>
 </body>
 </html>

@@ -1,18 +1,51 @@
 id,language,level,title,text
-1,tlingit,1,Tlingit Basics - Greetings,"Learn basic Tlingit greetings and introductions. Gunalchéesh (thank you), Wáa sá iyatee? (How are you?), Aadé (hello/goodbye)."
-2,tlingit,2,Tlingit Family Words,"Learn family terms in Tlingit. Aaná (mother), Táa (father), sháan (grandmother), yáay (grandfather), k'eitl' (child)."
-3,tlingit,3,Tlingit Nature Words,"Learn about nature in Tlingit. Héen (water), s'íx' (tree), ch'áak' (eagle), x'aan (salmon), k'wát' (bear)."
-4,tlingit,4,Tlingit Cultural Terms,"Learn important cultural concepts. K'usteeyí (potlatch), at.óow (treasure), shuká (clan), k'wáan (people/tribe)."
-5,tlingit,5,Tlingit Advanced Phrases,"Master complex Tlingit phrases and cultural expressions for storytelling and ceremonial contexts."
-
-6,haida,1,Haida Basics - Greetings,"Learn basic Haida greetings. Háw'aa (hello), Gíidang (thank you), K'yuu (goodbye), Hl gudang (good morning)."
-7,haida,2,Haida Family Words,"Learn family terms in Haida. K'íing (mother), K'úug (father), k'íinaang (grandmother), k'úugang (grandfather)."
-8,haida,3,Haida Nature Words,"Learn about nature in Haida. Gándlaay (water), k'áats' (tree), tl'áak' (eagle), gíid (salmon)."
-9,haida,4,Haida Cultural Terms,"Learn important Haida cultural concepts and traditions related to potlatch and clan systems."
-10,haida,5,Haida Advanced Phrases,"Master complex Haida expressions and storytelling language used in traditional narratives."
-
-11,tsimshian,1,Tsimshian Basics - Greetings,"Learn basic Tsimshian greetings and polite expressions. Yagwéi (hello), Gyik'yüü (thank you)."
-12,tsimshian,2,Tsimshian Family Words,"Learn family relationships in the Tsimshian language including extended family terms."
-13,tsimshian,3,Tsimshian Nature Words,"Learn about the natural world in Tsimshian including animals, plants, and landscape features."
-14,tsimshian,4,Tsimshian Cultural Terms,"Learn important Tsimshian cultural concepts and ceremonies including potlatch traditions."
-15,tsimshian,5,Tsimshian Advanced Phrases,"Master advanced Tsimshian language and cultural expressions for formal and ceremonial contexts."
+1,tlingit,1,Lesson 1 – The Essence of Subjects,Subjects in Tlingit are the doers of the action| marked through evolving pronouns that shift with surrounding sounds yet preserve roots like [x̱] for I| [tu] for we| [ee] for you| [yee] for you all| and [a] for he/she/it.
+2,tlingit,1,Lesson 2 – Harmony of Sounds,Tlingit pronouns bend to phonetic environments| observe the contraction of [x̱a] to [x̱] in rapid speech| a hallmark of melodic adaptation.
+3,tlingit,1,Lesson 3 – Verb Pattern One,Study how long subject pronouns appear before verb stems: x’úx’ x̱atéew ‘I am reading’| sakwnéin x̱ax̱á ‘I am eating bread.’
+4,tlingit,1,Lesson 4 – The Power of [tu],Recognize that [tu] signifies the collective ‘we’ and interacts harmoniously with stems like tootéew or toox̱á.
+5,tlingit,1,Lesson 5 – The Role of [a],When the agent is he| she| or it| the verb lacks explicit marking| sometimes the placeholder [a] appears to maintain syntactic balance.
+6,tlingit,1,Lesson 6 – Interpreting Verbs,Analyze how each prefix carries meaning. In yéi yax̱waaḵaa tulateení| every particle reflects the web of relations.
+7,tlingit,1,Lesson 7 – Contraction,As verb stems extend| pronouns shorten: heen x̱adaná ‘I am drinking water’ → contracted x̱adná. Observe this rhythmic compression.
+8,tlingit,1,Lesson 8 – Verb Pattern Two,Long stems shorten pronouns: dleey x̱asa.ée ‘I cook meat’| dleey tusa.ée ‘We cook meat.’
+9,tlingit,1,Lesson 9 – Subjects and Stems,The longer the stem| the lighter the pronoun. This dance of balance ensures euphony in speech.
+10,tlingit,1,Lesson 10 – Recognizing Objects,Objects receive action and are identified by x̱at ‘me’| haa ‘us’| i ‘you’| yee ‘you all’| or unmarked forms for third person.
+11,tlingit,1,Lesson 11 – Verb Pattern 3A,x̱at isix̱án ‘You love me’| haa isix̱án ‘You love us.’ The object defines the emotional target.
+12,tlingit,1,Lesson 12 – Verb Pattern 3B,ix̱six̱án ‘I love you’| yee x̱six̱án ‘I love you all.’ The symmetry between subject and object enriches clarity.
+13,tlingit,1,Lesson 13 – Verb Pattern 3C,ax̱ tláa x̱asix̱án ‘I love my mother’| ax̱ tláa alatín ‘He watches my mother.’ Observe [a]’s dual nature.
+14,tlingit,1,Lesson 14 – The Placeholder [a],[a] functions as a grammatical support beam| maintaining harmony when neither subject nor object is overtly marked.
+15,tlingit,1,Lesson 15 – Aspectual Foundations,Tlingit distinguishes actions by their continuity| not by time. x̱atéew means ‘I am reading’| x̱waatéew means ‘I read.’
+16,tlingit,1,Lesson 16 – Perfective Pattern,The prefix [w-] conveys completed action: x̱waax̱áa ‘ate’| x̱waatéew ‘read.’ Completion breathes through sound.
+17,tlingit,1,Lesson 17 – Imperfective Pattern,Without [w-]| verbs remain open| alive| and ongoing. x̱atéew ‘reading’ embodies continuation.
+18,tlingit,1,Lesson 18 – Comparing Aspect,Perfective halts movement| imperfective flows eternally. This duality defines Tlingit temporality.
+19,tlingit,1,Lesson 19 – Sound and Rhythm,Pronunciation patterns are rhythmic| each verb stem carries beats that guide contraction and elongation.
+20,tlingit,1,Lesson 20 – The Verb Stem,The stem is the heartbeat of the verb| anchoring aspect| tone| and classifier harmony.
+21,tlingit,2,Lesson 21 – Pattern One Perfective,x’úx’ x̱waatéew ‘I read a book’| sakwnéin x̱waax̱áa ‘I ate bread.’ Note how aspect transforms both sound and sense.
+22,tlingit,2,Lesson 22 – Pattern Two Perfective,heen x̱wadináa ‘I drank water’| dleey x̱wasi.ée ‘I cooked meat.’ Observe the contraction of vowel and consonant clusters.
+23,tlingit,2,Lesson 23 – Object Perfection,x̱at imsix̱án ‘You loved me’| haa imsix̱án ‘You loved us.’ The [im-] prefix signals completion in emotional verbs.
+24,tlingit,2,Lesson 24 – Watching Perfective,ix̱walitín ‘I watched you’| yee x̱walitín ‘I watched you all.’ The [wal-] cluster bridges perception and grammar.
+25,tlingit,2,Lesson 25 – Observation and Aspect,In perfective watching| the observer and the observed are momentarily frozen—language mirrors the event.
+26,tlingit,2,Lesson 26 – Stems and Duration,Short stems fit imperfective verbs| long stems govern perfective verbs. Structure follows breath.
+27,tlingit,2,Lesson 27 – Classifier Emergence,Classifiers stand before roots to adjust transitivity| their presence shifts meaning with surgical precision.
+28,tlingit,2,Lesson 28 – The Classifier [sh],The [sh-] classifier increases action force| often marking causation or transitivity.
+29,tlingit,2,Lesson 29 – The Classifier [l],The [l-] form marks reflexive or internalized action| signifying that the subject affects itself.
+30,tlingit,2,Lesson 30 – The [0] Class,Absence of a classifier denotes simplicity—no internal change| pure transitivity.
+31,tlingit,2,Lesson 31 – Imperfective Motion,Motion verbs in imperfective show ongoing travel: duwa.óon ‘he is going.’ The journey defines time.
+32,tlingit,2,Lesson 32 – Perfective Motion,Add [w-] for completion: duwawoó ‘he went.’ A single sound shifts the event from life to memory.
+33,tlingit,2,Lesson 33 – Negation,Tléil precedes verbs to negate: tléil x̱atéew ‘I am not reading.’ Melody falls slightly in negation.
+34,tlingit,2,Lesson 34 – Inquiry,Use [sá] for questions: Daa sá i yatee? ‘How are you?’ The rising tone marks curiosity.
+35,tlingit,2,Lesson 35 – Command,Imperatives omit subjects: x̱at eetí! ‘Help me!’ The listener’s role is inherently understood.
+36,tlingit,2,Lesson 36 – Conditional,Prefix [gu-] expresses condition: Gu-x̱waax̱áa ‘If I eat.’ Sound alone carries logical dependency.
+37,tlingit,2,Lesson 37 – Progressive,Insert tle for continuation: tle x̱atéew ‘still reading.’ Temporal adverbs weave verbal texture.
+38,tlingit,2,Lesson 38 – Verbal Nouns,Convert verbs to nouns with –x̱i or –tí: yéi jinéiyi ‘work’| x̱at eetí ‘help.’ Verbs breathe as nouns.
+39,tlingit,2,Lesson 39 – Possession,Use ax̱ for my| i for your| haa for our: ax̱ tláa ‘my mother’| i éesh ‘your father.’ Possession fuses into the noun.
+40,tlingit,2,Lesson 40 – Kinship,Kin terms precede verbs naturally: ax̱ tláa six̱án ‘I love my mother.’ Family is linguistic structure.
+41,tlingit,3,Lesson 41 – Locatives,Mark place with x̱án (near)| táa (inside)| kei (up). Combine with verbs for vivid direction.
+42,tlingit,3,Lesson 42 – Motion,Combine classifiers and locatives for motion nuance: du.óon kei ‘he went upward.’
+43,tlingit,3,Lesson 43 – Hás the Pluralizer,[Hás] pluralizes humans: hás x̱at six̱án ‘They love me’| ax̱ tláa hás asix̱án ‘They love my mother.’
+44,tlingit,3,Lesson 44 – Hás Placement,Position decides role—before verb for subject| after object for object pluralization.
+45,tlingit,3,Lesson 45 – Context and Hás,When multiple people exist| interpret plurality through context| not form alone.
+46,tlingit,3,Lesson 46 – Classifier Review,Recognize the interplay between classifier and stem| every shift rebalances voice and meaning.
+47,tlingit,3,Lesson 47 – Choosing Patterns,Use Pattern 1 for short stems| Pattern 2 for longer ones| classifiers often decide the form.
+48,tlingit,3,Lesson 48 – Aspectual Precision,Tlingit conveys texture of time| not linearity| the world moves in cycles mirrored in aspectual verbs.
+49,tlingit,3,Lesson 49 – Sound Symbolism,Many stems echo meaning: harsh consonants for force| soft vowels for gentleness.
+50,tlingit,3,Lesson 50 – Rhythm in Speech,Speech flows like song| stress often rests on the verb stem| listen for natural cadence.

@@ -5,8 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Uqalimaaq - Indigenous Learning & Cultural Heritage</title>
     <meta name="description" content="A learning platform celebrating Indigenous Pacific Northwest knowledge, culture, and traditions">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦅</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='68' x='50' text-anchor='middle' font-family='system-ui, -apple-system, sans-serif' font-size='80' font-weight='bold' fill='%238B4513'>ᐅ</text></svg>">
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Supabase Client -->
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script>
+    const supabaseUrl = "https://tjodmaqwodkpyusohljj.supabase.co"; 
+    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRqb2RtYXF3b2RrcHl1c29obGpqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjAyOTM5OTIsImV4cCI6MjA3NTg2OTk5Mn0.tgE1IxOusOFtq2ELRMFPgsJrAcmFyNs13UbkDDjXzUI"; 
+    const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+    </script>
     <script>
         tailwind.config = {
             theme: {
@@ -24,6 +31,13 @@
                 }
             }
         }
+        // Handle clicks on "Coming Soon" cards
+        document.querySelectorAll('.coming-soon').forEach(card => {
+            card.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('This language is coming soon! Stay tuned for updates.');
+            });
+        });
     </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
@@ -85,37 +99,52 @@
                 radial-gradient(circle at 25% 25%, rgba(139, 69, 19, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 75% 75%, rgba(34, 139, 34, 0.1) 0%, transparent 50%);
         }
+        .coming-soon-badge {
+            background-color: #FA8072; /* Tailwind's salmon */
+            color: white;
+            font-size: 0.75rem; /* Tailwind's text-xs */
+            font-weight: 600; /* Tailwind's font-semibold */
+            padding: 0.25rem 0.5rem; /* Tailwind's px-2 py-1 */
+            border-radius: 9999px; /* Tailwind's rounded-full */
+            text-transform: uppercase;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .coming-soon-badge:hover {
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 glass">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center space-x-2">
-                    <div class="w-8 h-8 bg-gradient-to-r from-cedar to-forest rounded-lg flex items-center justify-center">
-                        <span class="text-white font-bold text-sm">ᐅ</span>
+        <nav class="fixed top-0 w-full z-50 glass">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 bg-gradient-to-r from-cedar to-forest rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-sm">ᐅ</span>
+                        </div>
+                        <span class="text-xl font-bold text-white">Uqalimaaq</span>
                     </div>
-                    <span class="text-xl font-bold text-white">Uqalimaaq</span>
+                    <div class="hidden md:flex space-x-8">
+                        <a href="#learn" class="text-white hover:text-salmon transition-colors">Learn</a>
+                        <a href="#features" class="text-white hover:text-salmon transition-colors">Features</a>
+                        <a href="#about" class="text-white hover:text-salmon transition-colors">About</a>
+                        <a href="#contact" class="text-white hover:text-salmon transition-colors">Contact</a>
+                    </div>
+                    <div class="hidden md:flex items-center space-x-4">
+                        <button onclick="showSignIn()" class="text-white hover:text-salmon transition-colors">Sign In</button>
+                        <button onclick="showSignIn()" class="bg-salmon text-white px-4 py-2 rounded-full hover:bg-sunset transition-colors">Create Account</button>
+                    </div>                     
+                    <button class="md:hidden text-white">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
                 </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#learn" class="text-white hover:text-salmon transition-colors">Learn</a>
-                    <a href="#features" class="text-white hover:text-salmon transition-colors">Features</a>
-                    <a href="#about" class="text-white hover:text-salmon transition-colors">About</a>
-                    <a href="#contact" class="text-white hover:text-salmon transition-colors">Contact</a>
-                </div>
-                <div class="hidden md:flex items-center space-x-4">
-                    <button onclick="showSignIn()" class="text-white hover:text-salmon transition-colors">Sign In</button>
-                    <button onclick="showSignIn()" class="bg-salmon text-white px-4 py-2 rounded-full hover:bg-sunset transition-colors">Create Account</button>
-                </div>
-                <button class="md:hidden text-white">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
             </div>
-        </div>
-    </nav>
+        </nav>
 
     <!-- Hero Section -->
     <section class="gradient-bg min-h-screen flex items-center justify-center relative overflow-hidden traditional-pattern">
@@ -141,9 +170,9 @@
         </div>
         
         <!-- Traditional Elements -->
-        <div class="absolute top-20 left-10 w-20 h-20 bg-white opacity-10 rounded-full animate-float">🌲</div>
-        <div class="absolute top-40 right-20 w-16 h-16 bg-salmon opacity-20 rounded-full animate-float" style="animation-delay: -2s;">🐻</div>
-        <div class="absolute bottom-20 left-20 w-12 h-12 bg-ocean opacity-15 rounded-full animate-float" style="animation-delay: -4s;">🐟</div>
+        <div class="absolute top-20 left-10 w-20 h-20 bg-white opacity-10 rounded-full animate-float"></div>
+        <div class="absolute top-40 right-20 w-16 h-16 bg-salmon opacity-20 rounded-full animate-float" style="animation-delay: -2s;"></div>
+        <div class="absolute bottom-20 left-20 w-12 h-12 bg-ocean opacity-15 rounded-full animate-float" style="animation-delay: -4s;"></div>
     </section>
 
     <!-- Learn Section -->
@@ -183,7 +212,8 @@
                     <p class="text-mountain">Learn the Tsimshian language from coastal British Columbia and Alaska.</p>
                 </div>
                 
-                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                <div class="bg-white p-8 rounded-2xl shadow-lg relative coming-soon">
+                    <div class="absolute top-4 right-4 coming-soon-badge">Coming Soon</div>
                     <div class="w-12 h-12 bg-salmon rounded-lg flex items-center justify-center mb-6">
                         <span class="text-white text-xl">🌊</span>
                     </div>
@@ -191,7 +221,8 @@
                     <p class="text-mountain">Explore the Kwak'wala language from Vancouver Island and the BC coast.</p>
                 </div>
                 
-                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                <div class="bg-white p-8 rounded-2xl shadow-lg relative coming-soon">
+                    <div class="absolute top-4 right-4 coming-soon-badge">Coming Soon</div>
                     <div class="w-12 h-12 bg-sunset rounded-lg flex items-center justify-center mb-6">
                         <span class="text-white text-xl">🌲</span>
                     </div>
@@ -199,12 +230,13 @@
                     <p class="text-mountain">Learn the historical trade language of the Pacific Northwest region.</p>
                 </div>
                 
-                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                <div class="bg-white p-8 rounded-2xl shadow-lg relative coming-soon">
+                    <div class="absolute top-4 right-4 coming-soon-badge">Coming Soon</div>
                     <div class="w-12 h-12 bg-mountain rounded-lg flex items-center justify-center mb-6">
                         <span class="text-white text-xl">🦅</span>
                     </div>
-                    <h3 class="text-xl font-semibold text-cedar mb-4">Inupiaq</h3>
-                    <p class="text-mountain">Discover the Inupiaq language from Alaska's northern regions.</p>
+                    <h3 class="text-xl font-semibold text-cedar mb-4">Inuktituk</h3>
+                    <p class="text-mountain">Discover the Inuktituk language from Alaska and Canada's northern regions.</p>
                 </div>
             </div>
             
@@ -241,8 +273,8 @@
                     <div class="w-12 h-12 bg-ocean rounded-lg flex items-center justify-center mb-6">
                         <span class="text-white text-xl">🎧</span>
                     </div>
-                    <h3 class="text-xl font-semibold text-cedar mb-4">Native Speaker Audio</h3>
-                    <p class="text-mountain">Learn pronunciation with authentic recordings from Indigenous language speakers and knowledge keepers.</p>
+                    <h3 class="text-xl font-semibold text-cedar mb-4">Audio</h3>
+                    <p class="text-mountain">Learn pronunciation with recordings of Indigenous languages.</p>
                 </div>
                 
                 <div class="bg-gradient-to-br from-salmon/10 to-sunset/10 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
@@ -262,41 +294,42 @@
             <div class="grid lg:grid-cols-2 gap-12 items-center">
                 <div>
                     <h2 class="text-3xl sm:text-4xl font-bold text-cedar mb-6">
-                        Preserving Indigenous Languages
+                        Preserving &amp; Promoting Indigenous Languages
                     </h2>
                     <p class="text-lg text-mountain mb-6">
-                        Uqalimaaq is dedicated to the revitalization and preservation of Pacific Northwest and Alaskan Indigenous languages. 
-                        Our platform uses the sacred symbol of the totem pole to guide learners through progressive language mastery, 
-                        honoring the cultural significance of these languages while making them accessible to new generations.
+                        According to the US Census, only 11% of Native American children speak an indigenous language. This is attributed to lack of resources in the public schools, AI Models and Language Apps. At this rate, by 2050, over 140 of an estimated 160 indigenous languages will be extinct.
+                    </p>
+                    <p class="text-lg text-mountain mb-6">
+                        Uqalimaaq is dedicated to the revitalization and preservation of US Indigenous languages, starting with the ones spoken in the Pacific Northwest and Alaska region. Our platform uses the sacred symbol of the totem pole to guide learners through progressive language mastery, honoring the cultural significance of these languages while making them accessible to new generations.
                     </p>
                     <div class="space-y-4">
                         <div class="flex items-center space-x-3">
                             <div class="w-2 h-2 bg-cedar rounded-full"></div>
-                            <span class="text-mountain">Community-approved language content</span>
+                            <span class="text-mountain">Community-approved language content to preserve quality</span>
                         </div>
                         <div class="flex items-center space-x-3">
                             <div class="w-2 h-2 bg-cedar rounded-full"></div>
-                            <span class="text-mountain">Totem pole progression system</span>
+                            <span class="text-mountain">Totem pole progression system to make learning fun &amp; easy</span>
                         </div>
                         <div class="flex items-center space-x-3">
                             <div class="w-2 h-2 bg-cedar rounded-full"></div>
-                            <span class="text-mountain">Native speaker partnerships</span>
+                            <span class="text-mountain">Provide a platform to build native speaker community in the future</span>
                         </div>
                     </div>
                 </div>
                 <div class="relative">
                     <div class="bg-gradient-to-r from-cedar to-forest rounded-2xl p-8 text-white">
                         <div class="text-center">
-                            <div class="text-4xl font-bold mb-2">500+</div>
+                            <div class="text-4xl font-bold mb-2">Great for</div>
                             <div class="text-white/90">Language Learners</div>
                         </div>
                         <div class="mt-8 grid grid-cols-2 gap-4">
                             <div class="text-center">
-                                <div class="text-2xl font-bold">6</div>
+                                <div class="text-2xl font-bold">3</div>
                                 <div class="text-white/90 text-sm">Languages Available</div>
                             </div>
                             <div class="text-center">
-                                <div class="text-2xl font-bold">50+</div>
+                                <div class="text-2xl font-bold">Talk with</div>
                                 <div class="text-white/90 text-sm">Native Speakers</div>
                             </div>
                         </div>
@@ -322,7 +355,7 @@
     </section>
 
     <!-- Sign In Modal -->
-    <div id="signInModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+    <div id="signInModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4 overflow-y-auto">
         <div class="bg-white rounded-2xl max-w-md w-full p-8 relative">
             <button onclick="hideSignIn()" class="absolute top-4 right-4 text-mountain hover:text-cedar">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -377,7 +410,23 @@
                 <button type="submit" class="w-full bg-cedar text-white py-3 rounded-lg font-semibold hover:bg-forest transition-colors">
                     Create Account
                 </button>
-                
+                <!-- OAuth Sign-in Row -->
+                <div class="flex justify-center gap-4 mt-4">
+                    <!-- Apple -->
+                    <button id="appleBtn" class="w-12 h-12 flex items-center justify-center rounded-full bg-white border border-gray-300 hover:opacity-80 transition">
+                        <img src="https://www.svgrepo.com/show/511330/apple-173.svg" alt="Apple" class="w-6 h-6">
+                    </button>
+
+                    <!-- Google -->
+                    <button id="googleBtn" class="w-12 h-12 flex items-center justify-center rounded-full bg-white border border-gray-300 hover:bg-gray-100 transition">
+                        <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" class="w-6 h-6">
+                    </button>
+
+                    <!-- Microsoft -->
+                    <button id="microsoftBtn" class="w-12 h-12 flex items-center justify-center rounded-full bg-white border border-gray-300 hover:bg-gray-100 transition">
+                        <img src="https://www.svgrepo.com/show/448239/microsoft.svg" alt="Microsoft" class="w-6 h-6">
+                    </button>
+                </div>
                 <p class="text-center text-sm text-mountain">
                     Already have an account? 
                     <button type="button" onclick="showLogin()" class="text-cedar hover:underline">Sign In</button>
@@ -394,12 +443,12 @@
                 <div>
                     <div class="flex items-center space-x-2 mb-4">
                         <div class="w-8 h-8 bg-gradient-to-r from-forest to-ocean rounded-lg flex items-center justify-center">
-                            <span class="text-white font-bold text-sm">🦅</span>
+                            <span class="text-white font-bold text-sm">ᐅ</span>
                         </div>
                         <span class="text-xl font-bold">Uqalimaaq</span>
                     </div>
                     <p class="text-white/80">
-                        Preserving Pacific Northwest and Alaskan Indigenous languages through respectful learning and community partnerships.
+                        Preserving Pacific Northwest and Alaskan Indigenous culture through language learning.
                     </p>
                 </div>
                 <div>
@@ -408,28 +457,24 @@
                         <li><a href="#learn" class="hover:text-white transition-colors">Tlingit</a></li>
                         <li><a href="#learn" class="hover:text-white transition-colors">Haida</a></li>
                         <li><a href="#learn" class="hover:text-white transition-colors">Tsimshian</a></li>
-                        <li><a href="#learn" class="hover:text-white transition-colors">Kwak'wala</a></li>
                     </ul>
                 </div>
                 <div>
                     <h3 class="font-semibold mb-4">Community</h3>
                     <ul class="space-y-2 text-white/80">
                         <li><a href="#about" class="hover:text-white transition-colors">About Us</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Cultural Protocols</a></li>
                         <li><a href="#" class="hover:text-white transition-colors">Partnerships</a></li>
                     </ul>
                 </div>
                 <div>
                     <h3 class="font-semibold mb-4">Support</h3>
                     <ul class="space-y-2 text-white/80">
-                        <li><a href="#" class="hover:text-white transition-colors">Help Center</a></li>
                         <li><a href="#contact" class="hover:text-white transition-colors">Contact</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Community Guidelines</a></li>
                     </ul>
                 </div>
             </div>
             <div class="border-t border-white/20 mt-8 pt-8 text-center text-white/80">
-                <p>&copy; 2024 Uqalimaaq. All rights reserved. Built with respect for Indigenous sovereignty.</p>
+                <p>&copy; 2025 Uqalimaaq. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -474,6 +519,45 @@
             showSignIn();
         }
 
+        /* ────────────────────────────────────────────────
+        Apple Sign-in
+        ──────────────────────────────────────────────── */
+        document.getElementById("appleBtn").addEventListener("click", async () => {
+            const { error } = await supabase.auth.signInWithOAuth({
+                provider: "apple",
+                options: {
+                    redirectTo: window.location.origin + "/learn.html",
+                },
+            });
+            if (error) alert(error.message);
+        });
+
+        /* ────────────────────────────────────────────────
+        Google Sign-in
+        ──────────────────────────────────────────────── */
+        document.getElementById("googleBtn").addEventListener("click", async () => {
+            const { error } = await supabase.auth.signInWithOAuth({
+                provider: "google",
+                options: {
+                    redirectTo: window.location.origin + "/learn.html",
+                },
+            });
+            if (error) alert(error.message);
+        });
+
+        /* ────────────────────────────────────────────────
+        Microsoft Sign-in
+        ──────────────────────────────────────────────── */
+        document.getElementById("microsoftBtn").addEventListener("click", async () => {
+            const { error } = await supabase.auth.signInWithOAuth({
+                provider: "azure",
+                options: {
+                    redirectTo: window.location.origin + "/learn.html",
+                },
+            });
+            if (error) alert(error.message);
+        });
+
         function scrollToSection(sectionId) {
             const section = document.getElementById(sectionId);
             if (section) {
@@ -500,6 +584,39 @@
             setTimeout(() => {
                 window.location.href = 'learn.html';
             }, 1500);
+        });
+
+        // Wait for Supabase client to initialize and DOM to load
+        document.addEventListener("DOMContentLoaded", async () => {
+            const signInButton = document.querySelector('button[onclick="showSignIn()"]');
+
+            // If no button found (safety check)
+            if (!signInButton) return;
+
+            // Check user session on page load
+            const { data: { session } } = await supabase.auth.getSession();
+            updateButton(session);
+
+            // Listen for authentication state changes
+            supabase.auth.onAuthStateChange((_event, session) => {
+                updateButton(session);
+            });
+
+            // Function to update the button text and behaviour
+            function updateButton(session) {
+                if (session) {
+                    // User is logged in
+                    signInButton.textContent = "Sign Out";
+                    signInButton.onclick = async () => {
+                        await supabase.auth.signOut();
+                        updateButton(null);
+                    };
+                } else {
+                    // User is logged out
+                    signInButton.textContent = "Sign In";
+                    signInButton.onclick = () => showSignIn();
+                }
+            }
         });
     </script>
 </body>

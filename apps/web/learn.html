@@ -194,9 +194,6 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                     </svg>
                 </button>
-                <button onclick="showSignIn()" class="bg-salmon text-white px-4 py-2 rounded-full hover:bg-sunset transition-colors md:ml-4">
-                    Sign In
-                </button>
             </div>
             <div id="mobileMenu" class="hidden md:hidden bg-glass w-full absolute top-16 left-0 p-4">
                 <a href="index.html" class="block text-white py-2 hover:text-salmon">Home</a>
@@ -244,53 +241,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Sign In Modal (kept but not duplicate-heavy) -->
-    <div id="signInModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-md w-full p-8 relative">
-            <button onclick="hideSignIn()" class="absolute top-4 right-4 text-mountain hover:text-cedar">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
-
-            <div class="text-center mb-8">
-                <div class="w-16 h-16 bg-gradient-to-r from-cedar to-forest rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span class="text-white text-2xl">ᐅ</span>
-                </div>
-                <h2 class="text-2xl font-bold text-cedar mb-2">Sign In to Uqalimaaq</h2>
-                <p class="text-mountain">Access your learning progress and continue your journey</p>
-            </div>
-
-            <form class="space-y-6" onsubmit="handleSignIn(event)">
-                <div>
-                    <label class="block text-sm font-medium text-cedar mb-2">Email Address</label>
-                    <input type="email" required class="w-full px-4 py-3 border border-mountain/30 rounded-lg focus:ring-2 focus:ring-cedar focus:border-transparent text-black" placeholder="your@email.com">
-                </div>
-
-                <div>
-                    <label class="block text-sm font-medium text-cedar mb-2">Password</label>
-                    <input type="password" required class="w-full px-4 py-3 border border-mountain/30 rounded-lg focus:ring-2 focus:ring-cedar focus:border-transparent text-black" placeholder="Your password">
-                </div>
-
-                <button type="submit" class="w-full bg-cedar text-white py-3 rounded-lg font-semibold hover:bg-forest transition-colors">
-                    Sign In
-                </button>
-
-                <p class="text-center text-sm text-mountain">
-                    Don't have an account?
-                    <a href="index.html" class="text-cedar hover:underline">Create one here</a>
-                </p>
-            </form>
-
-            <div class="flex justify-center space-x-4 mt-4">
-                <button class="bg-mountain text-white px-4 py-2 rounded-lg hover:bg-cedar transition-colors" onclick="signInWithGoogle()">
-                    <svg class="w-5 h-5 inline-block mr-2" viewBox="0 0 24 24">
-                        <path fill="currentColor" d="M12.24 10.285V14.4h6.806c-.275 1.765-2.056 5.174-6.806 5.174-4.095 0-7.439-3.389-7.439-7.574s3.345-7.574 7.439-7.574c2.327 0 3.895.949 4.788 1.741L19.2 4.8C17.219 3.26 14.814 2 12 2 6.477 2 2 6.463 2 12c0 5.537 4.477 10 10 10 8.605 0 9.45-6.074 8.379-9.46h-8.139v-2.255h11.76V12c0 7.628-5.084 12.5-12 12.5C5.373 24.5 0 19.127 0 12.5S5.373.5 12 .5c3.314 0 6.343 1.39 8.464 3.696l-3.224 3.089z"/>
-                    </svg>
-                    Google
-                </button>
-            </div>
-        </div>
-    </div>
 
     <script type="module">
         // Import Supabase client
@@ -344,49 +294,20 @@
         }
 
         /**
-         * Handle form sign-in with email/password.
-         * Purpose: sign the user in and reload lessons to include their progress.
-         */
-        async function handleSignIn(event) {
-            event.preventDefault();
-            const email = event.target.querySelector('input[type="email"]').value;
-            const password = event.target.querySelector('input[type="password"]').value;
-            const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-            if (error) {
-                console.error('Sign-in error:', error);
-                alert('Sign-in failed. Please check your credentials.');
-            } else {
-                userId = data.user.id;
-                hideSignIn();
-                // reload lessons to reflect user's progress
-                await loadLessons();
-            }
-        }
-
-        /**
-         * Sign in with Google OAuth.
-         * Purpose: provide quick authentication; Supabase handles the redirect.
-         */
-        async function signInWithGoogle() {
-            const { error } = await supabase.auth.signInWithOAuth({ provider: 'google' });
-            if (error) {
-                console.error('Google sign-in error:', error);
-                alert('Google sign-in failed.');
-            }
-        }
-
-        /**
          * Fetch lessons and user progress from Supabase, organize them into lessonsData.
          * Purpose: populate the language buttons with accurate progress numbers.
          */
         async function loadLessons() {
             await checkAuth();
+
+            // Fetch lessons
             const { data, error } = await supabase.from('lessons').select('*');
             if (error) {
                 console.error('Error fetching lessons:', error);
                 return;
             }
 
+            // Organize lessons by language and level
             lessonsData = {};
             data.forEach(lesson => {
                 if (!lessonsData[lesson.language]) lessonsData[lesson.language] = {};
@@ -399,19 +320,23 @@
                 });
             });
 
+            // Fetch and apply user progress
             if (userId) {
                 const { data: progressData, error: progressError } = await supabase
                     .from('user_progress')
                     .select('lesson_id, completed')
                     .eq('user_id', userId);
+
                 if (progressError) {
                     console.error('Error fetching progress:', progressError);
-                } else {
-                    progressData.forEach(progress => {
-                        Object.keys(lessonsData).forEach(language => {
-                            Object.keys(lessonsData[language]).forEach(level => {
-                                lessonsData[language][level].forEach(lesson => {
-                                    if (lesson.id === progress.lesson_id) lesson.completed = progress.completed;
+                } else if (progressData) {
+                    progressData.forEach(record => {
+                        Object.values(lessonsData).forEach(levels => {
+                            Object.values(levels).forEach(lessonList => {
+                                lessonList.forEach(lesson => {
+                                    if (lesson.id === record.lesson_id) {
+                                        lesson.completed = record.completed;
+                                    }
                                 });
                             });
                         });
@@ -419,7 +344,10 @@
                 }
             }
 
+            // ✅ Render buttons *after* lessons and progress have both loaded
             renderLanguageButtons();
+
+            // ✅ Then immediately calculate and update the visible percentages
             updateProgressIndicators();
         }
 
@@ -429,21 +357,24 @@
          */
         function updateProgressIndicators() {
             const languageButtons = document.querySelectorAll('.language-btn');
+
             languageButtons.forEach(btn => {
-                const language = btn.querySelector('h3').textContent.toLowerCase();
+                const language = btn.querySelector('h3').textContent.trim().toLowerCase();
                 let totalLessons = 0;
                 let completedLessons = 0;
 
-                Object.values(lessonsData[language] || {}).forEach(level => {
-                    level.forEach(lesson => {
-                        totalLessons++;
-                        if (lesson.completed) completedLessons++;
+                if (lessonsData[language]) {
+                    Object.values(lessonsData[language]).forEach(level => {
+                        level.forEach(lesson => {
+                            totalLessons++;
+                            if (lesson.completed) completedLessons++;
+                        });
                     });
-                });
+                }
 
                 const progress = totalLessons > 0 ? Math.round((completedLessons / totalLessons) * 100) : 0;
                 const progressIndicator = btn.querySelector('.progress-indicator');
-                progressIndicator.textContent = `${progress}%`;
+                if (progressIndicator) progressIndicator.textContent = `${progress}%`;
             });
         }
 
@@ -461,20 +392,24 @@
                               language === 'tsimshian' ? '🐟' : '🌿';
 
                 const btn = document.createElement('button');
-                btn.className = `language-btn bg-${language}/10 hover:bg-${language}/20 p-8 rounded-2xl transition-all duration-300 transform hover:-translate-y-2 relative`;
-                btn.innerHTML = `
-                    <div class="absolute top-2 right-2 bg-cedar text-white text-xs rounded-full w-8 h-8 flex items-center justify-center progress-indicator">0%</div>
-                    <div class="text-4xl mb-4">${emoji}</div>
-                    <h3 class="text-xl font-semibold text-cedar mb-4">${language.charAt(0).toUpperCase() + language.slice(1)}</h3>
-                    <p class="text-mountain">Start learning ${language} with interactive lessons.</p>
-                `;
-                btn.onclick = () => {
-                    // set selectedLanguage locally and navigate
-                    selectedLanguage = language;
-                    // navigate to the lessons page with query param
-                    window.location.href = `language-lessons.html?language=${encodeURIComponent(language)}`;
-                };
-                container.appendChild(btn);
+                    btn.className = `language-btn bg-${language}/10 hover:bg-${language}/20 p-8 rounded-2xl transition-all duration-300 transform hover:-translate-y-2 relative`;
+                    btn.innerHTML = `
+                        <div class="absolute top-2 right-2 bg-cedar text-white text-xs rounded-full w-8 h-8 flex items-center justify-center progress-indicator"></div>
+                        <div class="text-4xl mb-4">${emoji}</div>
+                        <h3 class="text-xl font-semibold text-cedar mb-4">${language.charAt(0).toUpperCase() + language.slice(1)}</h3>
+                        <p class="text-mountain">Start learning ${language} with interactive lessons.</p>
+                    `;
+                    btn.onclick = () => {
+                        // set selectedLanguage locally and navigate
+                        selectedLanguage = language;
+                        // navigate to the lessons page with query param
+                        window.location.href = `/language-lessons.html?language=${encodeURIComponent(language)}`;
+                    };
+                    container.appendChild(btn);
+
+                    // Immediately update the progress indicator for this language
+                    updateProgressIndicators();
+
             });
         }
 
