@@ -10,22 +10,31 @@
 
     <script>
         tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        cedar: '#8B4513',
-                        salmon: '#FA8072',
-                        forest: '#228B22',
-                        ocean: '#4682B4',
-                        earth: '#D2B48C',
-                        sunset: '#FF6347',
-                        sky: '#87CEEB',
-                        mountain: '#708090',
-                    }
-                }
+          theme: {
+            extend: {
+              colors: {
+                cedar: '#8B4513',
+                salmon: '#FA8072',
+                forest: '#228B22',
+                ocean: '#4682B4',
+                earth: '#D2B48C',
+                sunset: '#FF6347',
+                sky: '#87CEEB',
+                mountain: '#708090',
+                tlingit: '#8B4513',
+                haida: '#1E90FF',
+                tsimshian: '#FFD700',
+              }
             }
+          },
+          safelist: [
+            'bg-tlingit/10', 'hover:bg-tlingit/20',
+            'bg-haida/10', 'hover:bg-haida/20',
+            'bg-tsimshian/10', 'hover:bg-tsimshian/20'
+          ]
         }
-    </script>
+        </script>
+        
 
     <style>
         /* === EXACT ORIGINAL STYLES COPIED TO PRESERVE LOOK === */

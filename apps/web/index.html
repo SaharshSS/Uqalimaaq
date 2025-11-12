@@ -523,39 +523,51 @@
         Apple Sign-in
         ──────────────────────────────────────────────── */
         document.getElementById("appleBtn").addEventListener("click", async () => {
+            const redirectUrl = `${window.location.origin}/learn.html`;
             const { error } = await supabase.auth.signInWithOAuth({
                 provider: "apple",
                 options: {
-                    redirectTo: window.location.origin + "/learn.html",
+                    redirectTo: redirectUrl,
                 },
             });
-            if (error) alert(error.message);
+            if (error) {
+                console.error('OAuth error:', error);
+                alert(`Sign-in error: ${error.message}\n\nMake sure your Vercel domain is added to Supabase OAuth redirect URLs.`);
+            }
         });
 
         /* ────────────────────────────────────────────────
         Google Sign-in
         ──────────────────────────────────────────────── */
         document.getElementById("googleBtn").addEventListener("click", async () => {
+            const redirectUrl = `${window.location.origin}/learn.html`;
             const { error } = await supabase.auth.signInWithOAuth({
                 provider: "google",
                 options: {
-                    redirectTo: window.location.origin + "/learn.html",
+                    redirectTo: redirectUrl,
                 },
             });
-            if (error) alert(error.message);
+            if (error) {
+                console.error('OAuth error:', error);
+                alert(`Sign-in error: ${error.message}\n\nMake sure your Vercel domain is added to Supabase OAuth redirect URLs.`);
+            }
         });
 
         /* ────────────────────────────────────────────────
         Microsoft Sign-in
         ──────────────────────────────────────────────── */
         document.getElementById("microsoftBtn").addEventListener("click", async () => {
+            const redirectUrl = `${window.location.origin}/learn.html`;
             const { error } = await supabase.auth.signInWithOAuth({
                 provider: "azure",
                 options: {
-                    redirectTo: window.location.origin + "/learn.html",
+                    redirectTo: redirectUrl,
                 },
             });
-            if (error) alert(error.message);
+            if (error) {
+                console.error('OAuth error:', error);
+                alert(`Sign-in error: ${error.message}\n\nMake sure your Vercel domain is added to Supabase OAuth redirect URLs.`);
+            }
         });
 
         function scrollToSection(sectionId) {
@@ -586,8 +598,53 @@
             }, 1500);
         });
 
+        // Handle OAuth callback after redirect
+        async function handleAuthCallback() {
+            // Check for OAuth callback in URL hash (Supabase uses hash-based redirects)
+            const hashParams = new URLSearchParams(window.location.hash.substring(1));
+            const accessToken = hashParams.get('access_token');
+            const error = hashParams.get('error');
+            
+            if (error) {
+                console.error('OAuth error:', error);
+                alert(`Authentication error: ${error}\n\nPlease check your Supabase configuration.`);
+                // Clean up URL
+                window.history.replaceState({}, document.title, window.location.pathname);
+                return;
+            }
+            
+            if (accessToken) {
+                console.log('OAuth callback detected, processing session...');
+                
+                // Wait a moment for Supabase to process the hash
+                await new Promise(resolve => setTimeout(resolve, 100));
+                
+                // Get the session (Supabase should have parsed the hash by now)
+                const { data, error: sessionError } = await supabase.auth.getSession();
+                
+                if (sessionError) {
+                    console.error('Session error:', sessionError);
+                    alert(`Session error: ${sessionError.message}`);
+                    return;
+                }
+                
+                if (data.session) {
+                    console.log('Session established, redirecting to learn page...');
+                    // Clean up URL hash
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                    // Redirect to learn page after successful auth
+                    window.location.href = '/learn.html';
+                } else {
+                    console.warn('No session found after OAuth callback');
+                }
+            }
+        }
+
         // Wait for Supabase client to initialize and DOM to load
         document.addEventListener("DOMContentLoaded", async () => {
+            // Handle OAuth callback first
+            await handleAuthCallback();
+
             const signInButton = document.querySelector('button[onclick="showSignIn()"]');
 
             // If no button found (safety check)

@@ -4,6 +4,10 @@
     {
       "src": "*.html",
       "use": "@vercel/static"
+    },
+    {
+      "src": "media/**",
+      "use": "@vercel/static"
     }
   ],
   "rewrites": [
@@ -34,6 +38,5 @@
         }
       ]
     }
-  ],
-  "alias": "uqalimaaq-app.vercel.app"
+  ]
 }
